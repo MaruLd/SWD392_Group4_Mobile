@@ -13,55 +13,43 @@ class Body extends StatelessWidget {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  
   final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: [
-            Text(
-              "Login",
-              style: TextStyle(
-                color: kPrimaryColor,
-                fontSize: getProportionateScreenWidth(19),
-                fontWeight: FontWeight.bold,
+        child: SizedBox(
+            width: double.infinity,
+            child: Column(children: [
+              Text(
+                "Login",
+                style: TextStyle(
+                  color: kPrimaryColor,
+                  fontSize: getProportionateScreenWidth(19),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            Image.asset(
-              "assets/images/login.png",
-            ),
-            Obx(
-              (() {
-                if (user == null)
-                  return FloatingActionButton.extended(
-                    onPressed: () {
-                      final provider =
-                Provider.of<GoogleSignInProvider>(context, listen: false);
-            provider.googleLogin();
-                    },
-                    icon: Image.asset(
-                      'assets/images/google_logo.png',
-                      height: 32,
-                      width: 32,
-                    ),
-                    label: Text('Sign in with Google'),
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                  );
-                else
-                  return HomeScreen();
-              }),
-            ),
-          ],
-        ),
-      ),
-    );
+              Image.asset(
+                "assets/images/login.png",
+              ),
+              FloatingActionButton.extended(
+                onPressed: () {
+                  final provider =
+                      Provider.of<GoogleSignInProvider>(context, listen: false);
+                  provider.googleLogin();
+                },
+                icon: Image.asset(
+                  'assets/images/google_logo.png',
+                  height: 32,
+                  width: 32,
+                ),
+                label: Text('Sign in with Google'),
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+              )
+            ])));
   }
-
+}
   // Column buildProfileView() {
   //   return Column(
   //     mainAxisSize: MainAxisSize.min,
@@ -90,4 +78,4 @@ class Body extends StatelessWidget {
   //     ],
   //   );
   // }
-}
+
