@@ -1,7 +1,7 @@
 import 'package:evsmart/mainComponent/default_button.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/home/home_screen.dart';
-import 'package:evsmart/size_config.dart';
+import 'package:evsmart/mainComponent/Configs/size_config.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget{
