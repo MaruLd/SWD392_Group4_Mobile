@@ -3,7 +3,7 @@ import 'package:evsmart/screens/login/login_screen.dart';
 import 'package:evsmart/screens/splash/components/splash_content.dart';
 import 'package:flutter/material.dart';
 import '../../../mainComponent/default_button.dart';
-import '../../../size_config.dart';
+import '../../../mainComponent/Configs/size_config.dart';
 import '../../constraint.dart';
 
 class Body extends StatefulWidget {
