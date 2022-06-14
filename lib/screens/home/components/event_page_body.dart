@@ -85,7 +85,6 @@ class _EventPageBodyState extends State<EventPageBody> {
           ),
         ),
         //list of Popular Event
-
         ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
