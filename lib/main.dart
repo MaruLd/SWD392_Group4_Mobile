@@ -62,7 +62,7 @@ Future<void> main() async {
       sound: true,
     );
   }
-  runApp(MyApp());
+  runApp(HomeScreen());
 }
 
 class MyApp extends StatelessWidget {

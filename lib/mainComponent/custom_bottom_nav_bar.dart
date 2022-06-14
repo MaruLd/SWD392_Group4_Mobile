@@ -5,23 +5,18 @@ import 'package:evsmart/screens/home/home_screen.dart';
 import 'package:evsmart/screens/setting/setting_screen.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-
 import '../screens/search/search_screen.dart';
+
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({
     Key? key,
     required this.selectedMenu,
   }) : super(key: key);
-
   final MenuState selectedMenu;
-
   @override
   Widget build(BuildContext context) {
-
     final Color inActiveIconColor = Color(0xFFB6B6B6);
-
     return Container(
-
         padding: EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -56,28 +51,32 @@ class CustomBottomNavBar extends StatelessWidget {
                 iconActiveColor: Colors.white,
                 text: 'Home',
                 textColor: Colors.white,
-                onPressed: ()=>Navigator.pushNamed(context, HomeScreen.routeName),
+                //onPressed: ()=>Navigator.pushNamed(context, HomeScreen.routeName),
+                onPressed: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new HomeScreen())),
               ),
               GButton(
                 icon: LineIcons.heart,
                 iconActiveColor: Colors.white,
                 text: 'Likes',
                 textColor: Colors.white,
-                onPressed: ()=>Navigator.pushNamed(context, FavoriteScreen.routeName),
+                //onPressed: ()=>Navigator.pushNamed(context, FavoriteScreen.routeName),
+                onPressed: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new FavoriteScreen())),
               ),
               GButton(
                 icon: LineIcons.search,
                 iconActiveColor: Colors.white,
                 text: 'Search',
                 textColor: Colors.white,
-                onPressed: ()=>Navigator.pushNamed(context, SearchScreen.routeName),
+                //onPressed: ()=>Navigator.pushNamed(context, SearchScreen.routeName),
+                onPressed: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new SearchScreen())),
               ),
               GButton(
                 icon: LineIcons.user,
                 iconActiveColor: Colors.white,
                 text: 'Setting',
                 textColor: Colors.white,
-                onPressed: ()=>Navigator.pushNamed(context, SettingScreen.routeName),
+                //onPressed: ()=>Navigator.pushNamed(context, SettingScreen.routeName),
+                onPressed: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new SettingScreen())),
               ),
             ],
           ),

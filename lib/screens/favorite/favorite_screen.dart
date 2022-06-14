@@ -1,7 +1,7 @@
 import 'package:evsmart/screens/enums.dart';
 import 'package:flutter/material.dart';
 
-import '../home/components/body.dart';
+import '../favorite/components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
 
@@ -10,6 +10,7 @@ class FavoriteScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp( //use MaterialApp() widget like this
+        debugShowCheckedModeBanner: false,
         home: Favorite() //create new widget class for this 'home' to
       // escape 'No MediaQuery widget found' error
     );
