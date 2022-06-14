@@ -62,7 +62,6 @@ Future<void> main() async {
       sound: true,
     );
   }
-
   runApp(MyApp());
 }
 
@@ -74,6 +73,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProvider(
         create: (context) => GoogleSignInProvider(),
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: theme(),
           home: SplashScreen(),
