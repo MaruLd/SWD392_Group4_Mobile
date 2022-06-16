@@ -24,7 +24,7 @@ class Body extends StatelessWidget{
           width: SizeConfig.screenWidth *0.6,
           child: DefaultButton(
             text: "Go to home",
-            press: ()=>Navigator.pushNamed(context, HomeScreen.routeName),
+            press: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new HomeScreen())),
           ),
         ),
         Spacer(),
