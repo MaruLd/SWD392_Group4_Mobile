@@ -13,7 +13,6 @@ class HomeScreen extends StatelessWidget{
       home: Scaffold(
         body: Body(),
         bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home,),
-
       ),
     );
   }

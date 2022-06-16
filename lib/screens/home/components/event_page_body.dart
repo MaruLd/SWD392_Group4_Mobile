@@ -1,7 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'dart:ui';
 
 import 'package:line_icons/line_icon.dart';

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:evsmart/screens/detail/event_detail_screen.dart';
 import 'package:evsmart/screens/home/home_screen.dart';
 import 'package:evsmart/screens/routes.dart';
 import 'package:evsmart/screens/splash/splash_screen.dart';
@@ -62,7 +62,7 @@ Future<void> main() async {
       sound: true,
     );
   }
-  runApp(HomeScreen());
+  runApp(EventDetail());
 }
 
 class MyApp extends StatelessWidget {
