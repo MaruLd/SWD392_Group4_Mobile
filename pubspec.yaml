@@ -47,7 +47,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   line_icons: ^2.0.1
   get: ^4.6.5
-  
+  dots_indicator: ^2.1.0
 
 
 
@@ -56,6 +56,10 @@ dependencies:
   firebase_auth: ^3.3.19
   firebase_core: ^1.17.0
   firebase_messaging_platform_interface: ^3.1.6
+  json_annotation: ^4.5.0
+  json_serializable: ^6.2.0
+  firebase_messaging: ^11.4.1
+  flutter_local_notifications: ^9.6.0
 
 
 dev_dependencies:
@@ -70,6 +74,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  build_runner: ^2.1.11
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
