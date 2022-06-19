@@ -1,4 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:evsmart/models/event_model.dart';
+import 'package:evsmart/network/network_request.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +16,9 @@ class EventPageBody extends StatefulWidget {
 }
 
 class _EventPageBodyState extends State<EventPageBody> {
+  List<Event>? events;
+  // var isLoaded = false;
+
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currPageValue = 0.0;
   double _scaleFactor = 0.8;
@@ -22,13 +27,28 @@ class _EventPageBodyState extends State<EventPageBody> {
   @override
   void initState() {
     super.initState();
-    pageController.addListener(() {
+    NetworkRequest.fetchPost().then((dataFromServer) {
       setState(() {
-        _currPageValue = pageController.page!;
-        print("Current value is " + _currPageValue.toString());
+        events = dataFromServer;
       });
     });
+    // pageController.addListener(() {
+    //   setState(() {
+    //     _currPageValue = pageController.page!;
+    //     print("Current value is " + _currPageValue.toString());
+    //   });
+    // });
   }
+
+  // @override
+  // getData() async {
+  //   events = await RemoteService().getEvents();
+  //   if (events != null) {
+  //     setState(() {
+  //       isLoaded = true;
+  //     });
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -88,7 +108,7 @@ class _EventPageBodyState extends State<EventPageBody> {
         ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: 3,
+            itemCount: events?.length,
             itemBuilder: (context, index) {
               return Container(
                 margin:
@@ -124,7 +144,7 @@ class _EventPageBodyState extends State<EventPageBody> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Sheraton Lunch Buffet ",
+                                '${events?[index].title}',
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
@@ -133,7 +153,7 @@ class _EventPageBodyState extends State<EventPageBody> {
                                 height: 10,
                               ),
                               Text(
-                                "Tiệc đứng sang trọng tại Sheraton gặp gỡ người nổi tiếng",
+                                '${events?[index].createdDate}',
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(fontSize: 10),
                               ),
@@ -145,7 +165,7 @@ class _EventPageBodyState extends State<EventPageBody> {
                                 children: [
                                   LineIcon.alternateMoneyCheck(),
                                   Text(
-                                    "  500T",
+                                    '${events?[index].description}',
                                     style: TextStyle(
                                         fontStyle: FontStyle.italic,
                                         fontSize: 12),

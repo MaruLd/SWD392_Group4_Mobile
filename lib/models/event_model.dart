@@ -1,9 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
-
-import 'event_category_model.dart';
-import 'organizers_model.dart';
-
-@JsonSerializable(createToJson: false)
 class Event {
   String? id;
   String? title;
@@ -14,6 +8,7 @@ class Event {
   int? multiplierFactor;
   String? createdDate;
   String? state;
+  String? userType;
   List<Organizers>? organizers;
   EventCategory? eventCategory;
 
@@ -27,6 +22,7 @@ class Event {
       this.multiplierFactor,
       this.createdDate,
       this.state,
+      this.userType,
       this.organizers,
       this.eventCategory});
 
@@ -40,6 +36,7 @@ class Event {
     multiplierFactor = json['multiplier-factor'];
     createdDate = json['created-date'];
     state = json['state'];
+    userType = json['user-type'];
     if (json['organizers'] != null) {
       organizers = <Organizers>[];
       json['organizers'].forEach((v) {
@@ -62,12 +59,61 @@ class Event {
     data['multiplier-factor'] = this.multiplierFactor;
     data['created-date'] = this.createdDate;
     data['state'] = this.state;
+    data['user-type'] = this.userType;
     if (this.organizers != null) {
       data['organizers'] = this.organizers!.map((v) => v.toJson()).toList();
     }
     if (this.eventCategory != null) {
       data['event-category'] = this.eventCategory!.toJson();
     }
+    return data;
+  }
+}
+
+class Organizers {
+  String? id;
+  String? name;
+  String? description;
+  String? imageUrl;
+  String? createdDate;
+
+  Organizers(
+      {this.id, this.name, this.description, this.imageUrl, this.createdDate});
+
+  Organizers.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    description = json['description'];
+    imageUrl = json['image-url'];
+    createdDate = json['created-date'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['description'] = this.description;
+    data['image-url'] = this.imageUrl;
+    data['created-date'] = this.createdDate;
+    return data;
+  }
+}
+
+class EventCategory {
+  int? id;
+  String? name;
+
+  EventCategory({this.id, this.name});
+
+  EventCategory.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
     return data;
   }
 }
