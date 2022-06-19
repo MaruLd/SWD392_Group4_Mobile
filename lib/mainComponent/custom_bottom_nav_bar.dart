@@ -1,3 +1,4 @@
+import 'package:evsmart/screens/myticket/myticket_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:evsmart/screens/favorite/favorite_screen.dart';
@@ -63,12 +64,12 @@ class CustomBottomNavBar extends StatelessWidget {
                 onPressed: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new FavoriteScreen())),
               ),
               GButton(
-                icon: LineIcons.search,
+                icon: LineIcons.moneyCheck,
                 iconActiveColor: Colors.white,
-                text: 'Search',
+                text: 'My Tickets',
                 textColor: Colors.white,
                 //onPressed: ()=>Navigator.pushNamed(context, SearchScreen.routeName),
-                onPressed: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new SearchScreen())),
+                onPressed: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new MyTicketScreen())),
               ),
               GButton(
                 icon: LineIcons.user,

@@ -3,7 +3,6 @@ import 'package:evsmart/models/event_model.dart';
 import 'package:evsmart/network/network_request.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'dart:ui';
 
 import 'package:line_icons/line_icon.dart';
