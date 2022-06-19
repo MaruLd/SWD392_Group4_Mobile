@@ -18,20 +18,21 @@ class FavoriteScreen extends StatelessWidget{
 }
 class Favorite extends StatelessWidget{
 
+  @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Color(0xFF11CDEF),
+          backgroundColor: const Color(0xFF11CDEF),
         /* backgroundColor: Colors.transparent,
           elevation: 0.0,*/
-          title:  Center(
+          title:  const Center(
             child: Text(
                 'Favorite', style: TextStyle(color: Colors.white)
             ),
           )
       ),
       body: Body(),
-      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.favorite),
+      bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.favorite),
     );
   }
 }

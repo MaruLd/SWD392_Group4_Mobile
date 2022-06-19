@@ -6,7 +6,6 @@ import 'package:evsmart/screens/home/home_screen.dart';
 import 'package:evsmart/screens/setting/setting_screen.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-import '../screens/search/search_screen.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({
@@ -16,20 +15,20 @@ class CustomBottomNavBar extends StatelessWidget {
   final MenuState selectedMenu;
   @override
   Widget build(BuildContext context) {
-    final Color inActiveIconColor = Color(0xFFB6B6B6);
+    const Color inActiveIconColor = Color(0xFFB6B6B6);
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 14),
+        padding: const EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(40),
             topRight: Radius.circular(40),
           ),
           boxShadow: [
             BoxShadow(
-              offset: Offset(0, -15),
+              offset: const Offset(0, -15),
               blurRadius: 20,
-              color: Color(0xFFDADADA).withOpacity(0.15),
+              color: const Color(0xFFDADADA).withOpacity(0.15),
             ),
           ],
         ),
@@ -42,9 +41,9 @@ class CustomBottomNavBar extends StatelessWidget {
             gap: 8,
             activeColor: Colors.black,
             iconSize: 24,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            duration: Duration(milliseconds: 400),
-            tabBackgroundColor: Color(0xFF11CDEF),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            duration: const Duration(milliseconds: 400),
+            tabBackgroundColor: const Color(0xFF11CDEF),
             color: Colors.black,
             tabs: [
               GButton(
@@ -53,7 +52,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 text: 'Home',
                 textColor: Colors.white,
                 //onPressed: ()=>Navigator.pushNamed(context, HomeScreen.routeName),
-                onPressed: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new HomeScreen())),
+                onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen())),
               ),
               GButton(
                 icon: LineIcons.heart,
@@ -61,7 +60,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 text: 'Likes',
                 textColor: Colors.white,
                 //onPressed: ()=>Navigator.pushNamed(context, FavoriteScreen.routeName),
-                onPressed: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new FavoriteScreen())),
+                onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>FavoriteScreen())),
               ),
               GButton(
                 icon: LineIcons.moneyCheck,
@@ -69,7 +68,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 text: 'My Tickets',
                 textColor: Colors.white,
                 //onPressed: ()=>Navigator.pushNamed(context, SearchScreen.routeName),
-                onPressed: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new MyTicketScreen())),
+                onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>MyTicketScreen())),
               ),
               GButton(
                 icon: LineIcons.user,
@@ -77,7 +76,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 text: 'Setting',
                 textColor: Colors.white,
                 //onPressed: ()=>Navigator.pushNamed(context, SettingScreen.routeName),
-                onPressed: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new SettingScreen())),
+                onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>SettingScreen())),
               ),
             ],
           ),

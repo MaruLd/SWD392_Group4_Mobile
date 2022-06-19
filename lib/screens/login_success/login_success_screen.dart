@@ -5,8 +5,8 @@ class LoginSuccessScreen extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        leading: SizedBox(),
-      title: Center(
+        leading: const SizedBox(),
+      title: const Center(
         child: Text(
           "",
           style: TextStyle(color: Color(0xFF8D8D8D)),

@@ -1,10 +1,9 @@
-import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
 
-import 'detail_page_body.dart';
 
 class Body extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       /*  body: Stack(
@@ -59,12 +58,12 @@ class Body extends StatelessWidget {
         slivers: <Widget>[
           SliverAppBar(
             expandedHeight: 220,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(40))),
             flexibleSpace: FlexibleSpaceBar(
               background: ClipRRect(
                 borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(40)),
+                    const BorderRadius.vertical(bottom: Radius.circular(40)),
                 child: Image.asset(
                   "assets/images/pic1.png",
                   fit: BoxFit.cover,
@@ -75,15 +74,15 @@ class Body extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ListTile(
-                  title: Text(
+                  title: const Text(
                     "Múa rối nước",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                  subtitle: Text(
+                  subtitle: const Text(
                     "Traditional",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
@@ -94,10 +93,10 @@ class Body extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           LineIcon.alternateMoneyCheck(),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          const Text(
                             "  500T ",
                             style: TextStyle(
                                 fontStyle: FontStyle.italic, fontSize: 12),
@@ -108,10 +107,10 @@ class Body extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           LineIcon.registeredTrademarkAlt(),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          const Text(
                             "  1000 ",
                             style: TextStyle(
                                 fontStyle: FontStyle.italic, fontSize: 12),
@@ -122,16 +121,16 @@ class Body extends StatelessWidget {
                   ),
 
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15),
                   child: Text("Content here",
                   style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14,
                   color: Colors.black),),
                 ),
-                Column(children: <Widget>[
+                Column(children: const <Widget>[
                 ],)
               ],
             ),

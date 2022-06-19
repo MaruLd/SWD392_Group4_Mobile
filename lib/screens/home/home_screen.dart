@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Body(),
-        bottomNavigationBar: CustomBottomNavBar(
+        bottomNavigationBar: const CustomBottomNavBar(
           selectedMenu: MenuState.home,
         ),
       ),

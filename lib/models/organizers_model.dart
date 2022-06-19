@@ -1,6 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
-
-@JsonSerializable(createToJson: false)
 class Organizers {
   String? id;
   String? name;
@@ -20,12 +17,12 @@ class Organizers {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['image-url'] = this.imageUrl;
-    data['created-date'] = this.createdDate;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['description'] = description;
+    data['image-url'] = imageUrl;
+    data['created-date'] = createdDate;
     return data;
   }
 }

@@ -11,7 +11,7 @@ class EventDetail extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Body(),
-        bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.eventdetail,),
+        bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.eventdetail,),
       ),
     );
   }

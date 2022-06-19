@@ -1,9 +1,6 @@
-import 'package:evsmart/screens/home/home_screen.dart';
 import 'package:evsmart/mainComponent/Configs/size_config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Authentication/google_sign_in.dart';
@@ -43,7 +40,7 @@ class Body extends StatelessWidget {
                   height: 32,
                   width: 32,
                 ),
-                label: Text('Sign in with Google'),
+                label: const Text('Sign in with Google'),
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.black,
               )

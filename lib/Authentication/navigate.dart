@@ -1,7 +1,6 @@
 import 'package:evsmart/screens/home/home_screen.dart';
 import 'package:evsmart/screens/login/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -13,11 +12,11 @@ class NavigateScreen extends StatelessWidget {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData) {
               return HomeScreen();
             } else if (snapshot.hasError) {
-              return Center(child: Text("Something went Wrong!"));
+              return const Center(child: Text("Something went Wrong!"));
             } else {
               return LoginScreen();
             }
