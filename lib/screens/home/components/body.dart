@@ -6,7 +6,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
-      children: [
+      children: <Widget>[
         //header
         Container(),
         //body
@@ -15,9 +15,9 @@ class Body extends StatelessWidget {
             child: EventPageBody(),
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(top: 45, left: 15),
-          padding: EdgeInsets.only(),
+            Container(
+          // margin: EdgeInsets.only(top: 45, left: 15),
+          // padding: EdgeInsets.only(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -50,10 +50,11 @@ class Body extends StatelessWidget {
           ),
         ),
         //body
-        Container(
-          child: EventPageBody(),
-        )
-      ],
+
+        // Flexible(
+        //   child: EventPageBody(),
+        // )
+        ],
     ));
   }
 }
