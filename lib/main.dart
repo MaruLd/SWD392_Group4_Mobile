@@ -60,6 +60,7 @@ Future<void> main() async {
     );
   }
   await setUp();
+  createRouteBindings();
   runApp(MyApp());
   // runApp(EventDetail());
 }
