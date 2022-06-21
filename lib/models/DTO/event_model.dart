@@ -54,6 +54,11 @@ class Event {
         : null;
   }
 
+  static List<Event> fromList(dynamic jsonList) {
+    var list = jsonList as List;
+    return list.map((map) => Event.fromJson(map)).toList();
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;

@@ -1,5 +1,9 @@
+import 'package:evsmart/models/DTO/event_model.dart';
 import 'package:evsmart/screens/home/components/event_page_body.dart';
+import 'package:evsmart/viewModel/event_viewModel.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -15,46 +19,46 @@ class Body extends StatelessWidget {
             child: EventPageBody(),
           ),
         ),
-            Container(
-          // margin: EdgeInsets.only(top: 45, left: 15),
-          // padding: EdgeInsets.only(),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  Text(
-                    "Evsmart",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35,
-                      // color: kPrimaryColor
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                width: 45,
-                height: 45,
-                child: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-                margin: EdgeInsets.only(right: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  // color: kPrimaryColor,
-                ),
-              )
-            ],
-          ),
-        ),
+        //     Container(
+        //   // margin: EdgeInsets.only(top: 45, left: 15),
+        //   // padding: EdgeInsets.only(),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //     children: [
+        //       Column(
+        //         children: [
+        //           Text(
+        //             "Evsmart",
+        //             style: TextStyle(
+        //               fontWeight: FontWeight.bold,
+        //               fontSize: 35,
+        //               // color: kPrimaryColor
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //       Container(
+        //         width: 45,
+        //         height: 45,
+        //         child: Icon(
+        //           Icons.search,
+        //           color: Colors.white,
+        //         ),
+        //         margin: EdgeInsets.only(right: 15),
+        //         decoration: BoxDecoration(
+        //           borderRadius: BorderRadius.circular(30),
+        //           // color: kPrimaryColor,
+        //         ),
+        //       )
+        //     ],
+        //   ),
+        // ),
         //body
 
         // Flexible(
         //   child: EventPageBody(),
         // )
-        ],
+      ],
     ));
   }
 }
