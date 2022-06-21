@@ -1,8 +1,23 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:evsmart/models/DTO/event_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
 
 import 'package:line_icons/line_icon.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+Future<List<Event>> fetchEvent({int page = 1}) async {
+  final response =
+      await http.get(Uri.parse('https://evsmart.herokuapp.com/api/v1/events'));
+
+  if (response.statusCode == 200) {
+    var responseJson = json.decode(response.body);
+    return (responseJson as List).map((e) => Event.fromJson(e)).toList();
+  } else {
+    throw Exception('Failed to load Event');
+  }
+}
 
 class EventPageBody extends StatefulWidget {
   const EventPageBody({Key? key}) : super(key: key);
@@ -12,6 +27,7 @@ class EventPageBody extends StatefulWidget {
 }
 
 class _EventPageBodyState extends State<EventPageBody> {
+  late Future<List<Event>> events;
   // var isLoaded = false;
 
   PageController pageController = PageController(viewportFraction: 0.85);
@@ -22,6 +38,7 @@ class _EventPageBodyState extends State<EventPageBody> {
   @override
   void initState() {
     super.initState();
+    events = fetchEvent();
     pageController.addListener(() {
       setState(() {
         _currPageValue = pageController.page!;
@@ -84,86 +101,111 @@ class _EventPageBodyState extends State<EventPageBody> {
             ],
           ),
         ),
-        //list of Popular Event
-        ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: const EdgeInsets.only(
-                    top: 15, left: 20, right: 20, bottom: 10),
-                child: Row(
-                  children: [
-                    //image section
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white38,
-                          image: const DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage("assets/images/pic5.png"))),
-                    ),
-                    //text container
-                    Expanded(
-                      child: Container(
-                        height: 130,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          ),
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Event title",
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Text(
-                                "Event createDate",
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(fontSize: 10),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  LineIcon.alternateMoneyCheck(),
-                                  const Text(
-                                    "Event description",
-                                    style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 12),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
+
+        Container(
+          margin:
+              const EdgeInsets.only(top: 15, left: 20, right: 20, bottom: 10),
+          child: Row(
+            children: [
+              Center(
+                child: FutureBuilder<List<Event>>(
+                  future: events,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      Text("Has Data");
+                      return Text(snapshot.data!.elementAt(0).title.toString());
+                    } else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    }
+
+                    // By default, show a loading spinner.
+                    return const CircularProgressIndicator();
+                  },
                 ),
-              );
-            }),
+              )
+            ],
+          ),
+        )
+        // list of Popular Event
+        // ListView.builder(
+        //     physics: const NeverScrollableScrollPhysics(),
+        //     shrinkWrap: true,
+        //     itemCount: 5,
+        //     itemBuilder: (context, index) {
+        //       return Container(
+        //         margin: const EdgeInsets.only(
+        //             top: 15, left: 20, right: 20, bottom: 10),
+        //         child: Row(
+        //           children: [
+        //             //image section
+        //             Container(
+        //               width: 120,
+        //               height: 120,
+        //               decoration: BoxDecoration(
+        //                   borderRadius: BorderRadius.circular(10),
+        //                   color: Colors.white38,
+        //                   image: const DecorationImage(
+        //                       fit: BoxFit.cover,
+        //                       image: AssetImage("assets/images/pic5.png"))),
+        //             ),
+        //             //text container
+        //             Expanded(
+        //               child: Container(
+        //                 height: 130,
+        //                 decoration: const BoxDecoration(
+        //                   borderRadius: BorderRadius.only(
+        //                     topRight: Radius.circular(20),
+        //                     bottomRight: Radius.circular(20),
+        //                   ),
+        //                   color: Colors.white,
+        //                 ),
+        //                 child: Padding(
+        //                   padding: const EdgeInsets.only(left: 10, right: 10),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     mainAxisAlignment: MainAxisAlignment.center,
+        //                     children: [
+        //                       const Text(
+        //                         "Event title",
+        //                         overflow: TextOverflow.ellipsis,
+        //                         style: TextStyle(
+        //                             fontSize: 20, fontWeight: FontWeight.bold),
+        //                       ),
+        //                       const SizedBox(
+        //                         height: 10,
+        //                       ),
+        //                       const Text(
+        //                         "Event createDate",
+        //                         overflow: TextOverflow.ellipsis,
+        //                         style: TextStyle(fontSize: 10),
+        //                       ),
+        //                       const SizedBox(
+        //                         height: 10,
+        //                       ),
+        //                       Row(
+        //                         //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //                         children: [
+        //                           LineIcon.alternateMoneyCheck(),
+        //                           const Text(
+        //                             "Event description",
+        //                             style: TextStyle(
+        //                                 fontStyle: FontStyle.italic,
+        //                                 fontSize: 12),
+        //                           ),
+        //                         ],
+        //                       ),
+        //                       const SizedBox(
+        //                         height: 10,
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ),
+        //               ),
+        //             )
+        //           ],
+        //         ),
+        //       );
+        //     }),
       ],
     );
   }
