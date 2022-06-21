@@ -3,9 +3,9 @@
 //   T data;
 //   String message;
 
-//   Response.loading(this.message) : status = Status.LOADING;
-//   Response.completed(this.data) : status = Status.COMPLETED;
-//   Response.error(this.message) : status = Status.ERROR;
+//   Response.loading(this.message, this.data) : status = Status.LOADING;
+//   Response.completed(this.data, this.message) : status = Status.COMPLETED;
+//   Response.error(this.message, this.data) : status = Status.ERROR;
 
 //   @override
 //   String toString() {

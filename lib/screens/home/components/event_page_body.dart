@@ -1,5 +1,4 @@
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:evsmart/models/event_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,6 @@ class EventPageBody extends StatefulWidget {
 }
 
 class _EventPageBodyState extends State<EventPageBody> {
-  List<Event>? events;
   // var isLoaded = false;
 
   PageController pageController = PageController(viewportFraction: 0.85);
