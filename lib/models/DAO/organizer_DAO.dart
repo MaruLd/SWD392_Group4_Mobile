@@ -1,11 +1,11 @@
 import 'package:evsmart/models/DAO/base_DAO.dart';
-import 'package:evsmart/models/DTO/event_model.dart';
 import 'package:dio/dio.dart';
 import 'package:evsmart/models/DTO/meta_data_dto.dart';
+import 'package:evsmart/models/DTO/organizers_model.dart';
 import 'package:evsmart/networking/api_request.dart';
 
-class EventDAO extends BaseDAO {
-  Future<List<Event>> getAllEvent({
+class OrganizerDAO extends BaseDAO {
+  Future<List<Organizer>> getAllOrganizer({
     int page = 1,
     int size = 50,
     int? total,
@@ -13,11 +13,11 @@ class EventDAO extends BaseDAO {
   }) async {
     Response res;
     res = await request.get(
-      'events',
+      'organizer',
       queryParameters: {"page": page, "size": size}..addAll(params),
     );
-    final events = Event.fromList(res.data);
-    //metaDataDTO = MetaDataDTO.fromJson(res.data["metadata"]);
-    return events;
+    final organizers = Organizer.fromList(res.data["data"]);
+    metaDataDTO = MetaDataDTO.fromJson(res.data["metadata"]);
+    return organizers;
   }
 }

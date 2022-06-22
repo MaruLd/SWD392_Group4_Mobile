@@ -3,7 +3,7 @@ class Organizer {
   String? name;
   String? description;
   String? imageUrl;
-  String? createdDate;
+  DateTime? createdDate;
 
   Organizer(
       {this.id, this.name, this.description, this.imageUrl, this.createdDate});
@@ -13,7 +13,12 @@ class Organizer {
     name = json['name'];
     description = json['description'];
     imageUrl = json['image-url'];
-    createdDate = json['created-date'];
+    createdDate = DateTime.parse(json['created-date']);
+  }
+
+  static List<Organizer> fromList(dynamic jsonList) {
+    var list = jsonList as List;
+    return list.map((map) => Organizer.fromJson(map)).toList();
   }
 
   Map<String, dynamic> toJson() {

@@ -94,7 +94,7 @@ class FeatureItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          data.startTime ?? "Start time",
+                          data.startTime.toString(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           // style: TextStyle(

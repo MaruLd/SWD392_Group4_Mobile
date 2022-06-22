@@ -108,8 +108,8 @@ class _EventPageBodyState extends State<EventPageBody> {
             ],
           ),
         ),
-
         getFeature(),
+
         // Container(
         //   margin:
         //       const EdgeInsets.only(top: 15, left: 20, right: 20, bottom: 10),

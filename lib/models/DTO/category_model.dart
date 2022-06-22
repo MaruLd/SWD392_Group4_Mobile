@@ -9,6 +9,11 @@ class Category {
     name = json['name'];
   }
 
+  static List<Category> fromList(dynamic jsonList) {
+    var list = jsonList as List;
+    return list.map((map) => Category.fromJson(map)).toList();
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;

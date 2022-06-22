@@ -1,4 +1,6 @@
+import 'package:evsmart/viewModel/category_viewModel.dart';
 import 'package:evsmart/viewModel/event_viewModel.dart';
+import 'package:evsmart/viewModel/organizer_viewModel.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 
@@ -13,5 +15,7 @@ Future setUp() async {
 }
 
 void createRouteBindings() async {
+  Get.put(OrganizerViewModel());
+  Get.put(CategoryViewModel());
   Get.put(EventViewModel());
 }
