@@ -1,6 +1,5 @@
-import 'package:evsmart/models/DTO/event_model.dart';
+import 'package:evsmart/models/event.dart';
 import 'package:evsmart/screens/home/components/event_page_body.dart';
-import 'package:evsmart/viewModel/event_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scoped_model/scoped_model.dart';

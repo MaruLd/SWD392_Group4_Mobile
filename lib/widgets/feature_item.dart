@@ -1,6 +1,6 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
-import 'package:evsmart/models/DTO/event_model.dart';
+import 'package:evsmart/models/event.dart';
 import 'package:flutter/material.dart';
 
 class FeatureItem extends StatelessWidget {

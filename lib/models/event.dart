@@ -1,6 +1,3 @@
-import 'category_model.dart';
-import 'organizers_model.dart';
-
 class Event {
   String? id;
   String? title;
@@ -13,8 +10,8 @@ class Event {
   String? createdDate;
   String? state;
   String? userType;
-  List<Organizer>? organizers;
-  Category? eventCategory;
+  List<Organizers>? organizers;
+  EventCategory? eventCategory;
 
   Event(
       {this.id,
@@ -44,18 +41,18 @@ class Event {
     state = json['state'];
     userType = json['user-type'];
     if (json['organizers'] != null) {
-      organizers = <Organizer>[];
+      organizers = <Organizers>[];
       json['organizers'].forEach((v) {
-        organizers!.add(new Organizer.fromJson(v));
+        organizers!.add(new Organizers.fromJson(v));
       });
     }
     eventCategory = json['event-category'] != null
-        ? new Category.fromJson(json['event-category'])
+        ? new EventCategory.fromJson(json['event-category'])
         : null;
   }
 
   static List<Event> fromList(dynamic jsonList) {
-    var list = jsonList as List;
+    var list = jsonList as List<dynamic>;
     return list.map((map) => Event.fromJson(map)).toList();
   }
 
@@ -78,6 +75,54 @@ class Event {
     if (this.eventCategory != null) {
       data['event-category'] = this.eventCategory!.toJson();
     }
+    return data;
+  }
+}
+
+class Organizers {
+  String? id;
+  String? name;
+  String? description;
+  String? imageUrl;
+  String? createdDate;
+
+  Organizers(
+      {this.id, this.name, this.description, this.imageUrl, this.createdDate});
+
+  Organizers.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    description = json['description'];
+    imageUrl = json['image-url'];
+    createdDate = json['created-date'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['description'] = this.description;
+    data['image-url'] = this.imageUrl;
+    data['created-date'] = this.createdDate;
+    return data;
+  }
+}
+
+class EventCategory {
+  int? id;
+  String? name;
+
+  EventCategory({this.id, this.name});
+
+  EventCategory.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
     return data;
   }
 }
