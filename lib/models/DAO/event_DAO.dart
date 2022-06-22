@@ -16,8 +16,8 @@ class EventDAO extends BaseDAO {
       'events',
       queryParameters: {"page": page, "size": size}..addAll(params),
     );
-    final events = Event.fromList(res.data["data"]);
-    metaDataDTO = MetaDataDTO.fromJson(res.data["metadata"]);
+    final events = Event.fromList(res.data);
+    // metaDataDTO = MetaDataDTO.fromJson(res.data["metadata"]);
     return events;
   }
 }

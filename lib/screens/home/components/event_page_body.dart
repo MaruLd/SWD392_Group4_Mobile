@@ -46,6 +46,7 @@ class _EventPageBodyState extends State<EventPageBody> {
   void initState() {
     super.initState();
     // events = fetchEvent();
+    Get.find<EventViewModel>().getEvent();
     pageController.addListener(() {
       setState(() {
         _currPageValue = pageController.page!;

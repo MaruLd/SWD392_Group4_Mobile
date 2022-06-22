@@ -7,10 +7,10 @@ class Event {
   String? description;
   String? imageUrl;
   String? location;
-  String? startTime;
-  String? endTime;
+  DateTime? startTime;
+  DateTime? endTime;
   int? multiplierFactor;
-  String? createdDate;
+  DateTime? createdDate;
   String? state;
   String? userType;
   List<Organizer>? organizers;
@@ -37,10 +37,10 @@ class Event {
     description = json['description'];
     imageUrl = json['image-url'];
     location = json['location'];
-    startTime = json['start-time'];
-    endTime = json['end-time'];
+    startTime = DateTime.parse(json['start-time']);
+    endTime = DateTime.parse(json['end-time']);
     multiplierFactor = json['multiplier-factor'];
-    createdDate = json['created-date'];
+    createdDate = DateTime.parse(json['created-date']);
     state = json['state'];
     userType = json['user-type'];
     if (json['organizers'] != null) {
@@ -55,7 +55,7 @@ class Event {
   }
 
   static List<Event> fromList(dynamic jsonList) {
-    var list = jsonList as List;
+    var list = jsonList as List<dynamic>;
     return list.map((map) => Event.fromJson(map)).toList();
   }
 
