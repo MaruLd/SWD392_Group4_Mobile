@@ -64,33 +64,33 @@ class _EventPageBodyState extends State<EventPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        //Slider
-        Container(
-          margin: const EdgeInsets.only(top: 24),
-          height: 320,
-          child: PageView.builder(
-              controller: pageController,
-              itemCount: 3,
-              itemBuilder: (context, position) {
-                return _buildPageItem(position);
-              }),
-        ),
-        //Dot
-        DotsIndicator(
-          dotsCount: 5,
-          position: _currPageValue,
-          decorator: DotsDecorator(
-            activeColor: kPrimaryColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
-        //Popular
-        const SizedBox(
-          height: 30,
-        ),
+        // //Slider
+        // Container(
+        //   margin: const EdgeInsets.only(top: 24),
+        //   height: 320,
+        //   child: PageView.builder(
+        //       controller: pageController,
+        //       itemCount: 3,
+        //       itemBuilder: (context, position) {
+        //         return _buildPageItem(position);
+        //       }),
+        // ),
+        // //Dot
+        // DotsIndicator(
+        //   dotsCount: 5,
+        //   position: _currPageValue,
+        //   decorator: DotsDecorator(
+        //     activeColor: kPrimaryColor,
+        //     size: const Size.square(9.0),
+        //     activeSize: const Size(18.0, 9.0),
+        //     activeShape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(5.0)),
+        //   ),
+        // ),
+        // //Popular
+        // const SizedBox(
+        //   height: 30,
+        // ),
         Container(
           margin: const EdgeInsets.only(left: 30),
           child: Row(
