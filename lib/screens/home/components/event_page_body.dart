@@ -3,7 +3,6 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:evsmart/color.dart';
 import 'package:evsmart/models/DTO/event_model.dart';
 import 'package:evsmart/screens/constraint.dart';
-import 'package:evsmart/viewModel/event_viewModel.dart';
 import 'package:evsmart/widgets/feature_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,17 +13,17 @@ import 'dart:convert';
 
 import 'package:scoped_model/scoped_model.dart';
 
-// Future<List<Event>> fetchEvent({int page = 1}) async {
-//   final response =
-//       await http.get(Uri.parse('https://evsmart.herokuapp.com/api/v1/events'));
+Future<List<Event>> fetchEvent({int page = 1}) async {
+  final response =
+      await http.get(Uri.parse('https://evsmart.herokuapp.com/api/v1/events'));
 
-//   if (response.statusCode == 200) {
-//     var responseJson = json.decode(response.body);
-//     return (responseJson as List).map((e) => Event.fromJson(e)).toList();
-//   } else {
-//     throw Exception('Failed to load Event');
-//   }
-// }
+  if (response.statusCode == 200) {
+    var responseJson = json.decode(response.body);
+    return (responseJson as List).map((e) => Event.fromJson(e)).toList();
+  } else {
+    throw Exception('Failed to load Event');
+  }
+}
 
 class EventPageBody extends StatefulWidget {
   const EventPageBody({Key? key}) : super(key: key);
@@ -45,7 +44,7 @@ class _EventPageBodyState extends State<EventPageBody> {
   @override
   void initState() {
     super.initState();
-    // events = fetchEvent();
+    events = fetchEvent();
     pageController.addListener(() {
       setState(() {
         _currPageValue = pageController.page!;
@@ -63,6 +62,7 @@ class _EventPageBodyState extends State<EventPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+<<<<<<< HEAD
         //Slider
         Container(
           margin: const EdgeInsets.only(top: 24),
@@ -108,32 +108,78 @@ class _EventPageBodyState extends State<EventPageBody> {
             ],
           ),
         ),
-        getFeature(),
+        // getFeature(),
 
+        // //Slider
         // Container(
-        //   margin:
-        //       const EdgeInsets.only(top: 15, left: 20, right: 20, bottom: 10),
+        //   margin: const EdgeInsets.only(top: 24),
+        //   height: 320,
+        //   child: PageView.builder(
+        //       controller: pageController,
+        //       itemCount: 3,
+        //       itemBuilder: (context, position) {
+        //         return _buildPageItem(position);
+        //       }),
+        // ),
+        // //Dot
+        // DotsIndicator(
+        //   dotsCount: 5,
+        //   position: _currPageValue,
+        //   decorator: DotsDecorator(
+        //     activeColor: kPrimaryColor,
+        //     size: const Size.square(9.0),
+        //     activeSize: const Size(18.0, 9.0),
+        //     activeShape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(5.0)),
+        //   ),
+        // ),
+        // //Popular
+        // const SizedBox(
+        //   height: 30,
+        // ),
+        // Container(
+        //   margin: const EdgeInsets.only(left: 30),
         //   child: Row(
         //     children: [
-        //       Center(
-        //         child: FutureBuilder<List<Event>>(
-        //           future: events,
-        //           builder: (context, snapshot) {
-        //             if (snapshot.hasData) {
-        //               Text("Has Data");
-        //               return Text(snapshot.data!.elementAt(0).title.toString());
-        //             } else if (snapshot.hasError) {
-        //               return Text('${snapshot.error}');
-        //             }
-
-        //             // By default, show a loading spinner.
-        //             return const CircularProgressIndicator();
-        //           },
-        //         ),
-        //       )
+        //       const Text(
+        //         "Popular",
+        //         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        //       ),
+        //       const SizedBox(
+        //         width: 10,
+        //       ),
+        //       Container(),
+        //       const SizedBox(
+        //         width: 10,
+        //       ),
         //     ],
         //   ),
-        // )
+        // ),
+
+        // Example for call event API
+        Container(
+          margin:
+              const EdgeInsets.only(top: 15, left: 20, right: 20, bottom: 10),
+          child: Row(
+            children: [
+              Center(
+                child: FutureBuilder<List<Event>>(
+                  future: events,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Text(snapshot.data!.elementAt(0).title.toString());
+                    } else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    }
+
+                    // By default, show a loading spinner.
+                    return const CircularProgressIndicator();
+                  },
+                ),
+              )
+            ],
+          ),
+        )
         // list of Popular Event
         // ListView.builder(
         //     physics: const NeverScrollableScrollPhysics(),
@@ -216,33 +262,6 @@ class _EventPageBodyState extends State<EventPageBody> {
         //     }),
       ],
     );
-  }
-
-  int selectedCollection = 0;
-  getFeature() {
-    return ScopedModel<EventViewModel>(
-        model: Get.find<EventViewModel>(),
-        child: ScopedModelDescendant<EventViewModel>(
-          builder: (context, child, model) {
-            List<Event>? currentEvent = model.listEvent;
-            if (currentEvent == null)
-              return SizedBox(
-                height: 30,
-              );
-            else
-              return CarouselSlider(
-                  options: CarouselOptions(
-                    height: 280,
-                    enlargeCenterPage: true,
-                    disableCenter: true,
-                    viewportFraction: .75,
-                  ),
-                  items: List.generate(
-                      currentEvent.length,
-                      (index) => FeatureItem(
-                          onTap: () {}, data: currentEvent[index])));
-          },
-        ));
   }
 
   Widget _buildPageItem(int index) {
