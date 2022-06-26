@@ -60,7 +60,7 @@ class CustomInterceptors extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     print(
         'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
-    print('DATA: ${response.data}');
+    // print('DATA: ${response.data}');
     return super.onResponse(response, handler);
   }
 
