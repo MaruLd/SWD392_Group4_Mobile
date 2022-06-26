@@ -8,44 +8,37 @@ import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
 class FavoriteScreen extends StatelessWidget{
   static String routeName ="/favorite";
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp( //use MaterialApp() widget like this
-        debugShowCheckedModeBanner: false,
-        home: Favorite() //create new widget class for this 'home' to
-      // escape 'No MediaQuery widget found' error
-    );
-  }
-}
-class Favorite extends StatelessWidget{
-
+  
   @override
   Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            onPressed: (){},
-            icon: Icon(Icons.search, color: kPrimaryColor,),
-          )
-        ],
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back, color: kPrimaryColor,),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          actions: <Widget>[
+            IconButton(
+              onPressed: (){},
+              icon: Icon(Icons.search, color: kPrimaryColor,),
+            )
+          ],
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back, color: kPrimaryColor,),
+          ),
+          title: Text(
+            "Favorite",
+            style:
+            TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
-        title: Text(
-          "Favorite",
-          style:
-          TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        body: Body(),
+        bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.favorite),
       ),
-      body: Body(),
-      bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.favorite),
     );
   }
 }

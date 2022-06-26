@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import '../../mainComponent/custom_bottom_nav_bar.dart';
 import '../enums.dart';
 
-void main(){
-  runApp(SettingScreen());
-}
+
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);

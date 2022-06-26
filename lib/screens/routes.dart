@@ -3,6 +3,7 @@ import 'package:evsmart/screens/login_success/login_success_screen.dart';
 import 'package:evsmart/screens/myticket/myticket_screen.dart';
 import 'package:evsmart/screens/search/search_screen.dart';
 import 'package:evsmart/screens/splash/splash_screen.dart';
+import 'package:evsmart/screens/success/bookingsuccess.dart';
 import 'package:flutter/material.dart';
 import 'package:evsmart/screens/setting/setting_screen.dart';
 import 'package:evsmart/screens/favorite/favorite_screen.dart';
@@ -21,4 +22,5 @@ final Map<String, WidgetBuilder> routes = {
   LoginSuccessScreen.routeName: (context) => LoginSuccessScreen(),
   NavigateScreen.routeName: (context) => NavigateScreen(),
   MyTicketScreen.routeName: (context) => MyTicketScreen(),
+  BookingSuccess.routeName: (context) => BookingSuccess(),
 };

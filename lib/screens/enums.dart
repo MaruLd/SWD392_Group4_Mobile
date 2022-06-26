@@ -6,7 +6,8 @@ enum MenuState {
   error,
   login,
   mytickets,
-  eventdetail
+  eventdetail,
+  booking_success,
 }
 
 enum ViewStatus { Empty, Loading, Completed, Error, LoadMore, Refreshing }

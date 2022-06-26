@@ -4,49 +4,41 @@ import 'package:flutter/material.dart';
 import '../myticket//components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
-
-class MyTicketScreen extends StatelessWidget{
+class MyTicketScreen extends StatelessWidget {
+  const MyTicketScreen({Key? key}) : super(key: key);
   static String routeName ="/mytickets";
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( //use MaterialApp() widget like this
-        debugShowCheckedModeBanner: false,
-        home: MyTicket() //create new widget class for this 'home' to
-      // escape 'No MediaQuery widget found' error
-    );
-  }
-}
-class MyTicket extends StatelessWidget{
-
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            onPressed: (){},
-            icon:Icon(
-                  Icons.search, color: kPrimaryColor,
-                ),
-          )
-        ],
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back, color: kPrimaryColor,),
-          ),
-
-          //backgroundColor: const Color(0xFF11CDEF),
-           backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          title: Text(
-                'My ticket', style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold)
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          actions: <Widget>[
+            IconButton(
+              onPressed: (){},
+              icon:Icon(
+                    Icons.search, color: kPrimaryColor,
+                  ),
+            )
+          ],
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back, color: kPrimaryColor,),
             ),
-        centerTitle: true,
+
+            //backgroundColor: const Color(0xFF11CDEF),
+             backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            title: Text(
+                  'My ticket', style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold)
+              ),
+          centerTitle: true,
+        ),
+        body: Body(),
+        bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.mytickets),
       ),
-      body: Body(),
-      bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.mytickets),
     );
   }
 }
