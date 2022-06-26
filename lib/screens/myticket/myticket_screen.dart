@@ -1,3 +1,4 @@
+import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:flutter/material.dart';
 import '../myticket//components/body.dart';
@@ -21,14 +22,28 @@ class MyTicket extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: const Color(0xFF11CDEF),
-          /* backgroundColor: Colors.transparent,
-          elevation: 0.0,*/
-          title:  const Center(
-            child: Text(
-                'My ticket', style: TextStyle(color: Colors.white)
-            ),
+        actions: <Widget>[
+          IconButton(
+            onPressed: (){},
+            icon:Icon(
+                  Icons.search, color: kPrimaryColor,
+                ),
           )
+        ],
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back, color: kPrimaryColor,),
+          ),
+
+          //backgroundColor: const Color(0xFF11CDEF),
+           backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          title: Text(
+                'My ticket', style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold)
+            ),
+        centerTitle: true,
       ),
       body: Body(),
       bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.mytickets),

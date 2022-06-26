@@ -1,6 +1,7 @@
 import 'package:evsmart/screens/enums.dart';
 import 'package:flutter/material.dart';
 
+import '../constraint.dart';
 import '../favorite/components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
@@ -22,14 +23,26 @@ class Favorite extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: const Color(0xFF11CDEF),
-        /* backgroundColor: Colors.transparent,
-          elevation: 0.0,*/
-          title:  const Center(
-            child: Text(
-                'Favorite', style: TextStyle(color: Colors.white)
-            ),
+        actions: <Widget>[
+          IconButton(
+            onPressed: (){},
+            icon: Icon(Icons.search, color: kPrimaryColor,),
           )
+        ],
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: kPrimaryColor,),
+        ),
+        title: Text(
+          "Favorite",
+          style:
+          TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: Body(),
       bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.favorite),
