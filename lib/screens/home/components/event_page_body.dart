@@ -62,7 +62,6 @@ class _EventPageBodyState extends State<EventPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-<<<<<<< HEAD
         //Slider
         Container(
           margin: const EdgeInsets.only(top: 24),
