@@ -48,3 +48,4 @@ app.*.map.json
 node_modules
 local.properties
 pubspec.lock
+pubspec.lock
