@@ -1,5 +1,5 @@
 import 'category_model.dart';
-import 'organizers_model.dart';
+import 'organizer_model.dart';
 
 class Event {
   String? id;
