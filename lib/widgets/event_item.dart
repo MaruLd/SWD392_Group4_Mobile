@@ -56,20 +56,20 @@ class MyEventItem extends StatelessWidget {
                           fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
-                      height: 12,
-                    ),
-                    SizedBox(
-                      height: 12,
+                      height: 24,
                     ),
                     Row(
                       children: [
-                        SizedBox(
-                          width: 20,
-                        ),
+                        // SizedBox(
+                        //   width: 20,
+                        // ),
                         Icon(
                           Icons.schedule_rounded,
                           color: labelColor,
                           size: 14,
+                        ),
+                        SizedBox(
+                          width: 2,
                         ),
                         Text(
                           data.startTime.toString(),
@@ -79,9 +79,9 @@ class MyEventItem extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        SizedBox(
-                          width: 20,
-                        ),
+                        // SizedBox(
+                        //   width: 20,
+                        // ),
                         Icon(
                           Icons.star,
                           color: orange,
@@ -90,10 +90,14 @@ class MyEventItem extends StatelessWidget {
                         SizedBox(
                           width: 2,
                         ),
-                        Text(
-                          data.location.toString(),
-                          style: TextStyle(fontSize: 12, color: labelColor),
-                        ),
+                        Flexible(
+                          child: Text(
+                            data.location.toString(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 12, color: labelColor),
+                          ),
+                        )
                       ],
                     )
                   ],
