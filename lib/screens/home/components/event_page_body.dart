@@ -3,6 +3,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:evsmart/color.dart';
 import 'package:evsmart/models/DTO/event_model.dart';
 import 'package:evsmart/screens/constraint.dart';
+import 'package:evsmart/viewModel/event_viewModel.dart';
+import 'package:evsmart/widgets/event_item.dart';
 import 'package:evsmart/widgets/feature_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -108,53 +110,6 @@ class _EventPageBodyState extends State<EventPageBody> {
             ],
           ),
         ),
-        // getFeature(),
-
-        // //Slider
-        // Container(
-        //   margin: const EdgeInsets.only(top: 24),
-        //   height: 320,
-        //   child: PageView.builder(
-        //       controller: pageController,
-        //       itemCount: 3,
-        //       itemBuilder: (context, position) {
-        //         return _buildPageItem(position);
-        //       }),
-        // ),
-        // //Dot
-        // DotsIndicator(
-        //   dotsCount: 5,
-        //   position: _currPageValue,
-        //   decorator: DotsDecorator(
-        //     activeColor: kPrimaryColor,
-        //     size: const Size.square(9.0),
-        //     activeSize: const Size(18.0, 9.0),
-        //     activeShape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(5.0)),
-        //   ),
-        // ),
-        // //Popular
-        // const SizedBox(
-        //   height: 30,
-        // ),
-        // Container(
-        //   margin: const EdgeInsets.only(left: 30),
-        //   child: Row(
-        //     children: [
-        //       const Text(
-        //         "Popular",
-        //         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        //       ),
-        //       const SizedBox(
-        //         width: 10,
-        //       ),
-        //       Container(),
-        //       const SizedBox(
-        //         width: 10,
-        //       ),
-        //     ],
-        //   ),
-        // ),
 
         // Example for call event API
         Container(
@@ -167,7 +122,7 @@ class _EventPageBodyState extends State<EventPageBody> {
                   future: events,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return Text(snapshot.data!.elementAt(0).title.toString());
+                      return getTabContent();
                     } else if (snapshot.hasError) {
                       return Text('${snapshot.error}');
                     }
@@ -180,12 +135,11 @@ class _EventPageBodyState extends State<EventPageBody> {
             ],
           ),
         )
-
       ],
     );
   }
 
-    getTabContent() {
+  getTabContent() {
     return ScopedModel<EventViewModel>(
         model: Get.find<EventViewModel>(),
         child: ScopedModelDescendant<EventViewModel>(
