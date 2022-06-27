@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:evsmart/screens/routes.dart';
 import 'package:evsmart/screens/splash/splash_screen.dart';
 import 'package:evsmart/mainComponent/Configs/theme.dart';
+import 'package:evsmart/setup.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,8 @@ Future<void> main() async {
       sound: true,
     );
   }
+  await setUp();
+  createRouteBindings();
   runApp(MyApp());
 }
 

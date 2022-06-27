@@ -4,6 +4,8 @@ import '../enums.dart';
 import '../home/components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
+import 'components/event_page_body.dart';
+
 class HomeScreen extends StatelessWidget {
   static String routeName = "/home";
   var isLoaded = false;
@@ -16,20 +18,21 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           actions: <Widget>[
             IconButton(
-              onPressed: (){},
-              icon:Icon(
-                Icons.search, color: kPrimaryColor,
+              onPressed: () {},
+              icon: Icon(
+                Icons.search,
+                color: kPrimaryColor,
               ),
             )
           ],
           //backgroundColor: const Color(0xFF11CDEF),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          title: Text(
-              'Evsmart', style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold)
-          ),
+          title: Text('Evsmart',
+              style:
+                  TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold)),
         ),
-        body: Body(),
+        body: EventPageBody(),
         bottomNavigationBar: const CustomBottomNavBar(
           selectedMenu: MenuState.home,
         ),

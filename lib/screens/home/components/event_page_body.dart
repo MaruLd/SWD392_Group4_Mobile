@@ -62,81 +62,7 @@ class _EventPageBodyState extends State<EventPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-// HEAD
-        //Slider
-        Container(
-          margin: const EdgeInsets.only(top: 24),
-          height: 320,
-          child: PageView.builder(
-              controller: pageController,
-              itemCount: 3,
-              itemBuilder: (context, position) {
-                return _buildPageItem(position);
-              }),
-        ),
-        //Dot
-        DotsIndicator(
-          dotsCount: 5,
-          position: _currPageValue,
-          decorator: DotsDecorator(
-            activeColor: kPrimaryColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
-        //Popular
-        const SizedBox(
-          height: 30,
-        ),
-        Container(
-          margin: const EdgeInsets.only(left: 30),
-          child: Row(
-            children: [
-              const Text(
-                "Popular",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Container(),
-              const SizedBox(
-                width: 10,
-              ),
-            ],
-          ),
-        ),
-
-        // Example for call event API
-        Container(
-          margin:
-              const EdgeInsets.only(top: 15, left: 20, right: 20, bottom: 10),
-          child: Row(
-            children: [
-              Center(
-                child: FutureBuilder<List<Event>>(
-                  future: events,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return getTabContent();
-                    } else if (snapshot.hasError) {
-                      return Text('${snapshot.error}');
-                    }
-
-                    // By default, show a loading spinner.
-                    return const CircularProgressIndicator();
-                  },
-                ),
-              )
-            ],
-          ),
-        )
-      ],
-    );
+    return getTabContent();
   }
 
   getTabContent() {
@@ -165,146 +91,146 @@ class _EventPageBodyState extends State<EventPageBody> {
         }));
   }
 
-  Widget _buildPageItem(int index) {
-    Matrix4 matrix = Matrix4.identity();
-// Slider's animation
-    if (index == _currPageValue.floor()) {
-      var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
-      var currTrans = _height * (1 - currScale) / 2;
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)
-        ..setTranslationRaw(0, currTrans, 0);
-    } else if (index == _currPageValue.floor() + 1) {
-      var currScale =
-          _scaleFactor + (_currPageValue - index + 1) * (1 - _scaleFactor);
-      var currTrans = _height * (1 - currScale) / 2;
-      matrix = Matrix4.diagonal3Values(1, currScale, 1);
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)
-        ..setTranslationRaw(0, currTrans, 0);
-    } else if (index == _currPageValue.floor() - 1) {
-      var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
-      var currTrans = _height * (1 - currScale) / 2;
-      matrix = Matrix4.diagonal3Values(1, currScale, 1);
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)
-        ..setTranslationRaw(0, currTrans, 0);
-    } else {
-      var currScale = 0.8;
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)
-        ..setTranslationRaw(0, _height * (1 - _scaleFactor) / 2, 1);
-    }
+//   Widget _buildPageItem(int index) {
+//     Matrix4 matrix = Matrix4.identity();
+// // Slider's animation
+//     if (index == _currPageValue.floor()) {
+//       var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
+//       var currTrans = _height * (1 - currScale) / 2;
+//       matrix = Matrix4.diagonal3Values(1, currScale, 1)
+//         ..setTranslationRaw(0, currTrans, 0);
+//     } else if (index == _currPageValue.floor() + 1) {
+//       var currScale =
+//           _scaleFactor + (_currPageValue - index + 1) * (1 - _scaleFactor);
+//       var currTrans = _height * (1 - currScale) / 2;
+//       matrix = Matrix4.diagonal3Values(1, currScale, 1);
+//       matrix = Matrix4.diagonal3Values(1, currScale, 1)
+//         ..setTranslationRaw(0, currTrans, 0);
+//     } else if (index == _currPageValue.floor() - 1) {
+//       var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
+//       var currTrans = _height * (1 - currScale) / 2;
+//       matrix = Matrix4.diagonal3Values(1, currScale, 1);
+//       matrix = Matrix4.diagonal3Values(1, currScale, 1)
+//         ..setTranslationRaw(0, currTrans, 0);
+//     } else {
+//       var currScale = 0.8;
+//       matrix = Matrix4.diagonal3Values(1, currScale, 1)
+//         ..setTranslationRaw(0, _height * (1 - _scaleFactor) / 2, 1);
+//     }
 
-    return Transform(
-      transform: matrix,
-      child: Stack(
-        children: [
-          Container(
-            height: 220,
-            margin: const EdgeInsets.only(left: 2, right: 2),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: kPrimaryColor,
-                image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/images/pic1.png"))),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 120,
-              margin: const EdgeInsets.only(left: 35, right: 35, bottom: 20),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0xFFe8e8e8),
-                      blurRadius: 5.0,
-                      offset: Offset(0, 5),
-                    ),
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(-5, 0),
-                    ),
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(5, 0),
-                    ),
-                  ]),
-              child: Container(
-                padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Múa rối nước",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20)),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        Wrap(
-                          children: List.generate(5, (index) {
-                            return const Icon(
-                              Icons.star,
-                              color: Colors.yellow,
-                              size: 15,
-                            );
-                          }),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "5",
-                          style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontSize: 12,
-                              color: Colors.black.withOpacity(0.3)),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "1000",
-                          style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontSize: 12,
-                              color: Colors.black.withOpacity(0.3)),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "Register",
-                          style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontSize: 12,
-                              color: Colors.black.withOpacity(0.3)),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//     return Transform(
+//       transform: matrix,
+//       child: Stack(
+//         children: [
+//           Container(
+//             height: 220,
+//             margin: const EdgeInsets.only(left: 2, right: 2),
+//             decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.circular(30),
+//                 color: kPrimaryColor,
+//                 image: const DecorationImage(
+//                     fit: BoxFit.cover,
+//                     image: AssetImage("assets/images/pic1.png"))),
+//           ),
+//           Align(
+//             alignment: Alignment.bottomCenter,
+//             child: Container(
+//               height: 120,
+//               margin: const EdgeInsets.only(left: 35, right: 35, bottom: 20),
+//               decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.circular(20),
+//                   color: Colors.white,
+//                   boxShadow: const [
+//                     BoxShadow(
+//                       color: Color(0xFFe8e8e8),
+//                       blurRadius: 5.0,
+//                       offset: Offset(0, 5),
+//                     ),
+//                     BoxShadow(
+//                       color: Colors.white,
+//                       offset: Offset(-5, 0),
+//                     ),
+//                     BoxShadow(
+//                       color: Colors.white,
+//                       offset: Offset(5, 0),
+//                     ),
+//                   ]),
+//               child: Container(
+//                 padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     const Text("Múa rối nước",
+//                         style: TextStyle(
+//                             fontWeight: FontWeight.bold, fontSize: 20)),
+//                     const SizedBox(
+//                       height: 10,
+//                     ),
+//                     Row(
+//                       children: [
+//                         Wrap(
+//                           children: List.generate(5, (index) {
+//                             return const Icon(
+//                               Icons.star,
+//                               color: Colors.yellow,
+//                               size: 15,
+//                             );
+//                           }),
+//                         ),
+//                         const SizedBox(
+//                           width: 10,
+//                         ),
+//                         Text(
+//                           "5",
+//                           style: TextStyle(
+//                               fontStyle: FontStyle.italic,
+//                               fontSize: 12,
+//                               color: Colors.black.withOpacity(0.3)),
+//                         ),
+//                         const SizedBox(
+//                           width: 10,
+//                         ),
+//                         Text(
+//                           "1000",
+//                           style: TextStyle(
+//                               fontStyle: FontStyle.italic,
+//                               fontSize: 12,
+//                               color: Colors.black.withOpacity(0.3)),
+//                         ),
+//                         const SizedBox(
+//                           width: 10,
+//                         ),
+//                         Text(
+//                           "Register",
+//                           style: TextStyle(
+//                               fontStyle: FontStyle.italic,
+//                               fontSize: 12,
+//                               color: Colors.black.withOpacity(0.3)),
+//                         ),
+//                       ],
+//                     ),
+//                     const SizedBox(
+//                       height: 10,
+//                     ),
+//                     Row(
+//                       //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                      children: [
-                        LineIcon.alternateMoneyCheck(),
-                        const Text(
-                          "  500T",
-                          style: TextStyle(
-                              fontStyle: FontStyle.italic, fontSize: 12),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
+//                       children: [
+//                         LineIcon.alternateMoneyCheck(),
+//                         const Text(
+//                           "  500T",
+//                           style: TextStyle(
+//                               fontStyle: FontStyle.italic, fontSize: 12),
+//                         ),
+//                       ],
+//                     )
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
 }
