@@ -1,5 +1,5 @@
-import 'package:evsmart/models/DTO/category_model.dart';
-import 'package:evsmart/models/DTO/organizers_model.dart';
+import 'category_model.dart';
+import 'organizers_model.dart';
 
 class Event {
   String? id;
