@@ -1,7 +1,9 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
+import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../models/DTO/event_model.dart';
 
@@ -48,7 +50,7 @@ class MyEventItem extends StatelessWidget {
                   children: [
                     Text(
                       data.title.toString(),
-                      maxLines: 1,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           color: textColor,
@@ -56,7 +58,7 @@ class MyEventItem extends StatelessWidget {
                           fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
-                      height: 24,
+                      height: 12,
                     ),
                     Row(
                       children: [
@@ -65,17 +67,27 @@ class MyEventItem extends StatelessWidget {
                         // ),
                         Icon(
                           Icons.schedule_rounded,
-                          color: labelColor,
+                          color: kPrimaryColor,
                           size: 14,
                         ),
                         SizedBox(
                           width: 2,
                         ),
                         Text(
-                          data.startTime.toString(),
-                          style: TextStyle(fontSize: 12, color: labelColor),
+                          DateFormat("MM/dd/yyyy hh:mm a")
+                              .format(data.startTime as DateTime)
+                              .toString(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                     Row(
                       children: [
@@ -83,8 +95,8 @@ class MyEventItem extends StatelessWidget {
                         //   width: 20,
                         // ),
                         Icon(
-                          Icons.star,
-                          color: orange,
+                          Icons.location_on_outlined,
+                          color: red,
                           size: 14,
                         ),
                         SizedBox(

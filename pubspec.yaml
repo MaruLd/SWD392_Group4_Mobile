@@ -65,7 +65,7 @@ dependencies:
   scoped_model: ^2.0.0-nullsafety.0
   cached_network_image: ^3.2.1
   carousel_slider: ^4.1.1
-
+  intl: ^0.17.0
   #babstrap_settings_screen
   babstrap_settings_screen: ^0.1.3
 dev_dependencies:

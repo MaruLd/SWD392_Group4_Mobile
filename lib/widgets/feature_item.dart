@@ -1,7 +1,9 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
 import 'package:evsmart/models/DTO/event_model.dart';
+import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class FeatureItem extends StatelessWidget {
   FeatureItem(
@@ -23,11 +25,11 @@ class FeatureItem extends StatelessWidget {
       child: Container(
         width: width,
         height: height,
-        // padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(10),
         margin: EdgeInsets.only(bottom: 5, top: 5),
         decoration: BoxDecoration(
           color: Colors.white,
-          // borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(5),
           boxShadow: [
             BoxShadow(
               color: shadowColor.withOpacity(0.1),
@@ -44,31 +46,8 @@ class FeatureItem extends StatelessWidget {
               width: double.infinity,
               height: 140,
               radius: 1,
+              borderRadius: BorderRadius.circular(10),
             ),
-            // Positioned(
-            //   top: 120,
-            //   right: 15,
-            //   child: Container(
-            //     padding: EdgeInsets.all(10),
-            //     decoration: BoxDecoration(
-            //       color: primary,
-            //       borderRadius: BorderRadius.circular(20),
-            //       boxShadow: [
-            //         BoxShadow(
-            //           color: shadowColor.withOpacity(0.05),
-            //           spreadRadius: 1,
-            //           blurRadius: 1,
-            //           offset: Offset(0, 0),
-            //         ),
-            //       ],
-            //     ),
-            //     child: Text(
-            //       formatPrice(data.price ?? 0.0),
-            //       style: TextStyle(
-            //           color: Colors.white, fontWeight: FontWeight.w500),
-            //     ),
-            //   ),
-            // ),
             Positioned(
               top: 144,
               child: Container(
@@ -90,46 +69,56 @@ class FeatureItem extends StatelessWidget {
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          data.startTime.toString(),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          // style: TextStyle(
-                          //     fontSize: 16,
-                          //     color: primary,
-                          //     fontWeight: FontWeight.w500),
+                        Icon(
+                          Icons.schedule_rounded,
+                          color: kPrimaryColor,
+                          size: 18,
+                        ),
+                        SizedBox(
+                          width: 4,
                         ),
                         Text(
-                          data.location ?? "Location",
-                          // style: TextStyle(
-                          //     color: third,
-                          //     fontSize: 16,
-                          //     fontWeight: FontWeight.w500),
+                          DateFormat("MM/dd/yyyy hh:mm a")
+                              .format(data.startTime as DateTime)
+                              .toString(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   crossAxisAlignment: CrossAxisAlignment.center,
-                    //   children: [
-                    //     getAttribute(Icons.play_circle_outlined, labelColor,
-                    //         data.slug ?? "Test"),
-                    //     SizedBox(
-                    //       width: 8,
-                    //     ),
-                    //     getAttribute(
-                    //       Icons.star,
-                    //       yellow,
-                    //       data.totalRating.toString(),
-                    //     ),
-                    //   ],
-                    // ),
+                    Row(
+                      children: [
+                        // SizedBox(
+                        //   width: 20,
+                        // ),
+                        Icon(
+                          Icons.location_on_outlined,
+                          color: red,
+                          size: 20,
+                        ),
+                        SizedBox(
+                          width: 2,
+                        ),
+                        Flexible(
+                          child: Text(
+                            data.location.toString(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 12, color: labelColor),
+                          ),
+                        )
+                      ],
+                    )
                   ],
                 ),
               ),

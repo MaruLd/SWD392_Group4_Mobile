@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:evsmart/color.dart';
@@ -35,7 +37,8 @@ class EventPageBody extends StatefulWidget {
 }
 
 class _EventPageBodyState extends State<EventPageBody> {
-  late Future<List<Event>> events;
+  // late Future<List<Event>> events;
+  late Future<void> events;
   // var isLoaded = false;
 
   PageController pageController = PageController(viewportFraction: 0.85);
@@ -49,7 +52,7 @@ class _EventPageBodyState extends State<EventPageBody> {
   void initState() {
     super.initState();
     // events = fetchEvent();
-    Get.find<EventViewModel>().getEvent();
+    events = Get.find<EventViewModel>().getEvent();
     pageController.addListener(() {
       setState(() {
         _currPageValue = pageController.page!;
@@ -65,7 +68,16 @@ class _EventPageBodyState extends State<EventPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return getTabContent();
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
+            child: Column(children: [
+              getAppBar("Featured Events"),
+              getFeature(),
+              getAppBar("Events"),
+              getTabContent()
+            ])));
   }
 
   int selectedCollection = 0;
@@ -95,9 +107,9 @@ class _EventPageBodyState extends State<EventPageBody> {
         ));
   }
 
-  Widget getAppBar() {
+  Widget getAppBar(String title) {
     return Container(
-        padding: EdgeInsets.fromLTRB(0, 48, 0, 4),
+        padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
         child: Column(
           children: [
             Row(
@@ -107,7 +119,7 @@ class _EventPageBodyState extends State<EventPageBody> {
                   child: Container(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        "Events",
+                        title,
                         style: TextStyle(
                             fontSize: 24,
                             color: Colors.black87,
@@ -116,7 +128,6 @@ class _EventPageBodyState extends State<EventPageBody> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
           ],
         ));
   }
