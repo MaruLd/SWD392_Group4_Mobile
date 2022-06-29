@@ -1,5 +1,6 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
+import 'package:evsmart/models/DTO/ticket_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,16 +8,16 @@ import 'package:intl/intl.dart';
 
 import '../models/DTO/event_model.dart';
 
-class MyEventItem extends StatelessWidget {
-  MyEventItem({Key? key, required this.data, this.onTap}) : super(key: key);
-  Event data;
+class MyTicketItem extends StatelessWidget {
+  MyTicketItem({Key? key, required this.data, this.onTap}) : super(key: key);
+  Ticket data;
   final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Get.toNamed(RouteHandler.EVENT_DETAILS, arguments: data);
+        // Get.toNamed(RouteHandler.TICKET_DETAILS, arguments: data);
       },
       child: Container(
           padding: EdgeInsets.all(8),
@@ -36,7 +37,7 @@ class MyEventItem extends StatelessWidget {
           child: Row(
             children: [
               CustomImage(
-                data.imageUrl ?? "/assest/images/pic4.png",
+                "/assest/icons/ticket.svg",
                 radius: 15,
                 height: 90,
               ),
@@ -49,7 +50,7 @@ class MyEventItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      data.title.toString(),
+                      data.name.toString(),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -75,7 +76,7 @@ class MyEventItem extends StatelessWidget {
                         ),
                         Text(
                           DateFormat("MM/dd/yyyy hh:mm a")
-                              .format(data.startTime as DateTime)
+                              .format(data.checkedInDate as DateTime)
                               .toString(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -104,7 +105,7 @@ class MyEventItem extends StatelessWidget {
                         ),
                         Flexible(
                           child: Text(
-                            data.location.toString(),
+                            data.type.toString(),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(fontSize: 12, color: labelColor),

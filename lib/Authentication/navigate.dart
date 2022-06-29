@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 class NavigateScreen extends StatelessWidget {
   static String routeName = "/navigate";
+
+  const NavigateScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) => Scaffold(
       body: StreamBuilder(

@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 
 import 'screens/notification/firebase_options.dart';
+import 'viewModel/ticket_viewModel.dart';
 
 Future setUp() async {
   await Firebase.initializeApp(
@@ -14,4 +15,5 @@ Future setUp() async {
 
 void createRouteBindings() async {
   Get.put(EventViewModel());
+  Get.put(TicketViewModel());
 }

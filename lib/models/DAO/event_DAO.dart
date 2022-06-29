@@ -5,7 +5,7 @@ import 'package:evsmart/networking/api_request.dart';
 class EventDAO {
   Future<List<Event>> getAllEvent({
     int page = 1,
-    int size = 50,
+    int size = 20,
     int? total,
     Map<String, dynamic> params = const {},
   }) async {
