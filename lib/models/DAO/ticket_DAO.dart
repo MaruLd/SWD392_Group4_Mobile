@@ -1,3 +1,4 @@
+import 'package:evsmart/Authentication/google_sign_in.dart';
 import 'package:evsmart/models/DTO/ticket_model.dart';
 import 'package:dio/dio.dart';
 import 'package:evsmart/networking/api_request.dart';
@@ -11,8 +12,7 @@ class TicketDAO {
     Map<String, dynamic> params = const {},
   }) async {
     Response res;
-    
-    var token = await FirebaseAuth.instance.currentUser!.getIdToken();
+    var token = await GoogleSignInProvider.getAndStoreJwtToken();
     res = await request.get('user/me/tickets',
         options: Options(
           headers: {"authorization": "Bearer $token"},
