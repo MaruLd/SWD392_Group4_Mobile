@@ -61,9 +61,10 @@ class _TicketPageBodyState extends State<TicketPageBody> {
           elevation: 0.0,
           title: Text('Ticket',
               style:
-                  TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold)),
+                  TextStyle(color: kPrimaryColor, fontSize: 20, fontWeight: FontWeight.bold)
+          ),centerTitle: true,
         ),
-        backgroundColor: Colors.white,
+
         body: SingleChildScrollView(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
             child: SingleChildScrollView(child: getTabContent())));

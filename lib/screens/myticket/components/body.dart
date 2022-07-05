@@ -11,15 +11,15 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 1,
       child: TabBar(
         labelColor: kPrimaryColor,
         indicatorColor: kPrimaryColor,
         tabs: [
           Tab(child: TicketPageBody()),
-          Tab(
+         /* Tab(
             text: 'Voucher',
-          ),
+          ),*/
         ],
       ),
     );

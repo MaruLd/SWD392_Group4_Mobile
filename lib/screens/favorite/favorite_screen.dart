@@ -5,6 +5,8 @@ import '../constraint.dart';
 import '../favorite/components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
+import '../search/SearchData.dart';
+
 
 class FavoriteScreen extends StatelessWidget{
   static String routeName ="/favorite";
@@ -16,9 +18,13 @@ class FavoriteScreen extends StatelessWidget{
       home: Scaffold(
         appBar: AppBar(
           actions: <Widget>[
-            IconButton(
-              onPressed: (){},
-              icon: Icon(Icons.search, color: kPrimaryColor,),
+            IconButton( icon: Icon(
+              Icons.search,
+              color: kPrimaryColor,
+            ),
+                onPressed: (){
+                  showSearch(context: context, delegate: DataSearch());
+                }
             )
           ],
           leading: IconButton(

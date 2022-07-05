@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import '../constraint.dart';
 import '../enums.dart';
-import '../home/components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
-
+import '../search/SearchData.dart';
 import 'components/event_page_body.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,20 +16,22 @@ class HomeScreen extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           actions: <Widget>[
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.search,
-                color: kPrimaryColor,
-              ),
+            IconButton( icon: Icon(
+              Icons.search,
+              color: kPrimaryColor,
+            ),
+            onPressed: (){
+      showSearch(context: context, delegate: DataSearch());
+      }
             )
           ],
           //backgroundColor: const Color(0xFF11CDEF),
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           elevation: 0.0,
           title: Text('Evsmart',
               style:
-                  TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold)),
+                  TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 25)
+          ),
         ),
         body: EventPageBody(),
         bottomNavigationBar: const CustomBottomNavBar(

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../myticket//components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
+import '../search/SearchData.dart';
+
 class MyTicketScreen extends StatelessWidget {
   const MyTicketScreen({Key? key}) : super(key: key);
   static String routeName ="/mytickets";
@@ -14,11 +16,13 @@ class MyTicketScreen extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           actions: <Widget>[
-            IconButton(
-              onPressed: (){},
-              icon:Icon(
-                    Icons.search, color: kPrimaryColor,
-                  ),
+            IconButton( icon: Icon(
+              Icons.search,
+              color: kPrimaryColor,
+            ),
+                onPressed: (){
+                  showSearch(context: context, delegate: DataSearch());
+                }
             )
           ],
             leading: IconButton(
