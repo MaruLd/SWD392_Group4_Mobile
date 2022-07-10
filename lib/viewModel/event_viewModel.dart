@@ -14,7 +14,7 @@ class EventViewModel extends BaseModel {
     try {
       setState(ViewStatus.Loading);
       listEvent = await eventDAO?.getAllEvent();
-      await Future.delayed(Duration(microseconds: 500));
+      await Future.delayed(const Duration(microseconds: 500));
       setState(ViewStatus.Completed);
     } catch (e) {
       listEvent = null;
