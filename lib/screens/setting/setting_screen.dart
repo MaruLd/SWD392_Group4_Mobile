@@ -1,15 +1,48 @@
+import 'dart:developer';
+
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
+import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 import 'package:evsmart/screens/constraint.dart';
-import 'package:flutter/foundation.dart';
+import 'package:evsmart/screens/enums.dart';
+import 'package:evsmart/viewModel/account_viewModel.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../mainComponent/custom_bottom_nav_bar.dart';
-import '../enums.dart';
+import 'package:get/get.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-
-
-class SettingScreen extends StatelessWidget {
+class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
-  static String routeName ="/setting";
+  static String routeName = "/setting";
+
+  @override
+  State<SettingScreen> createState() => _SettingScreenState();
+}
+
+class _SettingScreenState extends State<SettingScreen> {
+  late User user;
+  late Future<void> account;
+  @override
+  void initState() {
+    user = FirebaseAuth.instance.currentUser!;
+
+    FirebaseAuth.instance.userChanges().listen((event) {
+      if (event != null && mounted) {
+        setState(() {
+          user = event;
+        });
+      }
+    });
+    log(user.toString());
+
+    account = Get.find<AccountViewModel>().fetchUser();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,36 +54,51 @@ class SettingScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back, color: kPrimaryColor,),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: kPrimaryColor,
+            ),
           ),
-          title: Text(
+          title: const Text(
             "Settings",
-            style:
-            TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
+            style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: Padding(
+        body: buildBody(),
+        bottomNavigationBar:
+            const CustomBottomNavBar(selectedMenu: MenuState.setting),
+      ),
+    );
+  }
+
+  Widget buildBody() {
+    return ScopedModel(
+      model: Get.find<AccountViewModel>(),
+      child: ScopedModelDescendant<AccountViewModel>(
+          builder: (context, child, model) {
+        return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: ListView(
             children: [
-              BigUserCard(
-                cardColor: kPrimaryColor,
-                userName: "User name",
-                userProfilePic: AssetImage("assets/images/google_logo.png"),
-                cardActionWidget: SettingsItem(
-                  icons: Icons.edit,
-                  iconStyle: IconStyle(
-                    withBackground: true,
-                    borderRadius: 50,
-                    backgroundColor: Colors.yellow[600],
-                  ),
-                  title: "Edit Profile",
-                  subtitle: "more detail",
-                  onTap: () {},
-                ),
+              SimpleUserCard(
+                onTap: () {},
+                userName: user.displayName ?? "User Name",
+                userProfilePic: NetworkImage('${user.photoURL}'),
+                imageRadius: 100.0,
+                // cardActionWidget: SettingsItem(
+                //   icons: Icons.edit,
+                //   iconStyle: IconStyle(
+                //     withBackground: true,
+                //     borderRadius: 50,
+                //     backgroundColor: Colors.yellow[600],
+                //   ),
+                //   title: "Edit Profile",
+                //   subtitle: "more detail",
+                //   onTap: () {},
+                // ),
               ),
               SettingsGroup(
                 iconItemSize: 24.0,
@@ -172,9 +220,8 @@ class SettingScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.setting),
-      ),
+        );
+      }),
     );
   }
 }
