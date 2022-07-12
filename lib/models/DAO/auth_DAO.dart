@@ -19,7 +19,11 @@ class AuthDAO {
 
   Future<AuthDTO> getUser() async {
     Response res;
-    res = await request.get("user/me");
+    var token = await GoogleSignInProvider.getAndStoreJwtToken();
+    res = await request.get("user/me",
+        options: Options(
+          headers: {"authorization": "Bearer $token"},
+        ));
     final user = AuthDTO.fromJson(res.data);
     return user;
   }

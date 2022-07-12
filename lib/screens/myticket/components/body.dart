@@ -10,18 +10,18 @@ import 'package:scoped_model/scoped_model.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 1,
-      child: TabBar(
-        labelColor: kPrimaryColor,
-        indicatorColor: kPrimaryColor,
-        tabs: [
-          Tab(child: TicketPageBody()),
-         /* Tab(
-            text: 'Voucher',
-          ),*/
-        ],
-      ),
-    );
+    return Scaffold(
+        body: Column(
+      children: <Widget>[
+        //header
+        Container(),
+        //body
+        const Expanded(
+          child: SingleChildScrollView(
+            child: TicketPageBody(),
+          ),
+        ),
+      ],
+    ));
   }
 }

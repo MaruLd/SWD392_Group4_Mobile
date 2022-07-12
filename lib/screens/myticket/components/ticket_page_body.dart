@@ -54,20 +54,19 @@ class _TicketPageBodyState extends State<TicketPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          //backgroundColor: const Color(0xFF11CDEF),
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          title: Text('Ticket',
-              style:
-                  TextStyle(color: kPrimaryColor, fontSize: 20, fontWeight: FontWeight.bold)
-          ),centerTitle: true,
-        ),
-
-        body: SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
-            child: SingleChildScrollView(child: getTabContent())));
+    return Container(
+        // appBar: AppBar(
+        //   //backgroundColor: const Color(0xFF11CDEF),
+        //   backgroundColor: Colors.transparent,
+        //   elevation: 0.0,
+        //   title: Text('Ticket',
+        //       style: TextStyle(
+        //           color: kPrimaryColor,
+        //           fontSize: 20,
+        //           fontWeight: FontWeight.bold)),
+        //   centerTitle: true,
+        // ),
+        child: getTabContent());
   }
 
   getTabContent() {
