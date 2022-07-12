@@ -39,13 +39,13 @@ class MyTicketItem extends StatelessWidget {
               CustomImage(
                 "/assest/icons/ticket.svg",
                 radius: 15,
-                height: 90,
+                height: 50,
               ),
               SizedBox(
                 width: 8,
               ),
               Container(
-                width: MediaQuery.of(context).size.width * 0.62,
+                width: MediaQuery.of(context).size.width * 0.52,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
