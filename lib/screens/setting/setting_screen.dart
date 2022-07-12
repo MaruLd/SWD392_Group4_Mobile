@@ -4,14 +4,19 @@ import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/enums.dart';
+import 'package:evsmart/screens/setting/components/LogoutDialog.dart';
 import 'package:evsmart/viewModel/account_viewModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import '../favorite/favorite_screen.dart';
+
 class SettingScreen extends StatefulWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+
+  SettingScreen({Key? key}) : super(key: key);
   static String routeName = "/setting";
 
   @override
@@ -76,9 +81,11 @@ class _SettingScreenState extends State<SettingScreen> {
 
   Widget buildBody() {
     return ScopedModel(
+
       model: Get.find<AccountViewModel>(),
       child: ScopedModelDescendant<AccountViewModel>(
           builder: (context, child, model) {
+            LogoutDiaLog diaLogs = new LogoutDiaLog();;
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: ListView(
@@ -87,7 +94,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 onTap: () {},
                 userName: user.displayName ?? "User Name",
                 userProfilePic: NetworkImage('${user.photoURL}'),
-                imageRadius: 100.0,
+                imageRadius: 300.0,
                 // cardActionWidget: SettingsItem(
                 //   icons: Icons.edit,
                 //   iconStyle: IconStyle(
@@ -104,7 +111,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 iconItemSize: 24.0,
                 items: [
                   SettingsItem(
-                    onTap: () {},
+                    onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>FavoriteScreen()));},
                     icons: Icons.favorite,
                     iconStyle: IconStyle(
                       iconsColor: Colors.red,
@@ -112,7 +119,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       withBackground: true,
                     ),
                     title: "Favorite",
-                    subtitle: "Your favorite Tickets",
+                    subtitle: "",
                   ),
                   SettingsItem(
                     onTap: () {},
@@ -122,10 +129,10 @@ class _SettingScreenState extends State<SettingScreen> {
                       backgroundColor: Colors.white,
                       withBackground: true,
                     ),
-                    title: "Lịch sử",
-                    subtitle: "Xem lại lịch sử sân",
+                    title: "History",
+                    subtitle: "",
                   ),
-                  SettingsItem(
+                /*  SettingsItem(
                     onTap: () {},
                     icons: Icons.feedback,
                     iconStyle: IconStyle(
@@ -133,24 +140,25 @@ class _SettingScreenState extends State<SettingScreen> {
                       backgroundColor: Colors.white,
                       withBackground: true,
                     ),
-                    title: "Gửi feedback",
-                    subtitle: "Gửi đánh giá dịch vụ sản phẩm",
-                  ),
+                    title: "Feedback",
+                    subtitle: "",
+                  ),*/
                   SettingsItem(
-                    onTap: () {},
+                    onTap: () =>
+                      diaLogs.confirm(context, 'Do you want to log out',''),
                     icons: Icons.logout,
                     iconStyle: IconStyle(
                       iconsColor: Colors.black,
                       backgroundColor: Colors.white,
                       withBackground: true,
                     ),
-                    title: "Đăng xuất",
-                    subtitle: "Log out",
+                    title: "Log out",
+                    subtitle: "",
                   ),
                 ],
               ),
               SettingsGroup(
-                settingsGroupTitle: "Tùy chọn",
+                settingsGroupTitle: "Settings",
                 items: [
                   SettingsItem(
                     onTap: () {},
@@ -160,7 +168,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       withBackground: true,
                       backgroundColor: Colors.white,
                     ),
-                    title: "Ngôn ngữ",
+                    title: "Language",
                     subtitle: "Tiếng Việt",
                   ),
                   SettingsItem(
@@ -181,7 +189,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ],
               ),
               SettingsGroup(
-                settingsGroupTitle: "Thông tin và Hỗ trợ",
+                settingsGroupTitle: "Support & Information",
                 items: [
                   SettingsItem(
                     onTap: () {},
@@ -191,19 +199,8 @@ class _SettingScreenState extends State<SettingScreen> {
                       withBackground: true,
                       backgroundColor: Colors.white,
                     ),
-                    title: "Về chúng tôi",
-                    subtitle: "Xem chi tiết",
-                  ),
-                  SettingsItem(
-                    onTap: () {},
-                    icons: Icons.question_mark,
-                    iconStyle: IconStyle(
-                      iconsColor: Colors.grey,
-                      withBackground: true,
-                      backgroundColor: Colors.white,
-                    ),
-                    title: "Câu hỏi thường gặp",
-                    subtitle: "Xem chi tiết",
+                    title: "About us",
+                    subtitle: "",
                   ),
                   SettingsItem(
                     onTap: () {},
@@ -213,8 +210,8 @@ class _SettingScreenState extends State<SettingScreen> {
                       withBackground: true,
                       backgroundColor: Colors.white,
                     ),
-                    title: "Liên hệ với chúng tôi",
-                    subtitle: "Xem chi tiết",
+                    title: "Contact us",
+                    subtitle: "",
                   ),
                 ],
               ),
