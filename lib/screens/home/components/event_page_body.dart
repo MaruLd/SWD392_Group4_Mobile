@@ -134,28 +134,34 @@ class _EventPageBodyState extends State<EventPageBody> {
 
   getTabContent() {
     return ScopedModel<EventViewModel>(
-        model: Get.find<EventViewModel>(),
-        child: ScopedModelDescendant<EventViewModel>(
-            builder: (context, child, model) {
-          List<Event>? courses = model.listEvent;
-          if (courses == null)
-            return SizedBox(
-              height: 30,
-            );
-          else
-            return SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                padding: EdgeInsets.only(top: 12),
-                child: Column(
-                    children: List.generate(
-                        courses.length,
-                        (index) => Padding(
-                            padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                            child: MyEventItem(
-                              data: courses[index],
-                              onTap: () {},
-                            )))));
-        }));
+      model: Get.find<EventViewModel>(),
+      child: ScopedModelDescendant<EventViewModel>(
+          builder: (context, child, model) {
+        List<Event>? courses = model.listEvent;
+        if (courses == null)
+          return SizedBox(
+            height: 30,
+
+          );
+        else
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            padding: EdgeInsets.only(top: 12),
+            child: Column(
+              children: List.generate(
+                courses.length,
+                (index) => Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: MyEventItem(
+                    data: courses[index],
+                    onTap: () {},
+                  ),
+                ),
+              ),
+            ),
+          );
+      }),
+    );
   }
 
   Widget _buildPageItem(int index) {

@@ -5,6 +5,7 @@ import '../myticket//components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
 import '../search/SearchData.dart';
+import 'components/ticket_page_body.dart';
 
 class MyTicketScreen extends StatelessWidget {
   const MyTicketScreen({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class MyTicketScreen extends StatelessWidget {
               ),
           centerTitle: true,
         ),
-        body: Body(),
+        body: TicketPageBody(),
         bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.mytickets),
       ),
     );
