@@ -1,7 +1,6 @@
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:flutter/material.dart';
-import '../myticket//components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
 import '../search/SearchData.dart';

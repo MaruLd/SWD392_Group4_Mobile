@@ -2,6 +2,8 @@ import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
 import 'package:evsmart/models/DTO/ticket_model.dart';
 import 'package:evsmart/screens/constraint.dart';
+import 'package:evsmart/screens/qrscanner/components/qrscanner_page_body.dart';
+import 'package:evsmart/screens/qrscanner/qrscanner_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -16,9 +18,10 @@ class MyTicketItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Get.toNamed(RouteHandler.TICKET_DETAILS, arguments: data);
-      },
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const QRScannerScreen()),
+      ),
       child: Container(
           padding: EdgeInsets.all(8),
           width: MediaQuery.of(context).size.width,
