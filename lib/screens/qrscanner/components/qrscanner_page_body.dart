@@ -38,6 +38,10 @@ class _QRViewState extends State<QRScannerPageBody> {
 
   @override
   Widget build(BuildContext context) {
+    if (controller != null && mounted) {
+      controller!.pauseCamera();
+      controller!.resumeCamera();
+    }
     return Scaffold(
       body: Column(
         children: <Widget>[
