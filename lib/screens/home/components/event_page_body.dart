@@ -1,8 +1,4 @@
-import 'dart:ffi';
-
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dots_indicator/dots_indicator.dart';
-import 'package:evsmart/color.dart';
 import 'package:evsmart/models/DTO/event_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/viewModel/event_viewModel.dart';
@@ -10,12 +6,13 @@ import 'package:evsmart/widgets/event_item.dart';
 import 'package:evsmart/widgets/feature_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:line_icons/line_icon.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:scoped_model/scoped_model.dart';
+
+import '../../detail/event_detail_screen.dart';
 
 // Future<List<Event>> fetchEvent({int page = 1}) async {
 //   final response =
@@ -154,9 +151,7 @@ class _EventPageBodyState extends State<EventPageBody> {
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: MyEventItem(
                     data: courses[index],
-                    onTap: () {
-
-                    },
+                    onTap: () {},
                   ),
                 ),
               ),

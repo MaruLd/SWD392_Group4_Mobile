@@ -1,13 +1,8 @@
-import 'package:get/get.dart';
-
 import '../../mainComponent/custom_bottom_nav_bar.dart';
 import '../constraint.dart';
 import '../detail//components/body.dart';
 import 'package:flutter/material.dart';
 import '../enums.dart';
-void main(){
-  runApp(EventDetail());
-}
 
 class EventDetail extends StatelessWidget{
   static String routeName ="/detail";
@@ -21,7 +16,7 @@ class EventDetail extends StatelessWidget{
           actions: <Widget>[
             Padding(
               padding: const EdgeInsets.only(right: 20, top: 5),
-              child: CircleAvatar(
+            /*  child: CircleAvatar(
                 backgroundColor: kPrimaryColor,
                 child: IconButton( icon: Icon(
                   Icons.favorite,
@@ -29,7 +24,7 @@ class EventDetail extends StatelessWidget{
                 ),
                     onPressed: (){}
                 ),
-              ),
+              ),*/
             )
           ],
           leading: IconButton(

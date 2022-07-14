@@ -51,7 +51,8 @@ class DataSearch extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) {
     // Tra ve trang detail cua event sau khi nhan vao`
-    throw ErrorScreen();
+    return ErrorScreen(
+    );
   }
 
   @override

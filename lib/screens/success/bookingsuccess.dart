@@ -2,8 +2,6 @@ import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
-
-
 class BookingSuccess extends StatelessWidget{
   static String routeName ="/booking_success";
   @override
@@ -12,7 +10,6 @@ class BookingSuccess extends StatelessWidget{
       debugShowCheckedModeBanner: false,
         home:Scaffold(
       body: Column(
-
         children: [
         Spacer(),
           Image.asset("assets/images/hurray.png"
