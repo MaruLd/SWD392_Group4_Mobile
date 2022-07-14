@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:camera/camera.dart';
 import 'package:evsmart/screens/routes.dart';
 import 'package:evsmart/screens/splash/splash_screen.dart';
 import 'package:evsmart/mainComponent/Configs/theme.dart';
@@ -61,6 +62,9 @@ Future<void> main() async {
   }
   await setUp();
   createRouteBindings();
+  WidgetsFlutterBinding.ensureInitialized();
+
+final cameras = await availableCameras();
   runApp(MyApp());
 }
 
