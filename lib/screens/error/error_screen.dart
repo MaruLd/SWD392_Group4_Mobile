@@ -4,10 +4,6 @@ import '../enums.dart';
 import '../error/components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
-void main() {
-  runApp(ErrorScreen());
-}
-
 class ErrorScreen extends StatelessWidget{
   static String routeName ="/error";
   @override

@@ -1,7 +1,6 @@
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:flutter/material.dart';
-import '../myticket//components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
 import '../search/SearchData.dart';
@@ -32,7 +31,6 @@ class MyTicketScreen extends StatelessWidget {
               },
               icon: Icon(Icons.arrow_back, color: kPrimaryColor,),
             ),
-
             //backgroundColor: const Color(0xFF11CDEF),
              backgroundColor: Colors.transparent,
             elevation: 0.0,

@@ -154,7 +154,9 @@ class _EventPageBodyState extends State<EventPageBody> {
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: MyEventItem(
                     data: courses[index],
-                    onTap: () {},
+                    onTap: () {
+
+                    },
                   ),
                 ),
               ),
