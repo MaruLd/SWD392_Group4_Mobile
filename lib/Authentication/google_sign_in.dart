@@ -8,6 +8,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 class GoogleSignInProvider extends ChangeNotifier {
   static final GoogleSignIn _googleSignIn =
       GoogleSignIn(scopes: <String>['email', 'profile']);
+  static final FirebaseAuth auth = FirebaseAuth.instance;
 
   GoogleSignInAccount? _user;
 
@@ -23,30 +24,30 @@ class GoogleSignInProvider extends ChangeNotifier {
     final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
     print(googleAuth.idToken);
-    await FirebaseAuth.instance.signInWithCredential(credential);
+    await auth.signInWithCredential(credential);
     getAndStoreJwtToken();
     notifyListeners();
   }
 
   static Future<Null> signOutWithGoogle() async {
     // Sign out with firebase
-    await FirebaseAuth.instance.signOut();
+    await auth.signOut();
     // Sign out with google
     await _googleSignIn.signOut();
   }
 
   static Future<String>? getUserToken() {
-    return FirebaseAuth.instance.currentUser?.getIdToken();
+    return auth.currentUser?.getIdToken();
   }
 
   static Future<String?> getAndStoreJwtToken() async {
     final storage = new FlutterSecureStorage();
     String? jwtToken = await storage.read(key: 'jwt');
     if (jwtToken == null) {
-      String? userToken = await getUserToken();
+      String? userToken = await refreshFirebaseUser();
       if (userToken != null) {
-        var auth = await AuthDAO().getJwtToken();
-        jwtToken = auth.token;
+        var authDAO = await AuthDAO().getJwtToken();
+        jwtToken = authDAO.token;
         await storage.write(key: 'jwt', value: jwtToken);
         return jwtToken;
       } else {
@@ -54,6 +55,14 @@ class GoogleSignInProvider extends ChangeNotifier {
       }
     } else {
       return jwtToken;
+    }
+  }
+
+  static Future refreshFirebaseUser() async {
+    if (auth.currentUser != null) {
+      final user = auth.currentUser;
+      final idTokenResult = await user!.getIdTokenResult(true);
+      return idTokenResult.token;
     }
   }
 }

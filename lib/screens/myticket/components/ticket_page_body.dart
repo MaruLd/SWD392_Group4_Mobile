@@ -28,28 +28,10 @@ class TicketPageBody extends StatefulWidget {
 class _TicketPageBodyState extends State<TicketPageBody> {
   late Future<void> tickets;
 
-  PageController pageController = PageController(viewportFraction: 0.85);
-  var _currPageValue = 0.0;
-  final double _scaleFactor = 0.8;
-  final double _height = 220;
-  int _currentIndex = 0;
-  TabController? _tabController;
-
   @override
   void initState() {
     super.initState();
     tickets = Get.find<TicketViewModel>().getTicket();
-    pageController.addListener(() {
-      setState(() {
-        _currPageValue = pageController.page!;
-        print("Current value is $_currPageValue");
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    pageController.dispose();
   }
 
   @override
