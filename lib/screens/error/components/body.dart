@@ -9,12 +9,11 @@ class Body extends StatelessWidget{
             Image.asset("assets/images/404.png"),
             Center(
             child: Text(
-              'Something went wrong !!!!', style: TextStyle(color: Colors.red),
+              'Something went wrong !!!!', style: TextStyle(color: Colors.red, fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ),
-
           ],
-              
+
     ));
   }
 }

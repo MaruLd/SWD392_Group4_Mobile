@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../favorite/favorite_screen.dart';
+import '../agenda/agenda_screen.dart';
 
 class SettingScreen extends StatefulWidget {
 
@@ -87,7 +87,7 @@ class _SettingScreenState extends State<SettingScreen> {
           builder: (context, child, model) {
             LogoutDiaLog diaLogs = new LogoutDiaLog();;
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: ListView(
             children: [
               SimpleUserCard(
@@ -108,17 +108,18 @@ class _SettingScreenState extends State<SettingScreen> {
                 // ),
               ),
               SettingsGroup(
+                settingsGroupTitle: "Utilities",
                 iconItemSize: 24.0,
                 items: [
                   SettingsItem(
-                    onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>FavoriteScreen()));},
-                    icons: Icons.favorite,
+                    onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>AgendaScreen()));},
+                    icons: Icons.calendar_month,
                     iconStyle: IconStyle(
-                      iconsColor: Colors.red,
+                      iconsColor: Colors.blue,
                       backgroundColor: Colors.white,
                       withBackground: true,
                     ),
-                    title: "Favorite",
+                    title: "Agenda",
                     subtitle: "",
                   ),
                   SettingsItem(

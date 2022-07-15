@@ -48,7 +48,8 @@ dependencies:
   get: ^4.6.5
   dots_indicator: ^2.1.0
 
-
+  #syncfusion_calender
+  syncfusion_flutter_calendar: ^20.2.38
 
   # Google Sign In
   google_sign_in: ^5.3.3

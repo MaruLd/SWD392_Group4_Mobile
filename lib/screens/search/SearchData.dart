@@ -1,3 +1,4 @@
+import 'package:evsmart/screens/error/error_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
@@ -50,7 +51,8 @@ class DataSearch extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) {
     // Tra ve trang detail cua event sau khi nhan vao`
-    throw UnimplementedError();
+    return ErrorScreen(
+    );
   }
 
   @override
