@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:camera/camera.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -19,6 +20,9 @@ class _QRViewState extends State<QRScannerPageBody> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
   QRViewController? controller;
+  late List<CameraDescription> _cameras;
+  late CameraController _controller;
+  var _isReady = false;
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -34,6 +38,22 @@ class _QRViewState extends State<QRScannerPageBody> {
 
   void initState() {
     super.initState();
+    _setUpCamera();
+  }
+
+  void _setUpCamera() async {
+    try {
+      // initialize cameras
+      _cameras = await availableCameras();
+      // initialize camera controllers
+      // Current bug for high/medium with Samsung devices
+      _controller = CameraController(_cameras[0], ResolutionPreset.medium);
+      await _controller.initialize();
+    } catch (_) {
+      // do something on error
+    }
+
+    if (mounted) setState(() => _isReady = true);
   }
 
   @override

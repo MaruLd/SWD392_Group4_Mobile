@@ -6,7 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
-  final GoogleSignIn _googleSignIn =
+  static final GoogleSignIn _googleSignIn =
       GoogleSignIn(scopes: <String>['email', 'profile']);
 
   GoogleSignInAccount? _user;
@@ -26,6 +26,13 @@ class GoogleSignInProvider extends ChangeNotifier {
     await FirebaseAuth.instance.signInWithCredential(credential);
     getAndStoreJwtToken();
     notifyListeners();
+  }
+
+  static Future<Null> signOutWithGoogle() async {
+    // Sign out with firebase
+    await FirebaseAuth.instance.signOut();
+    // Sign out with google
+    await _googleSignIn.signOut();
   }
 
   static Future<String>? getUserToken() {

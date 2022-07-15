@@ -62,9 +62,14 @@ Future<void> main() async {
   }
   await setUp();
   createRouteBindings();
-  WidgetsFlutterBinding.ensureInitialized();
 
-final cameras = await availableCameras();
+  final cameras;
+
+  try {
+    cameras = await availableCameras();
+  } catch (e) {
+    print("Error: $e");
+  }
   runApp(MyApp());
 }
 
