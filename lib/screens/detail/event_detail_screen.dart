@@ -1,9 +1,8 @@
-
+import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
+import 'package:evsmart/screens/detail/components/eventDetail_page_body.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:flutter/material.dart';
 import '../constraint.dart';
-import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
-import '../home/components/event_page_body.dart';
 
 class EventBody extends StatelessWidget {
   const EventBody({super.key, required this.eventId});
@@ -20,12 +19,12 @@ class EventBody extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: kPrimaryColor,
             ),
           ),
-          title: Text(
+          title: const Text(
             "Detail",
             style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
           ),
@@ -33,9 +32,9 @@ class EventBody extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: EventPageBody(eventId: eventId),
+        body: EventDetailPageBody(eventId: eventId),
         bottomNavigationBar:
-        const CustomBottomNavBar(selectedMenu: MenuState.favorite),
+            const CustomBottomNavBar(selectedMenu: MenuState.favorite),
       ),
     );
   }
