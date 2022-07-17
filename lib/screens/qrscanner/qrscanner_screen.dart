@@ -7,7 +7,8 @@ import '../search/SearchData.dart';
 import 'components/qrscanner_page_body.dart';
 
 class QRScannerScreen extends StatelessWidget {
-  const QRScannerScreen({Key? key}) : super(key: key);
+  const QRScannerScreen({Key? key, required this.ticketId}) : super(key: key);
+  final String ticketId;
   static String routeName = "/qrscanner";
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class QRScannerScreen extends StatelessWidget {
                   TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold)),
           centerTitle: true,
         ),
-        body: QRScannerPageBody(),
+        body: QRScannerPageBody(ticketId: ticketId),
         bottomNavigationBar:
             const CustomBottomNavBar(selectedMenu: MenuState.mytickets),
       ),

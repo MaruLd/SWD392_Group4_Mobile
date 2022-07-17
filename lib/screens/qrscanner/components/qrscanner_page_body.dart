@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:camera/camera.dart';
+import 'package:evsmart/models/DAO/qrcodescanner_DAO.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -10,8 +10,8 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../../../mainComponent/custom_bottom_nav_bar.dart';
 
 class QRScannerPageBody extends StatefulWidget {
-  const QRScannerPageBody({Key? key}) : super(key: key);
-
+  const QRScannerPageBody({Key? key, required this.ticketId}) : super(key: key);
+  final String ticketId;
   @override
   _QRViewState createState() => _QRViewState();
 }
@@ -20,8 +20,6 @@ class _QRViewState extends State<QRScannerPageBody> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
   QRViewController? controller;
-  late List<CameraDescription> _cameras;
-  late CameraController _controller;
   var _isReady = false;
 
   // In order to get hot reload to work we need to pause the camera if the platform
@@ -38,22 +36,6 @@ class _QRViewState extends State<QRScannerPageBody> {
 
   void initState() {
     super.initState();
-    _setUpCamera();
-  }
-
-  void _setUpCamera() async {
-    try {
-      // initialize cameras
-      _cameras = await availableCameras();
-      // initialize camera controllers
-      // Current bug for high/medium with Samsung devices
-      _controller = CameraController(_cameras[0], ResolutionPreset.medium);
-      await _controller.initialize();
-    } catch (_) {
-      // do something on error
-    }
-
-    if (mounted) setState(() => _isReady = true);
   }
 
   @override
@@ -85,6 +67,11 @@ class _QRViewState extends State<QRScannerPageBody> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
+
+        if (result != null) {
+          QRScannerDAO.useCode(
+              ticketId: widget.ticketId, code: scanData.code ?? "");
+        }
       });
     });
   }
