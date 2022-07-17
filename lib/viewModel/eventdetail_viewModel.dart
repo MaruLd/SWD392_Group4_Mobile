@@ -1,4 +1,6 @@
+import 'package:evsmart/models/DAO/eventDetail_DAO.dart';
 import 'package:evsmart/models/DAO/event_DAO.dart';
+import 'package:evsmart/models/DTO/eventDetail_model.dart';
 import 'package:evsmart/models/DTO/event_model.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:evsmart/viewModel/base_viewModel.dart';
@@ -6,20 +8,20 @@ import 'package:evsmart/viewModel/base_viewModel.dart';
 import '../models/DAO/event_DAO.dart';
 
 class EventDetailViewModel extends BaseModel {
-  EventDAO? eventDAO;
-  List<Event>? listEventDAO;
+  EventDetailDAO? eventDetailDAO;
+  EventDetail? eventDetail;
   EventDetailViewModel() {
-    eventDAO = EventDAO();
+    eventDetailDAO = EventDetailDAO();
   }
 
   Future<void> getEventDetail(String eventId) async {
     try {
       setState(ViewStatus.Loading);
-      listEventDAO = await eventDAO?.getEvent(eventId: eventId);
+      eventDetail = await eventDetailDAO?.getEventDetail(eventId: eventId);
       await Future.delayed(Duration(microseconds: 500));
       setState(ViewStatus.Completed);
     } catch (e) {
-      listEventDAO = null;
+      eventDetail = null;
       setState(ViewStatus.Completed);
     }
   }

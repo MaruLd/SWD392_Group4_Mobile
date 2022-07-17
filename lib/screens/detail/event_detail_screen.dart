@@ -1,5 +1,4 @@
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
-import 'package:evsmart/screens/detail/components/eventDetail_page_body.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:flutter/material.dart';
 import '../constraint.dart';
@@ -32,7 +31,7 @@ class EventBody extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: EventDetailPageBody(eventId: eventId),
+        
         bottomNavigationBar:
             const CustomBottomNavBar(selectedMenu: MenuState.favorite),
       ),
