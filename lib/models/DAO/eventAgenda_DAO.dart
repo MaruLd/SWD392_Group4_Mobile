@@ -9,10 +9,10 @@ class EventAgendaDAO {
   }) async {
     Response res;
     res = await request.get(
-      'events/',
-      queryParameters: {"eventId": eventId}..addAll(params),
+      'events/' + eventId + '/agenda',
     );
     final eventAgendas = EventAgenda.fromList(res.data);
+  
     return eventAgendas;
   }
 }

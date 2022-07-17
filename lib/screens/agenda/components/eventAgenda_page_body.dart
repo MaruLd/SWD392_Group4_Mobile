@@ -26,27 +26,22 @@ class _EventAgendaPageBodyState extends State<EventAgendaPageBody> {
   @override
   void initState() {
     super.initState();
-    agendas = Get.find<EventAgendaViewModel>().getEventAgenda(widget.eventId);
+    Get.find<EventAgendaViewModel>().getEventAgenda(widget.eventId);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 4), child: getTabContent()));
+    return getTabContent();
   }
 
   getTabContent() {
-    Text("Agenda: ");
     return ScopedModel<EventAgendaViewModel>(
         model: Get.find<EventAgendaViewModel>(),
         child: ScopedModelDescendant<EventAgendaViewModel>(
             builder: (context, child, model) {
           List<EventAgenda>? courses = model.listEventAgenda;
           if (courses == null)
-            return SizedBox(
-              height: 30,
-            );
+            return Text("No data");
           else
             return SingleChildScrollView(
                 scrollDirection: Axis.vertical,

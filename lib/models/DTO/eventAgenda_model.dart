@@ -21,9 +21,9 @@ class EventAgenda {
     eventId = json['event-id'];
     title = json['title'];
     description = json['description'];
-    startTime = json['start-time'];
-    endTime = json['end-time'];
-    createdDate = json['created-date'];
+    startTime =  DateTime.parse(json['start-time']);
+    endTime = DateTime.parse(json['end-time']);
+    createdDate = DateTime.parse(json['created-date']);
   }
 
   Map<String, dynamic> toJson() {
