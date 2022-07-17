@@ -37,7 +37,7 @@ class CustomBottomNavBar extends StatelessWidget {
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
           child: GNav(
             rippleColor: Colors.grey[300]!,
             hoverColor: Colors.grey[100]!,
@@ -61,6 +61,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => HomeScreen()),
                     );
                   }),
+
               // GButton(
               //     icon: LineIcons.alternateCalendar,
               //     iconActiveColor: Colors.white,

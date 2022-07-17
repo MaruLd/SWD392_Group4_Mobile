@@ -4,12 +4,15 @@ import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/enums.dart';
+import 'package:evsmart/screens/myticket/myticket_screen.dart';
 import 'package:evsmart/screens/setting/components/LogoutDialog.dart';
 import 'package:evsmart/viewModel/account_viewModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../agenda/agenda_screen.dart';
@@ -122,14 +125,17 @@ class _SettingScreenState extends State<SettingScreen> {
                   //   subtitle: "",
                   // ),
                   SettingsItem(
-                    onTap: () {},
-                    icons: Icons.history,
+                    onTap: () { Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyTicketScreen()),
+                    );},
+                    icons: LineIcons.moneyCheck,
                     iconStyle: IconStyle(
-                      iconsColor: Colors.blue,
+                      iconsColor: kPrimaryColor,
                       backgroundColor: Colors.white,
                       withBackground: true,
                     ),
-                    title: "History",
+                    title: "My Ticket",
                     subtitle: "",
                   ),
                   /*  SettingsItem(
@@ -164,7 +170,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     onTap: () {},
                     icons: Icons.language,
                     iconStyle: IconStyle(
-                      iconsColor: Colors.blue,
+                      iconsColor: kPrimaryColor,
                       withBackground: true,
                       backgroundColor: Colors.white,
                     ),

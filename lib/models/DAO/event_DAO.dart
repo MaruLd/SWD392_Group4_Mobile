@@ -17,4 +17,16 @@ class EventDAO {
     final events = Event.fromList(res.data);
     return events;
   }
+  Future<List<Event>> getEvent({
+    required final String eventId,
+    Map<String, dynamic> params = const {},
+  }) async {
+    Response res;
+    res = await request.get(
+      'events/',
+      queryParameters: {"eventId": eventId}..addAll(params),
+    );
+    final events = Event.fromList(res.data);
+    return events;
+  }
 }
