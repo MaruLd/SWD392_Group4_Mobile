@@ -22,7 +22,7 @@ class AuthDAO {
     var token = await GoogleSignInProvider.getAndStoreJwtToken();
     res = await request.get("user/me",
         options: Options(
-          headers: {"authorization": "Bearer $token"},
+          headers: {"Authorization": "Bearer $token"},
         ));
     final user = AuthDTO.fromJson(res.data);
     return user;
