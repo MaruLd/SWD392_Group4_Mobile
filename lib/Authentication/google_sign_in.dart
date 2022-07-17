@@ -44,7 +44,7 @@ class GoogleSignInProvider extends ChangeNotifier {
     final storage = new FlutterSecureStorage();
     String? jwtToken = await storage.read(key: 'jwt');
     if (jwtToken == null) {
-      String? userToken = await refreshFirebaseUser();
+      String? userToken = await getUserToken();
       if (userToken != null) {
         var authDAO = await AuthDAO().getJwtToken();
         jwtToken = authDAO.token;
