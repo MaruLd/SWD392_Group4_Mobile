@@ -6,9 +6,7 @@ import 'package:evsmart/viewModel/eventAgenda_viewModel.dart';
 import 'package:evsmart/widgets/eventAgenda_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:line_icons/line_icon.dart';
-
 import 'package:scoped_model/scoped_model.dart';
 
 class EventAgendaPageBody extends StatefulWidget {
