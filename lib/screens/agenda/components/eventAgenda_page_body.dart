@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:evsmart/mainComponent/Configs/theme.dart';
 import 'package:evsmart/models/DAO/eventAgenda_DAO.dart';
 import 'package:evsmart/models/DTO/eventAgenda_model.dart';
 import 'package:evsmart/viewModel/eventAgenda_viewModel.dart';
@@ -12,6 +13,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../../../models/DTO/eventDetail_model.dart';
 import '../../../widgets/eventDetail_item.dart';
+import '../../constraint.dart';
 
 class EventAgendaPageBody extends StatefulWidget {
   const EventAgendaPageBody({Key? key, required this.eventId})
@@ -34,13 +36,12 @@ class _EventAgendaPageBodyState extends State<EventAgendaPageBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+
         body: SingleChildScrollView(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
             child: Column(children: [
-              getHeaderBar("Event Details"),
+/*              getHeaderBar("Details"),*/
               getDetailContent(),
-              getHeaderBar("Event Agenda"),
               getAgendaContent(),
             ])));
   }

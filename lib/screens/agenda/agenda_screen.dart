@@ -19,7 +19,7 @@ class AgendaScreen extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -29,14 +29,17 @@ class AgendaScreen extends StatelessWidget {
               color: kPrimaryColor,
             ),
           ),
-          title: Text(
-            "Agenda",
-            style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
+          title: Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: Text(
+              "",
+              style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
+            ),
           ),
           centerTitle: true,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           elevation: 0,
-        ),
+        ),*/
         body: EventAgendaPageBody(eventId: eventId),
         bottomNavigationBar:
             const CustomBottomNavBar(selectedMenu: MenuState.favorite),
