@@ -17,7 +17,7 @@ class TicketViewModel extends BaseModel {
       await Future.delayed(Duration(microseconds: 500));
       setState(ViewStatus.Completed);
     } catch (e) {
-      listTicket = null;
+      // listTicket = null;
       setState(ViewStatus.Completed);
     }
   }

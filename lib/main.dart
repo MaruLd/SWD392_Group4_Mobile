@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:evsmart/screens/routes.dart';
 import 'package:evsmart/screens/splash/splash_screen.dart';
@@ -33,13 +32,6 @@ Future<void> main() async {
   await setUp();
   createRouteBindings();
 
-  final List<CameraDescription> cameras;
-
-  try {
-    cameras = await availableCameras();
-  } catch (e) {
-    print("Error: $e");
-  }
   runApp(MyApp());
 }
 

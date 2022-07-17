@@ -20,7 +20,9 @@ class MyTicketItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const QRScannerScreen()),
+        MaterialPageRoute(
+            builder: (context) =>
+                QRScannerScreen(ticketId: data.ticketId ?? "")),
       ),
       child: Container(
           padding: EdgeInsets.all(8),

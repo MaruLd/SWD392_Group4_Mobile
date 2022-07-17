@@ -1,6 +1,8 @@
+import 'package:evsmart/models/DTO/event_model.dart';
+
 class Ticket {
   String? id;
-  String? eventId;
+  Event? event;
   String? ticketId;
   String? name;
   String? description;
@@ -12,7 +14,7 @@ class Ticket {
 
   Ticket(
       {this.id,
-      this.eventId,
+      this.event,
       this.ticketId,
       this.name,
       this.description,
@@ -24,7 +26,7 @@ class Ticket {
 
   Ticket.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    eventId = json['event-id'];
+    event = json['event'] != null ? new Event.fromJson(json['event']) : null;
     ticketId = json['ticket-id'];
     name = json['name'];
     description = json['description'];
@@ -35,10 +37,17 @@ class Ticket {
     createdDate = DateTime.parse(json['created-date']);
   }
 
+  static List<Ticket> fromList(dynamic jsonList) {
+    var list = jsonList as List<dynamic>;
+    return list.map((map) => Ticket.fromJson(map)).toList();
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['event-id'] = this.eventId;
+    if (this.event != null) {
+      data['event'] = this.event!.toJson();
+    }
     data['ticket-id'] = this.ticketId;
     data['name'] = this.name;
     data['description'] = this.description;
@@ -49,9 +58,9 @@ class Ticket {
     data['created-date'] = this.createdDate;
     return data;
   }
-
-  static List<Ticket> fromList(dynamic jsonList) {
-    var list = jsonList as List<dynamic>;
-    return list.map((map) => Ticket.fromJson(map)).toList();
-  }
 }
+
+
+
+
+

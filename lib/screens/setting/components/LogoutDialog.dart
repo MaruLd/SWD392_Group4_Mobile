@@ -1,13 +1,17 @@
 import 'package:evsmart/Authentication/google_sign_in.dart';
+import 'package:evsmart/screens/login/login_screen.dart';
 import 'package:evsmart/screens/splash/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 class LogoutDiaLog {
   _confirmResult(bool isYes, BuildContext context) {
     if (isYes) {
-      GoogleSignInProvider.signOutWithGoogle();
+      final provider =
+          Provider.of<GoogleSignInProvider>(context, listen: false);
+      provider.signOutWithGoogle();
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => SplashScreen()));
     } else {

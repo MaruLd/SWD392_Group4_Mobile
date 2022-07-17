@@ -26,12 +26,12 @@ class TicketPageBody extends StatefulWidget {
 }
 
 class _TicketPageBodyState extends State<TicketPageBody> {
-  late Future<void> tickets;
+
 
   @override
   void initState() {
     super.initState();
-    tickets = Get.find<TicketViewModel>().getTicket();
+    Get.find<TicketViewModel>().getTicket();
   }
 
   @override
@@ -49,9 +49,7 @@ class _TicketPageBodyState extends State<TicketPageBody> {
             builder: (context, child, model) {
           List<Ticket>? courses = model.listTicket;
           if (courses == null)
-            return SizedBox(
-              height: 30,
-            );
+            return Text("No Data");
           else
             return SingleChildScrollView(
                 scrollDirection: Axis.vertical,
