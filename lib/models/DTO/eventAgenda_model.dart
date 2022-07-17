@@ -3,9 +3,9 @@ class EventAgenda {
   String? eventId;
   String? title;
   String? description;
-  String? startTime;
-  String? endTime;
-  String? createdDate;
+  DateTime? startTime;
+  DateTime? endTime;
+  DateTime? createdDate;
 
   EventAgenda(
       {this.id,

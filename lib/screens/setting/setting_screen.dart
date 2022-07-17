@@ -15,7 +15,6 @@ import 'package:scoped_model/scoped_model.dart';
 import '../agenda/agenda_screen.dart';
 
 class SettingScreen extends StatefulWidget {
-
   SettingScreen({Key? key}) : super(key: key);
   static String routeName = "/setting";
 
@@ -81,11 +80,11 @@ class _SettingScreenState extends State<SettingScreen> {
 
   Widget buildBody() {
     return ScopedModel(
-
       model: Get.find<AccountViewModel>(),
       child: ScopedModelDescendant<AccountViewModel>(
           builder: (context, child, model) {
-            LogoutDiaLog diaLogs = new LogoutDiaLog();;
+        LogoutDiaLog diaLogs = new LogoutDiaLog();
+        ;
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: ListView(
@@ -111,17 +110,17 @@ class _SettingScreenState extends State<SettingScreen> {
                 settingsGroupTitle: "Utilities",
                 iconItemSize: 24.0,
                 items: [
-                  SettingsItem(
-                    onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>AgendaScreen()));},
-                    icons: Icons.calendar_month,
-                    iconStyle: IconStyle(
-                      iconsColor: Colors.blue,
-                      backgroundColor: Colors.white,
-                      withBackground: true,
-                    ),
-                    title: "Agenda",
-                    subtitle: "",
-                  ),
+                  // SettingsItem(
+                  //   onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>AgendaScreen()));},
+                  //   icons: Icons.calendar_month,
+                  //   iconStyle: IconStyle(
+                  //     iconsColor: Colors.blue,
+                  //     backgroundColor: Colors.white,
+                  //     withBackground: true,
+                  //   ),
+                  //   title: "Agenda",
+                  //   subtitle: "",
+                  // ),
                   SettingsItem(
                     onTap: () {},
                     icons: Icons.history,
@@ -133,7 +132,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     title: "History",
                     subtitle: "",
                   ),
-                /*  SettingsItem(
+                  /*  SettingsItem(
                     onTap: () {},
                     icons: Icons.feedback,
                     iconStyle: IconStyle(
@@ -146,7 +145,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   ),*/
                   SettingsItem(
                     onTap: () =>
-                      diaLogs.confirm(context, 'Do you want to log out',''),
+                        diaLogs.confirm(context, 'Do you want to log out', ''),
                     icons: Icons.logout,
                     iconStyle: IconStyle(
                       iconsColor: Colors.black,

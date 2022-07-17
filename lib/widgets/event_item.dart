@@ -1,5 +1,6 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
+import 'package:evsmart/screens/agenda/agenda_screen.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,9 +16,10 @@ class MyEventItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Get.toNamed(RouteHandler.EVENT_DETAILS, arguments: data);
-      },
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => AgendaScreen(eventId: data.id??"")),
+      ),
       child: Container(
           padding: EdgeInsets.all(8),
           width: MediaQuery.of(context).size.width,

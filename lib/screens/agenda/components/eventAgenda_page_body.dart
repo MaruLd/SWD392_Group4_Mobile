@@ -33,11 +33,11 @@ class _EventAgendaPageBodyState extends State<EventAgendaPageBody> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
-            child: SingleChildScrollView(child: getTabContent())));
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 4), child: getTabContent()));
   }
 
   getTabContent() {
+    Text("Agenda: ");
     return ScopedModel<EventAgendaViewModel>(
         model: Get.find<EventAgendaViewModel>(),
         child: ScopedModelDescendant<EventAgendaViewModel>(

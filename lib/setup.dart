@@ -1,4 +1,5 @@
 import 'package:evsmart/viewModel/account_viewModel.dart';
+import 'package:evsmart/viewModel/eventAgenda_viewModel.dart';
 import 'package:evsmart/viewModel/event_viewModel.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
@@ -17,5 +18,6 @@ Future setUp() async {
 void createRouteBindings() async {
   Get.put(EventViewModel());
   Get.put(TicketViewModel());
+  Get.put(EventAgendaViewModel());
   Get.put(AccountViewModel());
 }

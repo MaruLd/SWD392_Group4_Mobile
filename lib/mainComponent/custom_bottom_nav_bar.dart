@@ -61,18 +61,18 @@ class CustomBottomNavBar extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => HomeScreen()),
                     );
                   }),
-              GButton(
-                  icon: LineIcons.alternateCalendar,
-                  iconActiveColor: Colors.white,
-                  //text: 'Likes',
-                  textColor: Colors.white,
-                  //onPressed: ()=>Navigator.pushNamed(context, FavoriteScreen.routeName),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AgendaScreen()),
-                    );
-                  }),
+              // GButton(
+              //     icon: LineIcons.alternateCalendar,
+              //     iconActiveColor: Colors.white,
+              //     //text: 'Likes',
+              //     textColor: Colors.white,
+              //     //onPressed: ()=>Navigator.pushNamed(context, FavoriteScreen.routeName),
+              //     onPressed: () {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(builder: (context) => AgendaScreen()),
+              //       );
+              //     }),
               GButton(
                 icon: LineIcons.moneyCheck,
                 iconActiveColor: Colors.white,
