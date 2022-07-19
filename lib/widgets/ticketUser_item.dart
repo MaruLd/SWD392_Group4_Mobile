@@ -11,7 +11,8 @@ import 'package:intl/intl.dart';
 import '../models/DTO/event_model.dart';
 
 class MyTicketUserItem extends StatelessWidget {
-  MyTicketUserItem({Key? key, required this.data, this.onTap}) : super(key: key);
+  MyTicketUserItem({Key? key, required this.data, this.onTap})
+      : super(key: key);
   TicketUser data;
   final GestureTapCallback? onTap;
 
@@ -43,10 +44,10 @@ class MyTicketUserItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              CustomImage(
-                "/assest/icons/ticket.svg",
-                radius: 15,
-                height: 50,
+              Image.asset(
+                'assets/images/ticket.png',
+                width: 120,
+                height: 100,
               ),
               SizedBox(
                 width: 8,
@@ -57,7 +58,7 @@ class MyTicketUserItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      data.name.toString(),
+                      "Ticket: " + data.name.toString(),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

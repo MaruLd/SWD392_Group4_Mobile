@@ -10,9 +10,9 @@ class EventAgendaViewModel extends BaseModel {
     eventAgendaDAO = EventAgendaDAO();
   }
 
-  Future<void> getEventAgenda(String eventId) async {
+  Future<List<EventAgenda>?> getEventAgenda(String eventId) async {
     try {
-      listEventAgenda = await eventAgendaDAO?.getEventAgenda(eventId: eventId);
+      return await eventAgendaDAO?.getEventAgenda(eventId: eventId);
     } catch (e) {
       listEventAgenda = null;
     }
