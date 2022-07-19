@@ -113,54 +113,7 @@ class MyEventAgendaItem extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: 15),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.schedule_rounded,
-                                    color: kPrimaryColor,
-                                    size: 18,
-                                  ),
-                                  SizedBox(
-                                    width: 2,
-                                  ),
-                                  Text(
-                                    DateFormat("MM/dd/yyyy hh:mm a")
-                                        .format(data.startTime as DateTime)
-                                        .toString(),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: kPrimaryColor,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 15),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.schedule_rounded,
-                                    color: kPrimaryColor,
-                                    size: 18,
-                                  ),
-                                  SizedBox(
-                                    width: 2,
-                                  ),
-                                  Text(
-                                    DateFormat("MM/dd/yyyy hh:mm a")
-                                        .format(data.endTime as DateTime)
-                                        .toString(),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: kPrimaryColor,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 15),
+
                             ],
                           ),
                         ],
