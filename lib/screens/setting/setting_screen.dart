@@ -15,7 +15,6 @@ import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../agenda/agenda_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   SettingScreen({Key? key}) : super(key: key);

@@ -16,13 +16,9 @@ class EventDetailViewModel extends BaseModel {
 
   Future<void> getEventDetail(String eventId) async {
     try {
-      setState(ViewStatus.Loading);
       eventDetail = await eventDetailDAO?.getEventDetail(eventId: eventId);
-      await Future.delayed(Duration(microseconds: 500));
-      setState(ViewStatus.Completed);
     } catch (e) {
       eventDetail = null;
-      setState(ViewStatus.Completed);
     }
   }
 }

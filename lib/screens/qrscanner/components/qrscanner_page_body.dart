@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:evsmart/color.dart';
 import 'package:evsmart/models/DAO/qrcodescanner_DAO.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,8 +11,11 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../../../mainComponent/custom_bottom_nav_bar.dart';
 
 class QRScannerPageBody extends StatefulWidget {
-  const QRScannerPageBody({Key? key, required this.ticketId}) : super(key: key);
+  const QRScannerPageBody(
+      {Key? key, required this.ticketId, required this.ticketState})
+      : super(key: key);
   final String ticketId;
+  final String ticketState;
   @override
   _QRViewState createState() => _QRViewState();
 }
@@ -20,6 +24,7 @@ class _QRViewState extends State<QRScannerPageBody> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
   QRViewController? controller;
+  var useCodeStatus;
   var _isReady = false;
 
   // In order to get hot reload to work we need to pause the camera if the platform
@@ -52,9 +57,14 @@ class _QRViewState extends State<QRScannerPageBody> {
             flex: 1,
             child: Center(
               child: (result != null)
-                  ? Text(
-                      'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-                  : Text('Scan a code to Check-In or Check-Out'),
+                  ? ((useCodeStatus == "200")
+                      ? Text('Check-In or Check-Out Successful!',
+                          style: TextStyle(
+                              fontSize: 20, color: Colors.greenAccent))
+                      : Text('Check-In or Check-Out Unsuccesful!',
+                          style:
+                              TextStyle(fontSize: 20, color: Colors.redAccent)))
+                  : Text('Scan a code to ${widget.ticketState}'),
             ),
           )
         ],
@@ -69,7 +79,7 @@ class _QRViewState extends State<QRScannerPageBody> {
         result = scanData;
 
         if (result != null) {
-          QRScannerDAO.useCode(
+          useCodeStatus = QRScannerDAO.useCode(
               ticketId: widget.ticketId, code: scanData.code ?? "");
         }
       });

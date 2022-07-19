@@ -1,18 +1,31 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
-import 'package:evsmart/models/DTO/ticket_model.dart';
+import 'package:evsmart/models/DTO/ticketUser_model.dart';
 import 'package:evsmart/screens/constraint.dart';
+import 'package:evsmart/screens/qrscanner/components/qrscanner_page_body.dart';
+import 'package:evsmart/screens/qrscanner/qrscanner_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class TicketItem extends StatelessWidget {
-  TicketItem({Key? key, required this.data, this.onTap}) : super(key: key);
-  Ticket data;
+import '../models/DTO/event_model.dart';
+
+class MyTicketUserItem extends StatelessWidget {
+  MyTicketUserItem({Key? key, required this.data, this.onTap}) : super(key: key);
+  TicketUser data;
   final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => QRScannerScreen(
+                  ticketId: data.ticket!.id ?? "",
+                  ticketState: data.state ?? "",
+                )),
+      ),
       child: Container(
           padding: EdgeInsets.all(8),
           width: MediaQuery.of(context).size.width,
@@ -60,12 +73,16 @@ class TicketItem extends StatelessWidget {
                         // SizedBox(
                         //   width: 20,
                         // ),
-                        Text("Type: "),
+                        Text("Check-In: "),
                         SizedBox(
                           width: 2,
                         ),
                         Text(
-                          data.type.toString(),
+                          data.checkedInDate == null
+                              ? data.state ?? "Not yet"
+                              : DateFormat("MM/dd/yyyy hh:mm a")
+                                  .format(data.checkedInDate as DateTime)
+                                  .toString(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -80,32 +97,16 @@ class TicketItem extends StatelessWidget {
                         // SizedBox(
                         //   width: 20,
                         // ),
-                        Text("Cost: "),
+                        Text("Check-Out: "),
                         SizedBox(
                           width: 2,
                         ),
                         Text(
-                          data.cost.toString(),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: kPrimaryColor,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        // SizedBox(
-                        //   width: 20,
-                        // ),
-                        Text("Quantity Left: "),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          data.quantity.toString(),
+                          data.checkedOutDate == null
+                              ? data.state ?? "Not yet"
+                              : DateFormat("MM/dd/yyyy hh:mm a")
+                                  .format(data.checkedOutDate as DateTime)
+                                  .toString(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -120,13 +121,20 @@ class TicketItem extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text("Description: "),
+                        // SizedBox(
+                        //   width: 20,
+                        // ),
+                        Icon(
+                          Icons.location_on_outlined,
+                          color: red,
+                          size: 14,
+                        ),
                         SizedBox(
                           width: 2,
                         ),
                         Flexible(
                           child: Text(
-                            data.description.toString(),
+                            data.type.toString(),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(fontSize: 12, color: labelColor),

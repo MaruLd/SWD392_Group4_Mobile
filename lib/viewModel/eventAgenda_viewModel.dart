@@ -12,13 +12,9 @@ class EventAgendaViewModel extends BaseModel {
 
   Future<void> getEventAgenda(String eventId) async {
     try {
-      setState(ViewStatus.Loading);
       listEventAgenda = await eventAgendaDAO?.getEventAgenda(eventId: eventId);
-      await Future.delayed(Duration(microseconds: 500));
-      setState(ViewStatus.Completed);
     } catch (e) {
       listEventAgenda = null;
-      setState(ViewStatus.Completed);
     }
   }
 }

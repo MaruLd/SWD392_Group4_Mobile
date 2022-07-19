@@ -12,7 +12,6 @@ import 'dart:convert';
 
 import 'package:scoped_model/scoped_model.dart';
 
-import '../../detail/event_detail_screen.dart';
 
 // Future<List<Event>> fetchEvent({int page = 1}) async {
 //   final response =
