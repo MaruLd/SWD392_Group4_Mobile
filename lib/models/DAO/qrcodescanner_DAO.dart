@@ -13,7 +13,7 @@ class QRScannerDAO {
     Response res;
     var token = await GoogleSignInProvider.getAndStoreJwtToken();
     res = await request.post(
-      'tickets/' + ticketId + 'users/use-code',
+      'tickets/' + ticketId + '/users/use-code',
       options: Options(
         headers: {
           'Content-type': 'application/json',
