@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:evsmart/networking/api_request.dart';
 
@@ -21,6 +23,7 @@ class QRScannerDAO {
       ),
       queryParameters: {"code": code},
     );
-    return res.statusCode.toString();
+    final state = jsonEncode(res.data);
+    return state;
   }
 }
