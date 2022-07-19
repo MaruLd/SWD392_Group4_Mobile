@@ -118,7 +118,7 @@ class _TicketTypeState extends State<TicketType> {
   }
 
   getEventTicketContent() {
-    Color _color = Colors.white;
+
     return SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
         child: FutureBuilder(
@@ -147,12 +147,8 @@ class _TicketTypeState extends State<TicketType> {
                         child: Material(
                           child: GestureDetector(
                             child: TicketItem(
-                              data: snapshot.data[index],
-                              onTap: () {
-                                setState(() {
-                                  _color = Colors.greenAccent;
-                                });
-                              },
+                              ticket: snapshot.data[index],
+                              onTap: () {},
                             ),
                           ),
                         ),

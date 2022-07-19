@@ -2,11 +2,8 @@ import 'package:evsmart/models/DTO/eventAgenda_model.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:evsmart/screens/event_details/components/details_page_body.dart';
 import 'package:flutter/material.dart';
-
-import '../constraint.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
-import '../search/SearchData.dart';
 
 class EventDetailsScreen extends StatelessWidget {
   const EventDetailsScreen({super.key, required this.eventId});
