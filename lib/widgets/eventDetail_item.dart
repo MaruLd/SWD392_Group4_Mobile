@@ -15,7 +15,6 @@ class MyEventDetailItem extends StatelessWidget {
   EventDetail data;
   final GestureTapCallback? onTap;
 
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -237,23 +236,30 @@ class MyEventDetailItem extends StatelessWidget {
                               SizedBox(height: 5),
                               Text(""),
                               SizedBox(height: 5),
-
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 265, bottom: 5),
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: kPrimaryColor, // background
-                                    onPrimary: Colors.white, // for
-                                    shape: new RoundedRectangleBorder(
-                                      borderRadius:
-                                          new BorderRadius.circular(15.0),
-                                    ), // eground
-                                  ),
-                                  child: Text('Buy Ticket'),
-                                  onPressed: () =>Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => TicketType(eventId: data.id??""))
+                              ButtonTheme(
+                                height: 350,
+                                minWidth: 200,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 235, bottom: 5),
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: kPrimaryColor, // background
+                                      onPrimary: Colors.white, // for
+                                      shape: new RoundedRectangleBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(12.0),
+                                      ), // eground
+                                    ),
+                                    child: Text(
+                                      'Buy Ticket',
+                                      style: TextStyle(fontSize: 22),
+                                    ),
+                                    onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => TicketType(
+                                                eventId: data.id ?? ""))),
                                   ),
                                 ),
                               ),
@@ -271,6 +277,7 @@ class MyEventDetailItem extends StatelessWidget {
       ),
     );
   }
+
   Widget buildProgress(
       {Color? activeColor,
       Color? inactiveColor,
@@ -305,5 +312,4 @@ class MyEventDetailItem extends StatelessWidget {
       ),
     );
   }
-
 }

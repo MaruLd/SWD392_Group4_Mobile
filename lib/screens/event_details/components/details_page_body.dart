@@ -10,9 +10,6 @@ import 'package:evsmart/widgets/eventAgenda_item.dart';
 import 'package:evsmart/widgets/ticket_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scoped_model/scoped_model.dart';
-
-import '../../../models/DTO/eventDetail_model.dart';
 import '../../../widgets/eventDetail_item.dart';
 
 class EventDetailsPageBody extends StatefulWidget {
@@ -148,6 +145,4 @@ class _EventDetailsPageBodyState extends State<EventDetailsPageBody> {
               return Text("No Data");
             }));
   }
-
-
 }

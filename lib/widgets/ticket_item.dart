@@ -1,9 +1,7 @@
 import 'package:evsmart/color.dart';
-import 'package:evsmart/custom_image.dart';
 import 'package:evsmart/models/DTO/ticket_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class TicketItem extends StatelessWidget {
   TicketItem({Key? key, required this.data, this.onTap}) : super(key: key);

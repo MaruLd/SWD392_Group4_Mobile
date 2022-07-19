@@ -1,3 +1,4 @@
+import 'package:evsmart/color.dart';
 import 'package:evsmart/mainComponent/default_button.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/event_details/components/confirmDialog.dart';
@@ -79,25 +80,29 @@ class _TicketTypeState extends State<TicketType> {
   @override
   Widget build(BuildContext context) {
     ConfirmDialog diaLogs = new ConfirmDialog();
-    ;
+
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back, color: kPrimaryColor,),
+            icon: Icon(
+              Icons.arrow_back,
+              color: kPrimaryColor,
+            ),
           ),
           //backgroundColor: const Color(0xFF11CDEF),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          title: Text(
-              'Select your ticket type', style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 25)
-          ),
+          title: Text('Select your ticket type',
+              style: TextStyle(
+                  color: kPrimaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25)),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-
             padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
             child: Column(children: [
               getEventTicketContent(),
@@ -106,12 +111,14 @@ class _TicketTypeState extends State<TicketType> {
               ),
               DefaultButton(
                 text: "Continue",
-                press: () => diaLogs.confirm(context, 'Do you want to log out', ''),
+                press: () =>
+                    diaLogs.confirm(context, 'Do you want to log out', ''),
               ),
             ])));
   }
 
   getEventTicketContent() {
+    Color _color = Colors.white;
     return SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
         child: FutureBuilder(
@@ -137,9 +144,17 @@ class _TicketTypeState extends State<TicketType> {
                       snapshot.data.length,
                       (index) => Padding(
                         padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                        child: TicketItem(
-                          data: snapshot.data[index],
-                          onTap: () {},
+                        child: Material(
+                          child: GestureDetector(
+                            child: TicketItem(
+                              data: snapshot.data[index],
+                              onTap: () {
+                                setState(() {
+                                  _color = Colors.greenAccent;
+                                });
+                              },
+                            ),
+                          ),
                         ),
                       ),
                     ),
