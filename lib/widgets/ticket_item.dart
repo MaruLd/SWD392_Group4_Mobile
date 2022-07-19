@@ -30,11 +30,10 @@ class TicketItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              CustomImage(
-                "/assest/icons/ticket.svg",
-                radius: 15,
-                height: 50,
-              ),
+              // Image.asset(
+              //   "assets/images/ticket.svg",
+              //   height: 50,
+              // ),
               SizedBox(
                 width: 8,
               ),

@@ -14,7 +14,6 @@ import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-
 class SettingScreen extends StatefulWidget {
   SettingScreen({Key? key}) : super(key: key);
   static String routeName = "/setting";
@@ -123,10 +122,13 @@ class _SettingScreenState extends State<SettingScreen> {
                   //   subtitle: "",
                   // ),
                   SettingsItem(
-                    onTap: () { Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyTicketScreen()),
-                    );},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyTicketScreen()),
+                      );
+                    },
                     icons: LineIcons.moneyCheck,
                     iconStyle: IconStyle(
                       iconsColor: kPrimaryColor,

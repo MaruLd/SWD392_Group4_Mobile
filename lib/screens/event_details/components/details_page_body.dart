@@ -32,6 +32,7 @@ class _EventDetailsPageBodyState extends State<EventDetailsPageBody> {
     super.initState();
     Get.find<EventAgendaViewModel>().getEventAgenda(widget.eventId);
     Get.find<EventDetailViewModel>().getEventDetail(widget.eventId);
+    Get.find<TicketViewModel>().getTicket(widget.eventId);
   }
 
   @override
