@@ -1,6 +1,7 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/models/DTO/ticket_model.dart';
 import 'package:evsmart/screens/constraint.dart';
+import 'package:evsmart/screens/event_details/components/confirmDialog.dart';
 import 'package:flutter/material.dart';
 
 class TicketItem extends StatefulWidget {
@@ -67,6 +68,7 @@ class _TicketItemState extends State<TicketItem> {
   @override
   Widget build(BuildContext context) {
     final _isSelected=false;
+    ConfirmDialog diaLogs = new ConfirmDialog();
     return GestureDetector(
       child: Container(
         padding: EdgeInsets.all(8),
@@ -168,7 +170,26 @@ class _TicketItemState extends State<TicketItem> {
                         widget.ticket.description.toString(),
                         style: TextStyle(fontSize: 17, color: labelColor),
                       ),
+
                     ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 230),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: kPrimaryColor, // background
+                        onPrimary: Colors.white, // for
+                        shape: new RoundedRectangleBorder(
+                          borderRadius:
+                          new BorderRadius.circular(12.0),
+                        ), // eground
+                      ),
+                      child: Text(
+                        'Buy Ticket',
+                        style: TextStyle(fontSize: 22),
+                      ),
+                      onPressed: () =>  diaLogs.confirm(context, 'Do you want to log out', ''),
+                    ),
                   ),
                 ],
               ),
