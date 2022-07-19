@@ -4,7 +4,6 @@ import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
 class MyEventAgendaItem extends StatelessWidget {
   MyEventAgendaItem({Key? key, required this.data, this.onTap})
       : super(key: key);
@@ -25,95 +24,80 @@ class MyEventAgendaItem extends StatelessWidget {
               Expanded(
                 child: Container(
                   width: double.maxFinite,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 10, left: 60),
-                            child: Row(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Text(
+                              data.title.toString(),
+                              style: TextStyle(
+                                  color: textColor,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
+                        // Agenda Time
+                        Column(
+                          children: [
+                            SizedBox(height: 15),
+                            Row(
                               children: [
                                 Icon(
-                                  Icons.circle,
-                                  color: Colors.black,
-                                  size: 10,
+                                  Icons.schedule_rounded,
+                                  color: kPrimaryColor,
+                                  size: 18,
                                 ),
-                                SizedBox(width: 5,),
+                                SizedBox(
+                                  width: 2,
+                                ),
                                 Text(
-                                  data.title.toString(),
+                                  DateFormat("MM/dd/yyyy hh:mm a")
+                                      .format(data.startTime as DateTime)
+                                      .toString(),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      color: textColor,
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                SizedBox(width: 5,),
-                                Icon(
-                                  Icons.circle,
-                                  color: Colors.black,
-                                  size: 10,
+                                      fontSize: 18,
+                                      color: kPrimaryColor,
+                                      fontWeight: FontWeight.w500),
                                 ),
                               ],
                             ),
-                          ),
-                          // Agenda Time
-                          Column(
-                            children: [
-                              SizedBox(height: 15),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.schedule_rounded,
-                                    color: kPrimaryColor,
-                                    size: 18,
-                                  ),
-                                  SizedBox(
-                                    width: 2,
-                                  ),
-                                  Text(
-                                    DateFormat("MM/dd/yyyy hh:mm a")
-                                        .format(data.startTime as DateTime)
-                                        .toString(),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: kPrimaryColor,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 15),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.schedule_rounded,
-                                    color: kPrimaryColor,
-                                    size: 18,
-                                  ),
-                                  SizedBox(
-                                    width: 2,
-                                  ),
-                                  Text(
-                                    DateFormat("MM/dd/yyyy hh:mm a")
-                                        .format(data.endTime as DateTime)
-                                        .toString(),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: kPrimaryColor,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 15),
-
-                            ],
-                          ),
-                        ],
-                      ),
+                            SizedBox(height: 15),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.schedule_rounded,
+                                  color: kPrimaryColor,
+                                  size: 18,
+                                ),
+                                SizedBox(
+                                  width: 2,
+                                ),
+                                Text(
+                                  DateFormat("MM/dd/yyyy hh:mm a")
+                                      .format(data.endTime as DateTime)
+                                      .toString(),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: kPrimaryColor,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
+                ),
               ),
             ],
           )),
