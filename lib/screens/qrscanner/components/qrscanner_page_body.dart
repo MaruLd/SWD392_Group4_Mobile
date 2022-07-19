@@ -58,10 +58,11 @@ class _QRViewState extends State<QRScannerPageBody> {
             child: Center(
               child: (result != null)
                   ? ((useCodeStatus == "200")
-                      ? Text('Check-In or Check-Out Successful!',
+                      ? Text(
+                          '${widget.ticketState} Successful! Data: ${result!.code}',
                           style: TextStyle(
                               fontSize: 20, color: Colors.greenAccent))
-                      : Text('Check-In or Check-Out Unsuccesful!',
+                      : Text('${widget.ticketState} or Check-Out Unsuccesful!',
                           style:
                               TextStyle(fontSize: 20, color: Colors.redAccent)))
                   : Text('Scan a code to ${widget.ticketState}'),
