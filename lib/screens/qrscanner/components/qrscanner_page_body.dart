@@ -1,7 +1,9 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:evsmart/color.dart';
 import 'package:evsmart/models/DAO/qrcodescanner_DAO.dart';
+import 'package:evsmart/models/DTO/TicketUseCodeResult.dart';
 import 'package:evsmart/screens/enums.dart';
 import 'package:evsmart/viewModel/qrscanner_viewModel.dart';
 import 'package:flutter/cupertino.dart';
@@ -114,9 +116,16 @@ class _QRViewState extends State<QRScannerPageBody> {
                   child: Center(child: CircularProgressIndicator())),
             );
           }
-          if (snapshot.hasData != null) {
-            return Text(snapshot.data.toString(),
-                style: TextStyle(fontSize: 20, color: Colors.greenAccent));
+
+          if (snapshot.data != null) {
+            TicketUseCodeResult tucr = snapshot.data;
+            if (tucr.isSuccess == true) {
+              return Text(tucr.message.toString() + "successfully!",
+                  style: TextStyle(fontSize: 20, color: Colors.greenAccent));
+            } else {
+              return Text('Your QR code scanner is not working properly',
+                  style: TextStyle(fontSize: 20, color: Colors.redAccent));
+            }
           }
           return Text('Your QR code scanner is not working properly',
               style: TextStyle(fontSize: 20, color: Colors.redAccent));
