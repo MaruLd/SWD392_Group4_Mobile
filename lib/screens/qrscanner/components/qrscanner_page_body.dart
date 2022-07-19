@@ -57,35 +57,7 @@ class _QRViewState extends State<QRScannerPageBody> {
             flex: 1,
             child: Center(
                 child: (result != null)
-                    ? FutureBuilder(
-                        future: QRScannerDAO.useCode(
-                            ticketId: widget.ticketId,
-                            code: result?.code ?? ""),
-                        builder:
-                            (BuildContext context, AsyncSnapshot snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Container(
-                              color: Colors.green.withOpacity(0.3),
-                              width: MediaQuery.of(context).size.width, //70.0,
-                              height:
-                                  MediaQuery.of(context).size.height, //70.0,
-                              child: const Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Center(
-                                      child: CircularProgressIndicator())),
-                            );
-                          }
-                          if (snapshot.hasData == "200") {
-                            return Text(snapshot.data.toString(),
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.greenAccent));
-                          }
-                          return Text(
-                              'Your QR code scanner is not working properly',
-                              style: TextStyle(
-                                  fontSize: 20, color: Colors.redAccent));
-                        })
+                    ? ScanFutureBuilder()
                     : Text('Scan a code to start')),
           )
         ],
@@ -123,4 +95,29 @@ class _QRViewState extends State<QRScannerPageBody> {
         borderRadius: 10,
         cutOutSize: MediaQuery.of(context).size.width * 0.8,
       ));
+
+  Widget ScanFutureBuilder() {
+    controller?.dispose();
+    return FutureBuilder(
+        future: QRScannerDAO.useCode(
+            ticketId: widget.ticketId, code: result?.code ?? ""),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container(
+              color: Colors.green.withOpacity(0.3),
+              width: MediaQuery.of(context).size.width, //70.0,
+              height: MediaQuery.of(context).size.height, //70.0,
+              child: const Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: Center(child: CircularProgressIndicator())),
+            );
+          }
+          if (snapshot.hasData == "200") {
+            return Text(snapshot.data.toString(),
+                style: TextStyle(fontSize: 20, color: Colors.greenAccent));
+          }
+          return Text('Your QR code scanner is not working properly',
+              style: TextStyle(fontSize: 20, color: Colors.redAccent));
+        });
+  }
 }
