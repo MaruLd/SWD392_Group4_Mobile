@@ -76,16 +76,18 @@ class _QRViewState extends State<QRScannerPageBody> {
                                       child: CircularProgressIndicator())),
                             );
                           }
-                          ((snapshot.data == "200")
-                              ? Text(
-                                  '${widget.ticketState} Successful! Data: ${result!.code}',
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.greenAccent))
-                              : Text(
-                                  '${widget.ticketState} or Check-Out Unsuccesful!',
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.redAccent)));
-                          return Text("No Data");
+                          if (snapshot.data == "200") {
+                            return Text(
+                                '${widget.ticketState} Successful! Data: ${result!.code}',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.greenAccent));
+                          } else if (snapshot.data == "404") {
+                            return Text(
+                                '${widget.ticketState} or Check-Out Unsuccesful!',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.redAccent));
+                          }
+                          return Text("Snapshot data: " + snapshot.data);
                         })
                     : Text('Scan a code to ${widget.ticketState}')),
           )
