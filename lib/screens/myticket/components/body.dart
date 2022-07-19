@@ -1,7 +1,7 @@
 import 'package:evsmart/models/DTO/ticketUser_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/myticket/components/ticket_page_body.dart';
-import 'package:evsmart/viewModel/ticketUser_viewModel.dart';
+import 'package:evsmart/viewModel/userTicket_viewModel.dart';
 import 'package:evsmart/widgets/ticketUser_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

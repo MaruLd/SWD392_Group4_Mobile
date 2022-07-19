@@ -6,8 +6,8 @@ import 'package:evsmart/color.dart';
 import 'package:evsmart/models/DTO/ticketUser_model.dart';
 import 'package:evsmart/models/DTO/ticketUser_model.dart';
 import 'package:evsmart/screens/constraint.dart';
-import 'package:evsmart/viewModel/ticketUser_viewModel.dart';
-import 'package:evsmart/viewModel/ticketUser_viewModel.dart';
+import 'package:evsmart/viewModel/userTicket_viewModel.dart';
+import 'package:evsmart/viewModel/userTicket_viewModel.dart';
 import 'package:evsmart/widgets/ticketUser_item.dart';
 import 'package:evsmart/widgets/feature_item.dart';
 import 'package:evsmart/widgets/ticketUser_item.dart';
@@ -37,7 +37,7 @@ class _TicketPageBodyState extends State<TicketPageBody> {
         body: SingleChildScrollView(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
             child: FutureBuilder(
-                future: Get.find<TicketUserViewModel>().getTicket(),
+                future: Get.find<UserTicketViewModel>().getTicket(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Container(
