@@ -1,12 +1,14 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:evsmart/networking/api_request.dart';
 
 import '../../Authentication/google_sign_in.dart';
+import '../DTO/TicketUseCodeResult.dart';
 
 class QRScannerDAO {
-  static Future<String> useCode({
+  static Future<TicketUseCodeResult> useCode({
     required String ticketId,
     required String code,
   }) async {
@@ -15,15 +17,21 @@ class QRScannerDAO {
     res = await request.post(
       'tickets/' + ticketId + '/users/use-code',
       options: Options(
-        headers: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-          "Authorization": "Bearer $token"
-        },
-      ),
+          headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": "Bearer $token"
+          },
+          validateStatus: (status) {
+            return status! < 500;
+          }),
       queryParameters: {"code": code},
     );
-    final state = jsonEncode(res.data);
-    return state;
+
+    TicketUseCodeResult ticketUseCodeResult = new TicketUseCodeResult();
+    ticketUseCodeResult.isSuccess = res.statusCode == 200;
+    ticketUseCodeResult.message = res.data.toString();
+
+    return ticketUseCodeResult;
   }
 }
