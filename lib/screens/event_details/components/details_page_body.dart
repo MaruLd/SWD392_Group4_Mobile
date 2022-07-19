@@ -47,6 +47,11 @@ class _EventDetailsPageBodyState extends State<EventDetailsPageBody> {
             ])));
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   Widget getHeaderBar(String title) {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
