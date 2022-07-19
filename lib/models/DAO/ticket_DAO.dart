@@ -44,4 +44,19 @@ class TicketDAO {
     final tickets = Ticket.fromList(res.data);
     return tickets;
   }
+
+  Future<Ticket> buyTicket({required String ticketId}) async {
+    Response res;
+    var token = await GoogleSignInProvider.getAndStoreJwtToken();
+    res = await request.get('tickets/' + ticketId + '/users',
+        options: Options(
+          headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": "Bearer $token"
+          },
+        ));
+    final ticket = Ticket.fromJson(res.data);
+    return ticket;
+  }
 }

@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:evsmart/color.dart';
 import 'package:evsmart/models/DAO/qrcodescanner_DAO.dart';
 import 'package:evsmart/screens/enums.dart';
+import 'package:evsmart/viewModel/qrscanner_viewModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../../../mainComponent/custom_bottom_nav_bar.dart';
@@ -97,10 +99,10 @@ class _QRViewState extends State<QRScannerPageBody> {
       ));
 
   Widget ScanFutureBuilder() {
-    controller?.dispose();
+    controller?.pauseCamera();
     return FutureBuilder(
-        future: QRScannerDAO.useCode(
-            ticketId: widget.ticketId, code: result?.code ?? ""),
+        future: Get.find<QRScannerViewModel>()
+            .getScannerResult(widget.ticketId, result?.code ?? ""),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Container(
@@ -112,7 +114,7 @@ class _QRViewState extends State<QRScannerPageBody> {
                   child: Center(child: CircularProgressIndicator())),
             );
           }
-          if (snapshot.hasData == "200") {
+          if (snapshot.hasData != null) {
             return Text(snapshot.data.toString(),
                 style: TextStyle(fontSize: 20, color: Colors.greenAccent));
           }
