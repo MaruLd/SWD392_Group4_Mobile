@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'screens/notification/firebase_options.dart';
 import 'viewModel/notification_viewModel.dart';
 import 'viewModel/ticketUser_viewModel.dart';
-import 'viewModel/ticket_viewModel copy.dart';
+import 'viewModel/ticket_viewModel.dart';
 
 Future setUp() async {
   await Firebase.initializeApp(
@@ -23,7 +23,6 @@ void createRouteBindings() async {
   Get.put(EventViewModel());
   Get.put(TicketViewModel());
   Get.put(TicketUserViewModel());
-  Get.put(TicketViewModel());
   Get.put(EventAgendaViewModel());
   Get.put(EventDetailViewModel());
   Get.put(AccountViewModel());
