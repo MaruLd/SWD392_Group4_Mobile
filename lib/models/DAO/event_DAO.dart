@@ -10,13 +10,11 @@ class EventDAO {
     Map<String, dynamic> params = const {},
   }) async {
     Response res;
-    res = await request.get(
-      'events',
-      queryParameters: {"page": page, "size": size}..addAll(params),
-    );
+    res = await request.get('events');
     final events = Event.fromList(res.data);
     return events;
   }
+
   Future<List<Event>> getEvent({
     required final String eventId,
     Map<String, dynamic> params = const {},
