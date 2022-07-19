@@ -15,7 +15,7 @@ class TicketItem extends StatelessWidget {
     return GestureDetector(
       child: Container(
           padding: EdgeInsets.all(8),
-          width: MediaQuery.of(context).size.width,
+          width: double.maxFinite,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
@@ -38,7 +38,7 @@ class TicketItem extends StatelessWidget {
                 width: 8,
               ),
               Container(
-                width: MediaQuery.of(context).size.width * 0.52,
+
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -48,95 +48,76 @@ class TicketItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           color: textColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: [
-                        // SizedBox(
-                        //   width: 20,
-                        // ),
-                        Text("Type: "),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          data.type.toString(),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: kPrimaryColor,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        // SizedBox(
-                        //   width: 20,
-                        // ),
-                        Text("Cost: "),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          data.cost.toString(),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: kPrimaryColor,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        // SizedBox(
-                        //   width: 20,
-                        // ),
-                        Text("Quantity Left: "),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          data.quantity.toString(),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: kPrimaryColor,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ],
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Row(
                       children: [
-                        Text("Description: "),
-                        SizedBox(
-                          width: 2,
+                        Text("Type: ", style: TextStyle(fontSize: 20),),
+                        Text(
+                          data.type.toString(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 17,
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w500),
                         ),
-                        Flexible(
-                          child: Text(
-                            data.description.toString(),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 12, color: labelColor),
-                          ),
-                        )
                       ],
-                    )
+                    ),
+                    Row(
+                      children: [
+                        // SizedBox(
+                        //   width: 20,
+                        // ),
+                        Text("Cost: ",style: TextStyle(fontSize: 20),),
+                        Text(
+                          data.cost.toString(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 17,
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text("Quantity left: ", style: TextStyle(fontSize: 20),),
+                        Text(
+                          data.quantity.toString(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 17,
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                        Row(
+                          children:[
+                        Text("Description: ", style: TextStyle(fontSize: 20),),
+                        Text(
+                            data.description.toString(),
+                            style: TextStyle(fontSize: 17, color: labelColor),
+                          ),
+        ]
+
+                        ),
+
                   ],
+
                 ),
+
               )
+
             ],
+
           )),
     );
   }

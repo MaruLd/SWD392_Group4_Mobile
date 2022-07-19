@@ -43,7 +43,6 @@ SizedBox(height: 40,),
             child: Text(item, style: TextStyle(fontSize: 20, color: Colors.black),),
           )).toList(),
           onChanged: (item) => setState(()=> selectedItem = item),
-
         ),
       ),
     ),
