@@ -5,17 +5,16 @@ import 'package:evsmart/models/DAO/eventAgenda_DAO.dart';
 import 'package:evsmart/models/DTO/eventAgenda_model.dart';
 import 'package:evsmart/viewModel/eventAgenda_viewModel.dart';
 import 'package:evsmart/viewModel/eventDetail_viewModel.dart';
-import 'package:evsmart/viewModel/ticket_viewModel%20copy.dart';
+import 'package:evsmart/viewModel/ticket_viewModel.dart';
 import 'package:evsmart/widgets/eventAgenda_item.dart';
 import 'package:evsmart/widgets/ticket_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:line_icons/line_icon.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../../models/DTO/eventDetail_model.dart';
 import '../../../widgets/eventDetail_item.dart';
-import '../../constraint.dart';
+
 
 class EventDetailsPageBody extends StatefulWidget {
   const EventDetailsPageBody({Key? key, required this.eventId})
@@ -136,18 +135,21 @@ class _EventDetailsPageBodyState extends State<EventDetailsPageBody> {
               }
               if (snapshot.hasData) {
                 return SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    padding: EdgeInsets.only(top: 12),
-                    child: Column(
-                        children: List.generate(
-                            snapshot.data.length,
-                            (index) => Padding(
-                                padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                                child: TicketItem(
-                                  data: snapshot.data[index],
-                                  onTap: () {},
-                                )))));
-                ;
+                  scrollDirection: Axis.vertical,
+                  padding: EdgeInsets.only(top: 12),
+                  child: Column(
+                    children: List.generate(
+                      snapshot.data.length,
+                      (index) => Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                        child: TicketItem(
+                          data: snapshot.data[index],
+                          onTap: () {},
+                        ),
+                      ),
+                    ),
+                  ),
+                );
               }
               return Text("No Data");
             }));
