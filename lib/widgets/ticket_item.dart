@@ -45,11 +45,10 @@ class TicketItem extends StatefulWidget {
 
   @override
   _TicketItemState createState() => _TicketItemState();
-
 }
 
 class _TicketItemState extends State<TicketItem> {
-   late Color color;
+  late Color color;
 
 //   void _updateColor(Color color){
 //     if(mounted)
@@ -67,7 +66,7 @@ class _TicketItemState extends State<TicketItem> {
 
   @override
   Widget build(BuildContext context) {
-    final _isSelected=false;
+    final _isSelected = false;
     ConfirmDialog diaLogs = new ConfirmDialog();
     return GestureDetector(
       child: Container(
@@ -168,27 +167,29 @@ class _TicketItemState extends State<TicketItem> {
                       ),
                       Text(
                         widget.ticket.description.toString(),
-                        style: TextStyle(fontSize: 17, color: labelColor),
+                        style: TextStyle(fontSize: 14, color: labelColor),
                       ),
-
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 230),
+                    padding: const EdgeInsets.only(left: 150),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: kPrimaryColor, // background
                         onPrimary: Colors.white, // for
                         shape: new RoundedRectangleBorder(
-                          borderRadius:
-                          new BorderRadius.circular(12.0),
+                          borderRadius: new BorderRadius.circular(12.0),
                         ), // eground
                       ),
                       child: Text(
                         'Buy Ticket',
                         style: TextStyle(fontSize: 22),
                       ),
-                      onPressed: () =>  diaLogs.confirm(context, 'Do you want to log out', ''),
+                      onPressed: () => diaLogs.confirm(
+                          context,
+                          widget.ticket.id ?? "",
+                          'Do you want to buy this ticket?',
+                          ''),
                     ),
                   ),
                 ],
