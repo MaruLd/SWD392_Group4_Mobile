@@ -3,6 +3,7 @@ import 'package:evsmart/custom_image.dart';
 import 'package:evsmart/models/DTO/eventDetail_model.dart';
 import 'package:evsmart/models/DTO/ticketUser_model.dart';
 import 'package:evsmart/screens/constraint.dart';
+import 'package:evsmart/screens/event_details/components/bookingdialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -249,25 +250,11 @@ class MyEventDetailItem extends StatelessWidget {
                                           new BorderRadius.circular(15.0),
                                     ), // eground
                                   ),
-                                  child: Text('Regrister'),
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (ctx) => SimpleDialog(
-                                        title:
-                                            const Text('Select Booking Type'),
-                                        children: <Widget>[
-                                         /* DropdownButton(
-                                            items: const [
-                                              DropdownMenuItem(child: Text("General"), value: "",),
-                                              DropdownMenuItem(child: Text("Sliver"), value: "",),
-                                              DropdownMenuItem(child: Text("Gold"), value: "",),
-                                            ],
-                                          ),*/
-                                        ],
-                                      ),
-                                    );
-                                  },
+                                  child: Text('Buy Ticket'),
+                                  onPressed: () =>Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => BookingDialog())
+                                  ),
                                 ),
                               ),
                             ],
@@ -318,4 +305,5 @@ class MyEventDetailItem extends StatelessWidget {
       ),
     );
   }
+
 }

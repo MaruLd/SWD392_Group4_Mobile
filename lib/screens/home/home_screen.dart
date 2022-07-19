@@ -16,22 +16,34 @@ class HomeScreen extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           actions: <Widget>[
-            IconButton( icon: Icon(
-              Icons.search,
-              color: kPrimaryColor,
-            ),
-            onPressed: (){
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: IconButton( icon: Icon(
+                Icons.search,
+                color: kPrimaryColor,
+              ),
+              onPressed: (){
       showSearch(context: context, delegate: DataSearch());
       }
+              ),
             )
           ],
           //backgroundColor: const Color(0xFF11CDEF),
           backgroundColor: Colors.white,
           elevation: 0.0,
-          title: Text('Sevent',
-              style:
-                  TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 25)
+          title: Padding(
+              padding: EdgeInsets.only(left: 140),
+              child: Row(
+                children:[
+                  Text('Sevent',
+                      style:
+                      TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 30)
+                  ),
+                ] ,
+              ),
+
           ),
+
         ),
         body: EventPageBody(),
         bottomNavigationBar: const CustomBottomNavBar(
