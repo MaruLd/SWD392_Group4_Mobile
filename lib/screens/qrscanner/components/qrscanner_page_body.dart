@@ -56,17 +56,40 @@ class _QRViewState extends State<QRScannerPageBody> {
           Expanded(
             flex: 1,
             child: Center(
-              child: (result != null)
-                  ? ((useCodeStatus == "200")
-                      ? Text(
-                          '${widget.ticketState} Successful! Data: ${result!.code}',
-                          style: TextStyle(
-                              fontSize: 20, color: Colors.greenAccent))
-                      : Text('${widget.ticketState} or Check-Out Unsuccesful!',
-                          style:
-                              TextStyle(fontSize: 20, color: Colors.redAccent)))
-                  : Text('Scan a code to ${widget.ticketState}'),
-            ),
+                child: (result != null)
+                    ? FutureBuilder(
+                        future: QRScannerDAO.useCode(
+                            ticketId: widget.ticketId,
+                            code: result?.code ?? ""),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Container(
+                              color: Colors.green.withOpacity(0.3),
+                              width: MediaQuery.of(context).size.width, //70.0,
+                              height:
+                                  MediaQuery.of(context).size.height, //70.0,
+                              child: const Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Center(
+                                      child: CircularProgressIndicator())),
+                            );
+                          }
+                          if (snapshot.data == "200") {
+                            return Text(
+                                '${widget.ticketState} Successful! Data: ${result!.code}',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.greenAccent));
+                          } else if (snapshot.data == "404") {
+                            return Text(
+                                '${widget.ticketState} or Check-Out Unsuccesful!',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.redAccent));
+                          }
+                          return Text("Snapshot data: " + snapshot.data);
+                        })
+                    : Text('Scan a code to ${widget.ticketState}')),
           )
         ],
       ),

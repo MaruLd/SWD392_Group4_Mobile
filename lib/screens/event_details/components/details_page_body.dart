@@ -15,7 +15,6 @@ import 'package:scoped_model/scoped_model.dart';
 import '../../../models/DTO/eventDetail_model.dart';
 import '../../../widgets/eventDetail_item.dart';
 
-
 class EventDetailsPageBody extends StatefulWidget {
   const EventDetailsPageBody({Key? key, required this.eventId})
       : super(key: key);
@@ -30,9 +29,9 @@ class _EventDetailsPageBodyState extends State<EventDetailsPageBody> {
   @override
   void initState() {
     super.initState();
-    Get.find<EventAgendaViewModel>().getEventAgenda(widget.eventId);
-    Get.find<EventDetailViewModel>().getEventDetail(widget.eventId);
-    Get.find<TicketViewModel>().getTicket(widget.eventId);
+    // Get.find<EventAgendaViewModel>().getEventAgenda(widget.eventId);
+    // Get.find<EventDetailViewModel>().getEventDetail(widget.eventId);
+    // Get.find<TicketViewModel>().getTicket(widget.eventId);
   }
 
   @override
@@ -46,6 +45,11 @@ class _EventDetailsPageBodyState extends State<EventDetailsPageBody> {
               getEventTicketContent(),
               getAgendaContent(),
             ])));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Widget getHeaderBar(String title) {
@@ -75,46 +79,75 @@ class _EventDetailsPageBodyState extends State<EventDetailsPageBody> {
 
   getDetailContent() {
     const Text("Detail: ");
-    return ScopedModel<EventDetailViewModel>(
-        model: Get.find<EventDetailViewModel>(),
-        child: ScopedModelDescendant<EventDetailViewModel>(
-            builder: (context, child, model) {
-          EventDetail? detail = model.eventDetail;
-          if (detail == null) {
-            return const SizedBox(
-              height: 30,
-            );
-          } else {
-            return SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                padding: const EdgeInsets.only(top: 12),
-                child: MyEventDetailItem(data: detail));
-          }
-        }));
+    return SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
+        child: FutureBuilder(
+            future:
+                Get.find<EventDetailViewModel>().getEventDetail(widget.eventId),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return new Container(
+                  color: Colors.green.withOpacity(0.3),
+                  width: MediaQuery.of(context).size.width, //70.0,
+                  height: MediaQuery.of(context).size.height, //70.0,
+                  child: new Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child:
+                          new Center(child: new CircularProgressIndicator())),
+                );
+              }
+              if (snapshot.hasData) {
+                return SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  padding: EdgeInsets.only(top: 12),
+                  child: MyEventDetailItem(
+                    data: snapshot.data,
+                    onTap: () {},
+                  ),
+                );
+              }
+              return Text("No Data");
+            }));
   }
 
   getAgendaContent() {
-    return ScopedModel<EventAgendaViewModel>(
-        model: Get.find<EventAgendaViewModel>(),
-        child: ScopedModelDescendant<EventAgendaViewModel>(
-            builder: (context, child, model) {
-          List<EventAgenda>? courses = model.listEventAgenda;
-          if (courses == null)
-            return Text("No data");
-          else
-            return SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                padding: EdgeInsets.only(top: 12),
-                child: Column(
+    return SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
+        child: FutureBuilder(
+            future:
+                Get.find<EventAgendaViewModel>().getEventAgenda(widget.eventId),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return new Container(
+                  color: Colors.green.withOpacity(0.3),
+                  width: MediaQuery.of(context).size.width, //70.0,
+                  height: MediaQuery.of(context).size.height, //70.0,
+                  child: new Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child:
+                          new Center(child: new CircularProgressIndicator())),
+                );
+              }
+              if (snapshot.hasData) {
+                return SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  padding: EdgeInsets.only(top: 12),
+                  child: Column(
                     children: List.generate(
-                        courses.length,
-                        (index) => Padding(
-                            padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                            child: MyEventAgendaItem(
-                              data: courses[index],
-                              onTap: () {},
-                            )))));
-        }));
+                      snapshot.data.length,
+                      (index) => Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                        child: MyEventAgendaItem(
+                          data: snapshot.data[index],
+                          onTap: () {},
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }
+              return Text("No Data");
+            }));
   }
 
   getEventTicketContent() {

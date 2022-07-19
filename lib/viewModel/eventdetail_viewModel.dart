@@ -14,9 +14,9 @@ class EventDetailViewModel extends BaseModel {
     eventDetailDAO = EventDetailDAO();
   }
 
-  Future<void> getEventDetail(String eventId) async {
+  Future<EventDetail?> getEventDetail(String eventId) async {
     try {
-      eventDetail = await eventDetailDAO?.getEventDetail(eventId: eventId);
+      return await eventDetailDAO?.getEventDetail(eventId: eventId);
     } catch (e) {
       eventDetail = null;
     }

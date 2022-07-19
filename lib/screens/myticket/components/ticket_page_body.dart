@@ -40,14 +40,13 @@ class _TicketPageBodyState extends State<TicketPageBody> {
                 future: Get.find<TicketUserViewModel>().getTicket(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return new Container(
+                    return Container(
                       color: Colors.green.withOpacity(0.3),
                       width: MediaQuery.of(context).size.width, //70.0,
                       height: MediaQuery.of(context).size.height, //70.0,
-                      child: new Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: new Center(
-                              child: new CircularProgressIndicator())),
+                      child: const Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Center(child: CircularProgressIndicator())),
                     );
                   }
                   if (snapshot.hasData) {
@@ -68,6 +67,11 @@ class _TicketPageBodyState extends State<TicketPageBody> {
                   }
                   return Text("No Data");
                 })));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   // getTabContent() {
