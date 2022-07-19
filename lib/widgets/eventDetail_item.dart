@@ -251,9 +251,10 @@ class MyEventDetailItem extends StatelessWidget {
                                     ), // eground
                                   ),
                                   child: Text('Buy Ticket'),
-                                  onPressed: () {
-
-                                  },
+                                  onPressed: () =>Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => BookingDialog())
+                                  ),
                                 ),
                               ),
                             ],
@@ -304,4 +305,5 @@ class MyEventDetailItem extends StatelessWidget {
       ),
     );
   }
+
 }

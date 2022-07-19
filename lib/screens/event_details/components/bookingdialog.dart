@@ -1,84 +1,52 @@
+import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
 
-class BookingDialog extends StatelessWidget {
 
-  @override
-  Widget build(BuildContext context) => MaterialApp(
-    debugShowCheckedModeBanner: false,
+class BookingDialog extends StatefulWidget{
+  _BookingDialog createState() => _BookingDialog();
 
-  );
 }
-
-class MainPage extends StatefulWidget {
-  final String title;
-
-  const MainPage({
-    required this.title,
-  });
-
+class _BookingDialog extends State<BookingDialog>{
+  List<String> items =['General', 'VIP'];
+String ? selectedItem='General';
   @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class NewObject {
-  final String title;
-  final IconData icon;
-
-  NewObject(this.title, this.icon);
-}
-
-class _MainPageState extends State<MainPage> {
-  static final List<NewObject> items = <NewObject>[
-    NewObject('Apple', Icons.access_alarms),
-    NewObject('Banana', Icons.mail),
-
-  ];
-  NewObject value = items.first;
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Colors.black,
-    appBar: AppBar(
-      title: Text(widget.title),
-    ),
-    body: Center(
-      child: buildDropdown(),
-    ),
-  );
-
-  Widget buildDropdown() => Container(
-    width: 200,
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(12),
-      color: Colors.white,
-      border: Border.all(color: Colors.deepOrange, width: 4),
-    ),
-    child: DropdownButtonHideUnderline(
-      child: DropdownButton<NewObject>(
-        value: value, // currently selected item
-        items: items
-            .map((item) => DropdownMenuItem<NewObject>(
-          child: Row(
-            children: [
-              Icon(item.icon),
-              const SizedBox(width: 8),
-              Text(
-                item.title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-            ],
+  Widget build(BuildContext context)=> Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: kPrimaryColor,),
+        ),
+        //backgroundColor: const Color(0xFF11CDEF),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        centerTitle: true,
+      ),
+body: Column(
+  children: [
+    Text("Select your Ticket type", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: kPrimaryColor),),
+SizedBox(height: 40,),
+        Center(
+      child:   SizedBox(
+        width: 240,
+        child: DropdownButtonFormField<String>(
+          decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(width: 4, color: kPrimaryColor),
+            ),
           ),
-          value: item,
-        ))
-            .toList(),
-        onChanged: (value) => setState(() {
-          this.value = value!;
-        }),
+          value: selectedItem,
+          items: items.map((item) => DropdownMenuItem<String>(
+            value: item,
+            child: Text(item, style: TextStyle(fontSize: 20, color: Colors.black),),
+          )).toList(),
+          onChanged: (item) => setState(()=> selectedItem = item),
+
+        ),
       ),
     ),
-  );
+  ],
+)  );
 }
