@@ -1,17 +1,20 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:evsmart/models/DTO/event_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/viewModel/event_viewModel.dart';
 import 'package:evsmart/widgets/event_item.dart';
 import 'package:evsmart/widgets/feature_item.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:scoped_model/scoped_model.dart';
-
 
 // Future<List<Event>> fetchEvent({int page = 1}) async {
 //   final response =
@@ -36,12 +39,20 @@ class _EventPageBodyState extends State<EventPageBody> {
   // late Future<List<Event>> events;
   late Future<void> events;
   // var isLoaded = false;
+  // This widget is the root of your application.
+  /// Create a [AndroidNotificationChannel] for heads up notifications
+  late AndroidNotificationChannel channel;
+
+  /// Initialize the [FlutterLocalNotificationsPlugin] package.
+  late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
+  String? mtoken = " ";
 
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currPageValue = 0.0;
   final double _scaleFactor = 0.8;
   final double _height = 220;
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
   TabController? _tabController;
 
   @override
@@ -55,6 +66,132 @@ class _EventPageBodyState extends State<EventPageBody> {
         print("Current value is $_currPageValue");
       });
     });
+    requestPermission();
+    loadFCM();
+    listenFCM();
+    getToken();
+    FirebaseMessaging.instance.subscribeToTopic("all");
+  }
+
+  void saveToken(String token) async {
+    await FirebaseFirestore.instance.collection("UserTokens").doc("User1").set({
+      'token': token,
+    });
+  }
+
+  void sendPushMessage(String token, String body, String title) async {
+    try {
+      await http.post(
+        Uri.parse('https://fcm.googleapis.com/fcm/send'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          'Authorization':
+              'key=AAAAZIVF00U:APA91bHvScjC-HCgSUTb4G0m1F4vJ2vUP7qDg9RtC2p8gBM3nEO_gYY7XMrw-g3VKnoW_iXWMQxcBauP_7K5gBn_3xaQfTHpbgl_hyHV3mPjM-MeJI-X6W3bhm_jTHCT2jhP1ukjhUSt',
+        },
+        body: jsonEncode(
+          <String, dynamic>{
+            'notification': <String, dynamic>{'body': body, 'title': title},
+            'priority': 'high',
+            'data': <String, dynamic>{
+              'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+              'id': '1',
+              'status': 'done'
+            },
+            "to": token,
+          },
+        ),
+      );
+    } catch (e) {
+      print("error push notification");
+    }
+  }
+
+  void getToken() async {
+    await FirebaseMessaging.instance.getToken().then((token) {
+      setState(() {
+        mtoken = token;
+      });
+
+      saveToken(token!);
+      print(token);
+    });
+  }
+
+  void requestPermission() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('User granted permission');
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
+      print('User granted provisional permission');
+    } else {
+      print('User declined or has not accepted permission');
+    }
+  }
+
+  void listenFCM() async {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null && !kIsWeb) {
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              // TODO add a proper drawable resource to android, for now using
+              //      one that already exists in example app.
+              icon: 'launch_background',
+            ),
+          ),
+        );
+      }
+    });
+  }
+
+  void loadFCM() async {
+    if (!kIsWeb) {
+      channel = const AndroidNotificationChannel(
+        'high_importance_channel', // id
+        'High Importance Notifications', // title
+        importance: Importance.high,
+        enableVibration: true,
+      );
+
+      flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+      /// Create an Android Notification Channel.
+      ///
+      /// We use this channel in the `AndroidManifest.xml` file to override the
+      /// default FCM channel to enable heads up notifications.
+      await flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.createNotificationChannel(channel);
+
+      /// Update the iOS foreground notification presentation options to allow
+      /// heads up notifications.
+      await FirebaseMessaging.instance
+          .setForegroundNotificationPresentationOptions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+    }
   }
 
   @override
@@ -67,7 +204,7 @@ class _EventPageBodyState extends State<EventPageBody> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 4),
             child: Column(children: [
               getAppBar("Featured Events"),
               getFeature(),
@@ -83,11 +220,11 @@ class _EventPageBodyState extends State<EventPageBody> {
         child: ScopedModelDescendant<EventViewModel>(
           builder: (context, child, model) {
             List<Event>? currentEvent = model.listEvent;
-            if (currentEvent == null)
-              return SizedBox(
+            if (currentEvent == null) {
+              return const SizedBox(
                 height: 30,
               );
-            else
+            } else {
               return CarouselSlider(
                   options: CarouselOptions(
                     height: 280,
@@ -99,13 +236,14 @@ class _EventPageBodyState extends State<EventPageBody> {
                       currentEvent.length,
                       (index) => FeatureItem(
                           onTap: () {}, data: currentEvent[index])));
+            }
           },
         ));
   }
 
   Widget getAppBar(String title) {
     return Container(
-        padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+        padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
         child: Column(
           children: [
             Row(
@@ -116,7 +254,7 @@ class _EventPageBodyState extends State<EventPageBody> {
                       alignment: Alignment.topLeft,
                       child: Text(
                         title,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 24,
                             color: Colors.black87,
                             fontWeight: FontWeight.w600),
@@ -134,15 +272,14 @@ class _EventPageBodyState extends State<EventPageBody> {
       child: ScopedModelDescendant<EventViewModel>(
           builder: (context, child, model) {
         List<Event>? courses = model.listEvent;
-        if (courses == null)
-          return SizedBox(
+        if (courses == null) {
+          return const SizedBox(
             height: 30,
-
           );
-        else
+        } else {
           return SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            padding: EdgeInsets.only(top: 12),
+            padding: const EdgeInsets.only(top: 12),
             child: Column(
               children: List.generate(
                 courses.length,
@@ -156,6 +293,7 @@ class _EventPageBodyState extends State<EventPageBody> {
               ),
             ),
           );
+        }
       }),
     );
   }
