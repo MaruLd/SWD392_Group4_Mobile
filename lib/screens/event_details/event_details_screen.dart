@@ -1,16 +1,15 @@
 import 'package:evsmart/models/DTO/eventAgenda_model.dart';
-import 'package:evsmart/screens/agenda/components/eventAgenda_page_body.dart';
 import 'package:evsmart/screens/enums.dart';
+import 'package:evsmart/screens/event_details/components/details_page_body.dart';
 import 'package:flutter/material.dart';
 
 import '../constraint.dart';
-import '../agenda/components/body.dart';
 import 'package:evsmart/mainComponent/custom_bottom_nav_bar.dart';
 
 import '../search/SearchData.dart';
 
-class AgendaScreen extends StatelessWidget {
-  const AgendaScreen({super.key, required this.eventId});
+class EventDetailsScreen extends StatelessWidget {
+  const EventDetailsScreen({super.key, required this.eventId});
 
   static String routeName = "/agenda";
   final String eventId;
@@ -40,7 +39,7 @@ class AgendaScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0,
         ),*/
-        body: EventAgendaPageBody(eventId: eventId),
+        body: EventDetailsPageBody(eventId: eventId),
         bottomNavigationBar:
             const CustomBottomNavBar(selectedMenu: MenuState.favorite),
       ),

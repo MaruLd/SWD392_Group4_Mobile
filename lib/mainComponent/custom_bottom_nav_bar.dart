@@ -2,7 +2,6 @@ import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/myticket/myticket_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:evsmart/screens/enums.dart';
-import 'package:evsmart/screens/agenda/agenda_screen.dart';
 import 'package:evsmart/screens/home/home_screen.dart';
 import 'package:evsmart/screens/setting/setting_screen.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';

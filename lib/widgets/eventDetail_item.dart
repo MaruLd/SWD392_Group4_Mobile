@@ -1,7 +1,7 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
 import 'package:evsmart/models/DTO/eventDetail_model.dart';
-import 'package:evsmart/models/DTO/ticket_model.dart';
+import 'package:evsmart/models/DTO/ticketUser_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,7 +1,7 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
 import 'package:evsmart/models/DTO/eventAgenda_model.dart';
-import 'package:evsmart/models/DTO/ticket_model.dart';
+import 'package:evsmart/models/DTO/ticketUser_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/qrscanner/components/qrscanner_page_body.dart';
 import 'package:evsmart/screens/qrscanner/qrscanner_screen.dart';

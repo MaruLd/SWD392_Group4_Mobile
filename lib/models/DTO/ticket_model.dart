@@ -1,39 +1,34 @@
-import 'package:evsmart/models/DTO/event_model.dart';
-
 class Ticket {
   String? id;
-  Event? event;
-  String? ticketId;
+  String? eventId;
   String? name;
   String? description;
   String? type;
-  DateTime? checkedInDate;
-  DateTime? checkedOutDate;
-  String? state;
+  int? cost;
+  int? quantity;
+  int? quantityLeft;
   DateTime? createdDate;
 
   Ticket(
       {this.id,
-      this.event,
-      this.ticketId,
+      this.eventId,
       this.name,
       this.description,
       this.type,
-      this.checkedInDate,
-      this.checkedOutDate,
-      this.state,
+      this.cost,
+      this.quantity,
+      this.quantityLeft,
       this.createdDate});
 
   Ticket.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    event = json['event'] != null ? new Event.fromJson(json['event']) : null;
-    ticketId = json['ticket-id'];
+    eventId = json['event-id'];
     name = json['name'];
     description = json['description'];
     type = json['type'];
-    checkedInDate = DateTime.parse(json['checked-in-date']);
-    checkedOutDate = DateTime.parse(json['checked-out-date']);
-    state = json['state'];
+    cost = json['cost'];
+    quantity = json['quantity'];
+    quantityLeft = json['quantity-left'];
     createdDate = DateTime.parse(json['created-date']);
   }
 
@@ -45,22 +40,14 @@ class Ticket {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    if (this.event != null) {
-      data['event'] = this.event!.toJson();
-    }
-    data['ticket-id'] = this.ticketId;
+    data['event-id'] = this.eventId;
     data['name'] = this.name;
     data['description'] = this.description;
     data['type'] = this.type;
-    data['checked-in-date'] = this.checkedInDate;
-    data['checked-out-date'] = this.checkedOutDate;
-    data['state'] = this.state;
+    data['cost'] = this.cost;
+    data['quantity'] = this.quantity;
+    data['quantity-left'] = this.quantityLeft;
     data['created-date'] = this.createdDate;
     return data;
   }
 }
-
-
-
-
-

@@ -1,9 +1,8 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
 import 'package:evsmart/models/DTO/event_model.dart';
-import 'package:evsmart/screens/agenda/agenda_screen.dart';
-import 'package:evsmart/screens/agenda/components/eventAgenda_page_body.dart';
 import 'package:evsmart/screens/constraint.dart';
+import 'package:evsmart/screens/event_details/event_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -26,7 +25,7 @@ class FeatureItem extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => AgendaScreen(eventId: data.id ?? "")),
+            builder: (context) => EventDetailsScreen(eventId: data.id ?? "")),
       ),
       child: Container(
         width: width,
