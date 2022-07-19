@@ -109,11 +109,11 @@ class _TicketTypeState extends State<TicketType> {
               SizedBox(
                 height: 40,
               ),
-              DefaultButton(
+/*              DefaultButton(
                 text: "Continue",
                 press: () =>
                     diaLogs.confirm(context, 'Do you want to log out', ''),
-              ),
+              ),*/
             ])));
   }
 
