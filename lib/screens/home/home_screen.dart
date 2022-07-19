@@ -28,10 +28,18 @@ class HomeScreen extends StatelessWidget {
           //backgroundColor: const Color(0xFF11CDEF),
           backgroundColor: Colors.white,
           elevation: 0.0,
-          title: Text('Sevent',
-              style:
-                  TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 25)
+          title: Flexible(
+            child: Row(
+              children:[
+                Image.asset("assets/images/slogo.png",),
+                Text('event',
+                    style:
+                    TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 25)
+                ),
+              ] ,
+            ),
           ),
+
         ),
         body: EventPageBody(),
         bottomNavigationBar: const CustomBottomNavBar(
