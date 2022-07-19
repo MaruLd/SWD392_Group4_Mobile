@@ -42,7 +42,6 @@ class _EventDetailsPageBodyState extends State<EventDetailsPageBody> {
             child: Column(children: [
 /*              getHeaderBar("Details"),*/
               getDetailContent(),
-              getEventTicketContent(),
               getAgendaContent(),
             ])));
   }
@@ -150,42 +149,5 @@ class _EventDetailsPageBodyState extends State<EventDetailsPageBody> {
             }));
   }
 
-  getEventTicketContent() {
-    return SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
-        child: FutureBuilder(
-            future: Get.find<TicketViewModel>().getTicket(widget.eventId),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return new Container(
-                  color: Colors.green.withOpacity(0.3),
-                  width: MediaQuery.of(context).size.width, //70.0,
-                  height: MediaQuery.of(context).size.height, //70.0,
-                  child: new Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child:
-                          new Center(child: new CircularProgressIndicator())),
-                );
-              }
-              if (snapshot.hasData) {
-                return SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  padding: EdgeInsets.only(top: 12),
-                  child: Column(
-                    children: List.generate(
-                      snapshot.data.length,
-                      (index) => Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                        child: TicketItem(
-                          data: snapshot.data[index],
-                          onTap: () {},
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              }
-              return Text("No Data");
-            }));
-  }
+
 }

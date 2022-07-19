@@ -30,15 +30,10 @@ class TicketItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // Image.asset(
-              //   "assets/images/ticket.svg",
-              //   height: 50,
-              // ),
               SizedBox(
                 width: 8,
               ),
               Container(
-
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -56,7 +51,10 @@ class TicketItem extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text("Type: ", style: TextStyle(fontSize: 20),),
+                        Text(
+                          "Type: ",
+                          style: TextStyle(fontSize: 20),
+                        ),
                         Text(
                           data.type.toString(),
                           maxLines: 1,
@@ -73,7 +71,10 @@ class TicketItem extends StatelessWidget {
                         // SizedBox(
                         //   width: 20,
                         // ),
-                        Text("Cost: ",style: TextStyle(fontSize: 20),),
+                        Text(
+                          "Cost: ",
+                          style: TextStyle(fontSize: 20),
+                        ),
                         Text(
                           data.cost.toString(),
                           maxLines: 1,
@@ -87,7 +88,10 @@ class TicketItem extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text("Quantity left: ", style: TextStyle(fontSize: 20),),
+                        Text(
+                          "Quantity left: ",
+                          style: TextStyle(fontSize: 20),
+                        ),
                         Text(
                           data.quantity.toString(),
                           maxLines: 1,
@@ -99,25 +103,20 @@ class TicketItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                        Row(
-                          children:[
-                        Text("Description: ", style: TextStyle(fontSize: 20),),
-                        Text(
-                            data.description.toString(),
-                            style: TextStyle(fontSize: 17, color: labelColor),
-                          ),
-        ]
-
-                        ),
-
+                    Row(children: [
+                      Text(
+                        "Description: ",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        data.description.toString(),
+                        style: TextStyle(fontSize: 17, color: labelColor),
+                      ),
+                    ]),
                   ],
-
                 ),
-
               )
-
             ],
-
           )),
     );
   }

@@ -9,14 +9,10 @@ import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/viewModel/userTicket_viewModel.dart';
 import 'package:evsmart/viewModel/userTicket_viewModel.dart';
 import 'package:evsmart/widgets/ticketUser_item.dart';
-import 'package:evsmart/widgets/feature_item.dart';
-import 'package:evsmart/widgets/ticketUser_item.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:line_icons/line_icon.dart';
-
-import 'package:scoped_model/scoped_model.dart';
 
 class TicketPageBody extends StatefulWidget {
   const TicketPageBody({Key? key}) : super(key: key);
