@@ -8,14 +8,13 @@ import 'package:evsmart/screens/myticket/myticket_screen.dart';
 import 'package:evsmart/screens/setting/components/LogoutDialog.dart';
 import 'package:evsmart/viewModel/account_viewModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class SettingScreen extends StatefulWidget {
-  SettingScreen({Key? key}) : super(key: key);
+  const SettingScreen({Key? key}) : super(key: key);
   static String routeName = "/setting";
 
   @override
@@ -83,8 +82,7 @@ class _SettingScreenState extends State<SettingScreen> {
       model: Get.find<AccountViewModel>(),
       child: ScopedModelDescendant<AccountViewModel>(
           builder: (context, child, model) {
-        LogoutDiaLog diaLogs = new LogoutDiaLog();
-        ;
+        LogoutDiaLog diaLogs = LogoutDiaLog();
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: ListView(
@@ -126,7 +124,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MyTicketScreen()),
+                            builder: (context) => const MyTicketScreen()),
                       );
                     },
                     icons: LineIcons.moneyCheck,
