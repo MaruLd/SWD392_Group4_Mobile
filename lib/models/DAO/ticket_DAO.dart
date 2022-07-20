@@ -49,7 +49,6 @@ class TicketDAO {
   Future<TicketUser> buyTicket({required String ticketId}) async {
     Response res;
     var token = await GoogleSignInProvider.getAndStoreJwtToken();
-
     res = await request.post('tickets/' + ticketId + '/users/user2',
         options: Options(
           headers: {

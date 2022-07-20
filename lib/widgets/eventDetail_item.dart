@@ -259,7 +259,7 @@ class MyEventDetailItem extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => TicketType(
-                                                eventId: data.id ?? ""))),
+                                                eventId: data.id ?? "",eventState: data.state??"",))),
                                   ),
                                 ),
                               ),
