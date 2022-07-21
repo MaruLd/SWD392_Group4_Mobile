@@ -200,6 +200,7 @@ class _EventPageBodyState extends State<EventPageBody> {
   @override
   void dispose() {
     pageController.dispose();
+    super.dispose();
   }
 
   @override

@@ -14,7 +14,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class SettingScreen extends StatefulWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+  SettingScreen({Key? key}) : super(key: key);
   static String routeName = "/setting";
 
   @override
@@ -27,7 +27,6 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   void initState() {
     user = FirebaseAuth.instance.currentUser!;
-
     FirebaseAuth.instance.userChanges().listen((event) {
       if (event != null && mounted) {
         setState(() {
@@ -82,7 +81,7 @@ class _SettingScreenState extends State<SettingScreen> {
       model: Get.find<AccountViewModel>(),
       child: ScopedModelDescendant<AccountViewModel>(
           builder: (context, child, model) {
-        LogoutDiaLog diaLogs = LogoutDiaLog();
+        LogoutDiaLog diaLogs = new LogoutDiaLog();
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: ListView(
@@ -124,7 +123,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MyTicketScreen()),
+                            builder: (context) => MyTicketScreen()),
                       );
                     },
                     icons: LineIcons.moneyCheck,

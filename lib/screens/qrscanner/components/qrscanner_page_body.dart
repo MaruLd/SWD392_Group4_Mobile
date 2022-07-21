@@ -57,7 +57,6 @@ class _QRViewState extends State<QRScannerPageBody> {
     loadFCM();
     listenFCM();
     getToken();
-    FirebaseMessaging.instance.subscribeToTopic("all");
   }
 
   @override
@@ -82,7 +81,7 @@ class _QRViewState extends State<QRScannerPageBody> {
     );
   }
 
-  Future<void> _onQRViewCreated(QRViewController controller) async {
+  void _onQRViewCreated(QRViewController controller) async {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       setState(() {
@@ -130,35 +129,76 @@ class _QRViewState extends State<QRScannerPageBody> {
             );
           }
 
+          if (snapshot.connectionState == ConnectionState.done) {
+            Future.delayed(Duration.zero, () => _showMyDialog(context));
+            controller!.pauseCamera();
+          }
           if (snapshot.data != null) {
             TicketUseCodeResult tucr = snapshot.data;
             if (tucr.isSuccess == true) {
-              return GestureDetector(
-                child: const AlertDialog(
-                    title: Text(
-                      "Event",
-                      textAlign: TextAlign.center,
-                    ),
-                    content: Text("Check successfully")),
-                onTap: () async {
-                  String name = "User1";
-                  DocumentSnapshot snap = await FirebaseFirestore.instance
-                      .collection("UserTokens")
-                      .doc(name)
-                      .get();
-
-                  String token = snap['token'];
-                  sendPushMessage(token);
-                },
-              );
-            } else {
-              return const Text('Your QR code scanner is not working properly',
-                  style: TextStyle(fontSize: 20, color: Colors.redAccent));
+              return Text("${tucr.message}successfully!",
+                  style:
+                      const TextStyle(fontSize: 20, color: Colors.greenAccent));
             }
+            //     AlertDialog(
+            //         title: Text(
+            //           "Sevent",
+            //           textAlign: TextAlign.center,
+            //         ),
+            //         content:
+            //             Text("Check successfully", textAlign: TextAlign.center),
+            //         actions: <Widget>[
+            //           TextButton(
+            //   child: Text('OK'),
+            //   onPressed: () async {
+            //       String token = (await FirebaseMessaging.instance.getToken())!;
+            //       sendPushMessage(token);
+            //     },
+            // ),
+            //         ]);
+          } else {
+            return const Text('Your QR code scanner is not working properly',
+                style: TextStyle(fontSize: 20, color: Colors.redAccent));
           }
           return const Text('Your QR code scanner is not working properly',
               style: TextStyle(fontSize: 20, color: Colors.redAccent));
         });
+  }
+
+  void _showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('SUCCESS!'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Yay! Everything is working.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () async {
+                DocumentSnapshot snap = await FirebaseFirestore.instance
+                    .collection("UserTokens")
+                    .doc("User1")
+                    .get();
+
+                String token = snap['token'];
+                print(token);
+                sendPushMessage(token);
+                Navigator.of(context).pop(false);
+                controller!.resumeCamera();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void saveToken(String token) async {
@@ -168,7 +208,7 @@ class _QRViewState extends State<QRScannerPageBody> {
   }
 
   void sendPushMessage(String token) async {
-    TicketUseCodeResult? tucr;
+    TicketUseCodeResult? result;
     try {
       await http.post(
         Uri.parse('https://fcm.googleapis.com/fcm/send'),
@@ -180,13 +220,13 @@ class _QRViewState extends State<QRScannerPageBody> {
         body: jsonEncode(
           <String, dynamic>{
             'notification': <String, dynamic>{
-              'body': "${tucr?.message} successfully!",
-              'title': "Smart Event"
+              'body': result?.message.toString(),
+              'title': 'Smart Event'
             },
             'priority': 'high',
             'data': <String, dynamic>{
               'click_action': 'FLUTTER_NOTIFICATION_CLICK',
-              'id': '1',
+              'id': '2',
               'status': 'done'
             },
             "to": token,
