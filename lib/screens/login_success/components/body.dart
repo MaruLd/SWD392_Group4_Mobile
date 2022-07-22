@@ -19,15 +19,15 @@ class Body extends StatelessWidget{
           color: kPrimaryColor,
         ),
         ),
-        Spacer(),
+        const Spacer(),
         SizedBox(
           width: SizeConfig.screenWidth *0.6,
           child: DefaultButton(
             text: "Go to home",
-            press: ()=>Navigator.push(context, new MaterialPageRoute(builder: (context)=>new HomeScreen())),
+            press: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen())),
           ),
         ),
-        Spacer(),
+        const Spacer(),
       ],
     );
   }

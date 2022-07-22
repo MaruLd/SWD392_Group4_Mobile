@@ -47,3 +47,5 @@ app.*.map.json
 /android/app/release
 node_modules
 local.properties
+pubspec.lock
+pubspec.lock

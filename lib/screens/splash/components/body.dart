@@ -1,5 +1,4 @@
 import 'package:evsmart/Authentication/navigate.dart';
-import 'package:evsmart/screens/login/login_screen.dart';
 import 'package:evsmart/screens/splash/components/splash_content.dart';
 import 'package:flutter/material.dart';
 import '../../../mainComponent/default_button.dart';
@@ -55,7 +54,7 @@ class _BodyState extends State<Body> {
                     horizontal: getProportionateScreenWidth(20)),
                 child: Column(
                   children: <Widget>[
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
@@ -63,7 +62,7 @@ class _BodyState extends State<Body> {
                         (index) => buildDot(index: index),
                       ),
                     ),
-                    Spacer(
+                    const Spacer(
                       flex: 3,
                     ),
                     DefaultButton(
@@ -72,7 +71,7 @@ class _BodyState extends State<Body> {
                         Navigator.pushNamed(context, NavigateScreen.routeName);
                       },
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
               ),
@@ -86,11 +85,11 @@ class _BodyState extends State<Body> {
   AnimatedContainer buildDot({required int index}) {
     return AnimatedContainer(
         duration: kAnimationDuration,
-        margin: EdgeInsets.only(right: 5),
+        margin: const EdgeInsets.only(right: 5),
         height: 6,
         width: currentPage == index ? 20 : 6,
         decoration: BoxDecoration(
-          color: currentPage == index ? kPrimaryColor : Color(0xFFD8D8D8),
+          color: currentPage == index ? kPrimaryColor : const Color(0xFFD8D8D8),
           borderRadius: BorderRadius.circular(3),
         ));
   }
