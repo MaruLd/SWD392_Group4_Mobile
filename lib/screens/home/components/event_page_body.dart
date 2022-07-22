@@ -79,7 +79,7 @@ class _EventPageBodyState extends State<EventPageBody> {
     });
   }
 
-  void sendPushMessage(String token, String body, String title) async {
+  void sendPushMessage(String token) async {
     try {
       await http.post(
         Uri.parse('https://fcm.googleapis.com/fcm/send'),
@@ -90,7 +90,10 @@ class _EventPageBodyState extends State<EventPageBody> {
         },
         body: jsonEncode(
           <String, dynamic>{
-            'notification': <String, dynamic>{'body': body, 'title': title},
+            'notification': <String, dynamic>{
+              'body': "Check in successfully",
+              'title': "Check in"
+            },
             'priority': 'high',
             'data': <String, dynamic>{
               'click_action': 'FLUTTER_NOTIFICATION_CLICK',
@@ -197,6 +200,7 @@ class _EventPageBodyState extends State<EventPageBody> {
   @override
   void dispose() {
     pageController.dispose();
+    super.dispose();
   }
 
   @override

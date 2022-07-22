@@ -8,7 +8,6 @@ import 'package:evsmart/screens/myticket/myticket_screen.dart';
 import 'package:evsmart/screens/setting/components/LogoutDialog.dart';
 import 'package:evsmart/viewModel/account_viewModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
@@ -28,7 +27,6 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   void initState() {
     user = FirebaseAuth.instance.currentUser!;
-
     FirebaseAuth.instance.userChanges().listen((event) {
       if (event != null && mounted) {
         setState(() {
@@ -84,7 +82,6 @@ class _SettingScreenState extends State<SettingScreen> {
       child: ScopedModelDescendant<AccountViewModel>(
           builder: (context, child, model) {
         LogoutDiaLog diaLogs = new LogoutDiaLog();
-        ;
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: ListView(
