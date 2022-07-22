@@ -124,10 +124,15 @@ class _QRViewState extends State<QRScannerPageBody> {
                   style: TextStyle(fontSize: 20, color: Colors.greenAccent));
             } else {
               return Text('Your QR code scanner is not working properly',
-                  style: TextStyle(fontSize: 20, color: Colors.redAccent));
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.redAccent,
+                  ));
             }
           }
           return Text('Your QR code scanner is not working properly',
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20, color: Colors.redAccent));
         });
   }
