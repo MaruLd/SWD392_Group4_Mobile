@@ -1,4 +1,4 @@
-import 'package:evsmart/models/DTO/ticketUser_model.dart';
+import 'package:evsmart/models/DTO/userTicket_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/myticket/components/ticket_page_body.dart';
 import 'package:evsmart/viewModel/userTicket_viewModel.dart';

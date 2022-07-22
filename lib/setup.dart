@@ -26,7 +26,7 @@ void createRouteBindings() async {
   Get.put(TicketViewModel());
   Get.put(UserTicketViewModel());
   Get.put(QRScannerViewModel());
-  Get.put(TicketUserViewModel());
+  // Get.put(TicketUserViewModel());
   Get.put(EventAgendaViewModel());
   Get.put(EventDetailViewModel());
   Get.put(AccountViewModel());

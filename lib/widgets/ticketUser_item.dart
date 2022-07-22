@@ -1,6 +1,6 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
-import 'package:evsmart/models/DTO/ticketUser_model.dart';
+import 'package:evsmart/models/DTO/userTicket_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/qrscanner/components/qrscanner_page_body.dart';
 import 'package:evsmart/screens/qrscanner/qrscanner_screen.dart';
@@ -13,7 +13,7 @@ import '../models/DTO/event_model.dart';
 class MyTicketUserItem extends StatelessWidget {
   MyTicketUserItem({Key? key, required this.data, this.onTap})
       : super(key: key);
-  TicketUser data;
+  UserTicket data;
   final GestureTapCallback? onTap;
 
   @override

@@ -60,9 +60,11 @@ SizedBox(height: 40,),
 }*/
 
 class TicketType extends StatefulWidget {
-  const TicketType({Key? key, required this.eventId}) : super(key: key);
+  const TicketType({Key? key, required this.eventId, required this.eventState})
+      : super(key: key);
 
   final String eventId;
+  final String eventState;
 
   @override
   _TicketTypeState createState() => _TicketTypeState();
@@ -102,23 +104,24 @@ class _TicketTypeState extends State<TicketType> {
                   fontSize: 25)),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
-            child: Column(children: [
-              getEventTicketContent(),
-              SizedBox(
-                height: 40,
-              ),
+        body: (widget.eventState == "publish")
+            ? SingleChildScrollView(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
+                child: Column(children: [
+                  getEventTicketContent(),
+                  SizedBox(
+                    height: 40,
+                  ),
 /*              DefaultButton(
                 text: "Continue",
                 press: () =>
                     diaLogs.confirm(context, 'Do you want to log out', ''),
               ),*/
-            ])));
+                ]))
+            : Center(child: Text("This event can no longer but ticket")));
   }
 
   getEventTicketContent() {
-
     return SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(0, 10, 0, 4),
         child: FutureBuilder(

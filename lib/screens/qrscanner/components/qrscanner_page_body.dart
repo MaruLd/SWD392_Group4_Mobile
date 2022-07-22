@@ -136,9 +136,16 @@ class _QRViewState extends State<QRScannerPageBody> {
           if (snapshot.data != null) {
             TicketUseCodeResult tucr = snapshot.data;
             if (tucr.isSuccess == true) {
-              return Text("${tucr.message}successfully!",
-                  style:
-                      const TextStyle(fontSize: 20, color: Colors.greenAccent));
+              return Text(tucr.message.toString() + "successfully!",
+                  style: TextStyle(fontSize: 20, color: Colors.greenAccent));
+            } else {
+              return Text('Your QR code scanner is not working properly',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.redAccent,
+                  ));
+
             }
             //     AlertDialog(
             //         title: Text(
@@ -160,7 +167,9 @@ class _QRViewState extends State<QRScannerPageBody> {
             return const Text('Your QR code scanner is not working properly',
                 style: TextStyle(fontSize: 20, color: Colors.redAccent));
           }
-          return const Text('Your QR code scanner is not working properly',
+          return Text('Your QR code scanner is not working properly',
+              textAlign: TextAlign.center,
+
               style: TextStyle(fontSize: 20, color: Colors.redAccent));
         });
   }

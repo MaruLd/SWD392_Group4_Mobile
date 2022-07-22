@@ -1,7 +1,7 @@
 import 'package:evsmart/color.dart';
 import 'package:evsmart/custom_image.dart';
 import 'package:evsmart/models/DTO/eventDetail_model.dart';
-import 'package:evsmart/models/DTO/ticketUser_model.dart';
+import 'package:evsmart/models/DTO/userTicket_model.dart';
 import 'package:evsmart/screens/constraint.dart';
 import 'package:evsmart/screens/event_details/components/choose_ticket_type.dart';
 import 'package:flutter/material.dart';
@@ -236,33 +236,41 @@ class MyEventDetailItem extends StatelessWidget {
                               SizedBox(height: 5),
                               Text(""),
                               SizedBox(height: 5),
-                              ButtonTheme(
-                                height: 350,
-                                minWidth: 200,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 235, bottom: 5),
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      primary: kPrimaryColor, // background
-                                      onPrimary: Colors.white, // for
-                                      shape: new RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(12.0),
-                                      ), // eground
-                                    ),
-                                    child: Text(
-                                      'Buy Ticket',
-                                      style: TextStyle(fontSize: 22),
-                                    ),
-                                    onPressed: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => TicketType(
-                                                eventId: data.id ?? ""))),
-                                  ),
-                                ),
-                              ),
+                              (data.state == "publish")
+                                  ? ButtonTheme(
+                                      height: 350,
+                                      minWidth: 200,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 235, bottom: 5),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            primary:
+                                                kPrimaryColor, // background
+                                            onPrimary: Colors.white, // for
+                                            shape: new RoundedRectangleBorder(
+                                              borderRadius:
+                                                  new BorderRadius.circular(
+                                                      12.0),
+                                            ), // eground
+                                          ),
+                                          child: Text(
+                                            'Buy Ticket',
+                                            style: TextStyle(fontSize: 22),
+                                          ),
+                                          onPressed: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      TicketType(
+                                                        eventId: data.id ?? "",
+                                                        eventState:
+                                                            data.state ?? "",
+                                                      ))),
+                                        ),
+                                      ),
+                                    )
+                                  : Text(""),
                             ],
                           ),
                         ),
